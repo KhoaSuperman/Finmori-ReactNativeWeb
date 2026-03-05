@@ -35,6 +35,37 @@ Use `.web.tsx` / `.web.ts` suffix for web-specific implementations. Expo/Metro r
 
 For minor differences, use `Platform.OS === 'web'` checks instead of separate files.
 
+## Mobile-First Layout Rules
+
+This app is **primarily displayed at mobile screen size (~390px)**. Every screen and component MUST render correctly at narrow widths without horizontal overflow.
+
+### Viewport & Root Constraints
+- `global.css` sets `max-width: 100vw; overflow-x: hidden` on `html, body, #root` — this prevents horizontal scroll at the browser level.
+- react-native-web does NOT constrain root width by default — without this CSS, content wider than the viewport causes horizontal scroll.
+
+### ScrollView Screen Pattern (CRITICAL)
+When building a full-screen scrollable page, use this pattern:
+
+```tsx
+<ScrollView
+  className="flex-1 bg-bg-primary"
+  contentContainerStyle={[{ alignItems: 'center' }, platformPadding]}>
+  <View style={{ maxWidth: 800, width: '100%' }} className="px-4">
+    {/* content */}
+  </View>
+</ScrollView>
+```
+
+- **NEVER** use `flexDirection: 'row'` + `justifyContent: 'center'` on `contentContainerStyle` — this creates a row context where the child has NO intrinsic width limit and will overflow.
+- **ALWAYS** use `alignItems: 'center'` (default column direction) so `width: '100%'` fills viewport and `maxWidth` actually caps it.
+
+### Component-Level Rules
+- **NEVER** use fixed-width columns or `flex-row` table layouts that exceed ~360px total — they overflow on mobile. Use vertical card/stacked layouts instead.
+- **NEVER** set `min-w-[...]` or `w-[...]` on multiple siblings in a row that could exceed the viewport width.
+- **ALWAYS** use `flex-wrap` when placing items in a `flex-row` if total width may exceed the container.
+- **Prefer** vertical stacking for data-heavy UI (token lists, settings, detail rows). Only use horizontal row layouts for small elements like pills, badges, or icon+label pairs that naturally fit in ~160px.
+- **MaxContentWidth** is `800px` — this is the outer container cap, not a safe inner width. Content must still work at `320–390px` first.
+
 ## Do NOT
 
 - Do NOT add webpack config — Metro handles web bundling

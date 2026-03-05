@@ -38,8 +38,8 @@ export default function ExploreScreen() {
       style={[{ backgroundColor: theme.background }]}
       className="flex-1"
       contentInset={insets}
-      contentContainerStyle={[{ flexDirection: 'row', justifyContent: 'center' }, contentPlatformStyle]}>
-      <ThemedView style={{ maxWidth: 800, flexGrow: 1 }}>
+      contentContainerStyle={[{ alignItems: 'center' }, contentPlatformStyle]}>
+      <ThemedView style={{ maxWidth: 800, width: '100%' }}>
         <ThemedView className="items-center gap-4 px-6 py-16">
           <ThemedText type="subtitle">Explore</ThemedText>
           <ThemedText className="text-center" variant="secondary">

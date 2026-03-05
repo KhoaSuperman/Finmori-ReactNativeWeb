@@ -28,6 +28,9 @@ export default function AppTabs() {
           <TabTrigger name="explore" href="/explore" asChild>
             <TabButton>Explore</TabButton>
           </TabTrigger>
+          <TabTrigger name="colors" href="/colors" asChild>
+            <TabButton>Colors</TabButton>
+          </TabTrigger>
         </CustomTabList>
       </TabList>
     </Tabs>
@@ -54,10 +57,10 @@ export function CustomTabList(props: TabListProps) {
   const theme = useTheme();
 
   return (
-    <View {...props} className="absolute w-full flex-row items-center justify-center p-4">
+    <View {...props} className="absolute w-full flex-row items-center justify-center px-2 py-3">
       <ThemedView
         type="backgroundElement"
-        className="max-w-[800px] grow flex-row items-center gap-2 rounded-3xl px-8 py-2">
+        className="max-w-[800px] grow flex-row flex-wrap items-center gap-1.5 rounded-3xl px-3 py-2">
         <ThemedText type="smallBold" className="mr-auto">
           Expo Starter
         </ThemedText>
@@ -65,7 +68,7 @@ export function CustomTabList(props: TabListProps) {
         {props.children}
 
         <ExternalLink href="https://docs.expo.dev" asChild>
-          <Pressable className="ml-4 flex-row items-center justify-center gap-1">
+          <Pressable className="ml-auto flex-row items-center justify-center gap-1">
             <ThemedText type="link">Docs</ThemedText>
             <SymbolView
               tintColor={theme.text}

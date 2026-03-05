@@ -14,13 +14,13 @@ const typeClasses: Record<NonNullable<ThemedTextProps['type']>, string> = {
   smallBold: 'text-sm leading-5 font-bold',
   subtitle: 'text-[32px] leading-[44px] font-semibold',
   link: 'text-sm leading-[30px]',
-  linkPrimary: 'text-sm leading-[30px] text-primary-500 dark:text-primary-400',
+  linkPrimary: 'text-sm leading-[30px] text-fg-brand-primary',
   code: 'font-mono font-medium text-xs',
 };
 
 const variantClasses: Record<NonNullable<ThemedTextProps['variant']>, string> = {
-  primary: 'text-content dark:text-content-dark',
-  secondary: 'text-content-secondary dark:text-content-secondary-dark',
+  primary: 'text-text-primary',
+  secondary: 'text-text-secondary',
 };
 
 export function ThemedText({

@@ -2,18 +2,54 @@ import { Platform } from 'react-native';
 
 export const Colors = {
   light: {
-    text: '#000000',
-    background: '#ffffff',
-    backgroundElement: '#F0F0F3',
-    backgroundSelected: '#E0E1E6',
-    textSecondary: '#60646C',
+    text: '#101323',
+    textSecondary: '#363F72',
+    textTertiary: '#3E4784',
+    textDisabled: '#7D89B0',
+    textBrandPrimary: '#1A45E6',
+
+    background: '#FFFFFF',
+    backgroundElement: '#F8F9FC',
+    backgroundSelected: '#EAECF5',
+    backgroundTertiary: '#EAECF5',
+
+    foreground: '#101323',
+    foregroundSecondary: '#363F72',
+
+    border: '#B3B8DB',
+    borderSecondary: '#D5D9EB',
+
+    brandSolid: '#1A45E6',
+    brandPrimary: '#EDF2FF',
+
+    errorPrimary: '#D92D20',
+    warningPrimary: '#DC6803',
+    successPrimary: '#079455',
   },
   dark: {
-    text: '#ffffff',
-    background: '#000000',
-    backgroundElement: '#212225',
-    backgroundSelected: '#2E3135',
-    textSecondary: '#B0B4BA',
+    text: '#F9F9FB',
+    textSecondary: '#B9C0D4',
+    textTertiary: '#7D89B0',
+    textDisabled: '#5D6B98',
+    textBrandPrimary: '#2F61F3',
+
+    background: '#0E101B',
+    backgroundElement: '#111322',
+    backgroundSelected: '#30374F',
+    backgroundTertiary: '#30374F',
+
+    foreground: '#FFFFFF',
+    foregroundSecondary: '#B9C0D4',
+
+    border: '#404968',
+    borderSecondary: '#30374F',
+
+    brandSolid: '#1A45E6',
+    brandPrimary: '#2F61F3',
+
+    errorPrimary: '#F97066',
+    warningPrimary: '#FDB022',
+    successPrimary: '#47CD89',
   },
 } as const;
 
