@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         primary: {
+          DEFAULT: "rgb(var(--color-primary) / <alpha-value>)",
           50: "#EFF6FF",
           100: "#DBEAFE",
           200: "#BFDBFE",
@@ -31,15 +32,19 @@ module.exports = {
           900: "#171717",
         },
         surface: {
-          DEFAULT: "#ffffff",
-          dark: "#000000",
-          element: { DEFAULT: "#F0F0F3", dark: "#212225" },
-          selected: { DEFAULT: "#E0E1E6", dark: "#2E3135" },
+          DEFAULT: "rgb(var(--color-surface) / <alpha-value>)",
+          element: "rgb(var(--color-surface-element) / <alpha-value>)",
+          selected: "rgb(var(--color-surface-selected) / <alpha-value>)",
+          elevated: "rgb(var(--color-surface-elevated) / <alpha-value>)",
+          muted: "rgb(var(--color-surface-muted) / <alpha-value>)",
+        },
+        border: {
+          DEFAULT: "rgb(var(--color-border) / <alpha-value>)",
         },
         content: {
-          DEFAULT: "#000000",
-          dark: "#ffffff",
-          secondary: { DEFAULT: "#60646C", dark: "#B0B4BA" },
+          DEFAULT: "rgb(var(--color-content) / <alpha-value>)",
+          secondary: "rgb(var(--color-content-secondary) / <alpha-value>)",
+          inverse: "rgb(var(--color-content-inverse) / <alpha-value>)",
         },
       },
       fontFamily: {

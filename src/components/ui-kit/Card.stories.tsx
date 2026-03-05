@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "storybook";
 import { Text, View } from "react-native";
 
-import { Badge } from "./Badge";
-import { Button } from "./Button";
 import { Card } from "./Card";
 
 const meta: Meta<typeof Card> = {
@@ -10,7 +8,7 @@ const meta: Meta<typeof Card> = {
   component: Card,
   decorators: [
     (Story) => (
-      <View className="flex-1 justify-center bg-neutral-100 p-4 dark:bg-neutral-950">
+      <View className="flex-1 justify-center bg-surface p-4">
         <Story />
       </View>
     ),
@@ -55,11 +53,7 @@ export const WithContent: Story = {
   render: () => (
     <Card title="Transaction" subtitle="Today at 2:30 PM" variant="elevated">
       <View className="flex-row items-center justify-between">
-        <Badge label="Completed" variant="success" />
-        <Text className="text-lg font-bold text-neutral-900 dark:text-neutral-100">-$42.50</Text>
-      </View>
-      <View className="mt-3">
-        <Button title="View Details" variant="outline" size="sm" />
+        <Text className="text-lg font-bold text-content">-$42.50</Text>
       </View>
     </Card>
   ),

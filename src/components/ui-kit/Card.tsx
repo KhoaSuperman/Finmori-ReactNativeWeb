@@ -6,9 +6,9 @@ import { cn } from "@/lib/cn";
 const cardVariants = cva("rounded-2xl p-4", {
   variants: {
     variant: {
-      elevated: "bg-white dark:bg-neutral-800 shadow-md shadow-black/10",
-      outlined: "bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700",
-      filled: "bg-neutral-50 dark:bg-neutral-800",
+      elevated: "bg-surface-elevated shadow-md shadow-black/10",
+      outlined: "bg-surface border border-border",
+      filled: "bg-surface-muted",
     },
   },
   defaultVariants: {
@@ -33,12 +33,12 @@ export function Card({
   return (
     <View className={cn(cardVariants({ variant }), className)} {...props}>
       {title && (
-        <Text className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+        <Text className="text-lg font-semibold text-content">
           {title}
         </Text>
       )}
       {subtitle && (
-        <Text className="mt-1 text-sm text-neutral-500 dark:text-neutral-400">
+        <Text className="mt-1 text-sm text-content-secondary">
           {subtitle}
         </Text>
       )}

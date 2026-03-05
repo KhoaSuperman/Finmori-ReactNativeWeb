@@ -1,0 +1,44 @@
+---
+alwaysApply: true
+---
+# React Native Web Project
+
+This is a **design system mobile-first app** built with React Native for Web, primarily displayed at mobile screen size.
+
+## Stack
+
+- **Expo SDK 55** (managed workflow) with **Expo Router** (file-based routing, root: `./src/app`)
+- **React Native 0.83** + **react-native-web ~0.21** — Expo handles aliasing and bundling automatically
+- **Metro** bundler for all platforms (NOT webpack) — configured in `metro.config.js`
+- **NativeWind v4** + **Tailwind CSS 3** for styling — use `className` prop, NOT inline `StyleSheet.create`
+- **class-variance-authority (cva)** for component variants
+- **Storybook 10** via `@storybook/react-native-web-vite` for component development
+- **React 19** + **TypeScript 5.9** (strict mode)
+
+## Key Conventions
+
+- Entry point: `expo-router/entry` (not a custom index)
+- Utility function `cn()` from `@/lib/cn` (clsx + tailwind-merge) for merging class names
+- UI kit components live in `src/components/ui-kit/` with barrel export in `index.ts`
+- Each UI kit component has a colocated `.stories.tsx` file
+- Theme colors defined in `tailwind.config.js` (primary, neutral, surface, content palettes)
+- Legacy theme constants in `src/constants/theme.ts` (Colors, Fonts, MaxContentWidth)
+- Hooks in `src/hooks/`, utilities in `src/lib/`
+
+## Platform-Specific Files
+
+Use `.web.tsx` / `.web.ts` suffix for web-specific implementations. Expo/Metro resolves them automatically:
+
+- `animated-icon.web.tsx` / `animated-icon.tsx` (native)
+- `app-tabs.web.tsx` / `app-tabs.tsx` (native)
+- `use-color-scheme.web.ts` / `use-color-scheme.ts` (native)
+
+For minor differences, use `Platform.OS === 'web'` checks instead of separate files.
+
+## Do NOT
+
+- Do NOT add webpack config — Metro handles web bundling
+- Do NOT use `StyleSheet.create` for new components — use NativeWind `className`
+- Do NOT import from `react-native-web` directly — always import from `react-native`
+- Do NOT install packages without checking Expo SDK 55 compatibility
+- Do NOT create `.native.tsx` files — the default (unsuffixed) file IS the native version
