@@ -4,7 +4,7 @@ Let generate Jetpack Compose UI for component from design specs exported located
 
 # In design specs folder includes
 
-- `<specs-folder>/specs_document/` : contains technical document of component. *MUST READ*
+- `<specs-folder>/specs_document/` : contains technical document of component. _MUST READ_
 - `<specs-folder>/previews/`: contains preview png of component.
 - `<specs-folder>/icons/`: contains svg icons.
 - `<specs-folder>/images/`: contains jpeg/png images.
@@ -18,5 +18,5 @@ Let generate Jetpack Compose UI for component from design specs exported located
 # Important Reminders
 
 - Run internal browser to test
-  
+
 This command will be available in chat with /gen-ui-for-component

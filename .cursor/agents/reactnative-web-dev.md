@@ -34,19 +34,23 @@ You are a senior React Native Web developer working on a mobile-first design sys
 
 ```tsx
 // Pattern: component with cva variants
-import { cva, type VariantProps } from "class-variance-authority";
-import { View, type ViewProps } from "react-native";
-import { cn } from "@/lib/cn";
+import { cva, type VariantProps } from "class-variance-authority"
+import { View, type ViewProps } from "react-native"
+import { cn } from "@/lib/cn"
 
 const myVariants = cva("base-classes", {
-  variants: { /* ... */ },
-  defaultVariants: { /* ... */ },
-});
+  variants: {
+    /* ... */
+  },
+  defaultVariants: {
+    /* ... */
+  },
+})
 
 interface MyComponentProps extends ViewProps, VariantProps<typeof myVariants> {}
 
 export function MyComponent({ variant, className, ...props }: MyComponentProps) {
-  return <View className={cn(myVariants({ variant }), className)} {...props} />;
+  return <View className={cn(myVariants({ variant }), className)} {...props} />
 }
 ```
 

@@ -99,8 +99,34 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        display: ["Literata", "Georgia", "serif"],
+        body: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
+        number: ["Iceland", "system-ui", "sans-serif"],
+        sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"],
         mono: ["JetBrains Mono", "monospace"],
+      },
+      fontSize: {
+        /* Semantic scale — rem values based on 16px root (Figma design tokens) */
+        tiny: ["0.6875rem", { lineHeight: "1rem" }],
+        caption: ["0.8125rem", { lineHeight: "1rem" }],
+        "body-small": ["0.9375rem", { lineHeight: "1.25rem" }],
+        body: ["1.0625rem", { lineHeight: "1.5rem" }],
+        h3: ["1.1875rem", { lineHeight: "1.5rem" }],
+        h2: ["1.3125rem", { lineHeight: "1.75rem" }],
+        h1: ["1.5rem", { lineHeight: "2rem" }],
+        display: ["2.125rem", { lineHeight: "2.75rem" }],
+        "display-xl": ["4.5rem", { lineHeight: "5rem" }],
+        /* Standard aliases for general use */
+        xs: ["0.8125rem", { lineHeight: "1rem" }],
+        sm: ["0.9375rem", { lineHeight: "1.25rem" }],
+        base: ["1.0625rem", { lineHeight: "1.5rem" }],
+        lg: ["1.1875rem", { lineHeight: "1.5rem" }],
+        xl: ["1.3125rem", { lineHeight: "1.75rem" }],
+        "2xl": ["1.5rem", { lineHeight: "2rem" }],
+        "3xl": ["2.125rem", { lineHeight: "2.75rem" }],
+      },
+      letterSpacing: {
+        tighter: "-0.02em",
       },
       borderRadius: {
         "4xl": "2rem",
@@ -108,4 +134,4 @@ module.exports = {
     },
   },
   plugins: [],
-};
+}

@@ -1,6 +1,6 @@
-import type { Preview } from "storybook";
+import type { Preview } from "storybook"
 
-import "../src/global.css";
+import "../src/global.css"
 
 const preview: Preview = {
   parameters: {
@@ -9,6 +9,6 @@ const preview: Preview = {
     },
     layout: "fullscreen",
   },
-};
+}
 
-export default preview;
+export default preview

@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from "storybook";
-import { Text, View } from "react-native";
+import type { Meta, StoryObj } from "storybook"
+import { Text, View } from "react-native"
 
-import { Card } from "./Card";
+import { Card } from "./Card"
 
 const meta: Meta<typeof Card> = {
   title: "UI Kit/Card",
   component: Card,
   decorators: [
     (Story) => (
-      <View className="flex-1 justify-center bg-surface p-4">
+      <View className="bg-surface flex-1 justify-center p-4">
         <Story />
       </View>
     ),
@@ -19,11 +19,11 @@ const meta: Meta<typeof Card> = {
       options: ["elevated", "outlined", "filled"],
     },
   },
-};
+}
 
-export default meta;
+export default meta
 
-type Story = StoryObj<typeof Card>;
+type Story = StoryObj<typeof Card>
 
 export const Elevated: Story = {
   args: {
@@ -31,7 +31,7 @@ export const Elevated: Story = {
     subtitle: "This card has a shadow elevation effect",
     variant: "elevated",
   },
-};
+}
 
 export const Outlined: Story = {
   args: {
@@ -39,7 +39,7 @@ export const Outlined: Story = {
     subtitle: "This card has a border outline",
     variant: "outlined",
   },
-};
+}
 
 export const Filled: Story = {
   args: {
@@ -47,36 +47,24 @@ export const Filled: Story = {
     subtitle: "This card has a filled background",
     variant: "filled",
   },
-};
+}
 
 export const WithContent: Story = {
   render: () => (
     <Card title="Transaction" subtitle="Today at 2:30 PM" variant="elevated">
       <View className="flex-row items-center justify-between">
-        <Text className="text-lg font-bold text-content">-$42.50</Text>
+        <Text className="text-content text-lg font-bold">-$42.50</Text>
       </View>
     </Card>
   ),
-};
+}
 
 export const AllVariants: Story = {
   render: () => (
     <View className="gap-4">
-      <Card
-        title="Elevated"
-        subtitle="Shadow effect"
-        variant="elevated"
-      />
-      <Card
-        title="Outlined"
-        subtitle="Border style"
-        variant="outlined"
-      />
-      <Card
-        title="Filled"
-        subtitle="Background fill"
-        variant="filled"
-      />
+      <Card title="Elevated" subtitle="Shadow effect" variant="elevated" />
+      <Card title="Outlined" subtitle="Border style" variant="outlined" />
+      <Card title="Filled" subtitle="Background fill" variant="filled" />
     </View>
   ),
-};
+}

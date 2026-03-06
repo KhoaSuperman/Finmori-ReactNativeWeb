@@ -1,0 +1,8 @@
+node_modules
+.expo
+.git
+dist
+web-build
+storybook-static
+package-lock.json
+.vscode

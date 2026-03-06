@@ -1,7 +1,7 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import { View, Text, type ViewProps } from "react-native";
+import { cva, type VariantProps } from "class-variance-authority"
+import { View, Text, type ViewProps } from "react-native"
 
-import { cn } from "@/lib/cn";
+import { cn } from "@/lib/cn"
 
 const cardVariants = cva("rounded-2xl p-4", {
   variants: {
@@ -14,35 +14,20 @@ const cardVariants = cva("rounded-2xl p-4", {
   defaultVariants: {
     variant: "elevated",
   },
-});
+})
 
 interface CardProps extends ViewProps, VariantProps<typeof cardVariants> {
-  title?: string;
-  subtitle?: string;
-  children?: React.ReactNode;
+  title?: string
+  subtitle?: string
+  children?: React.ReactNode
 }
 
-export function Card({
-  title,
-  subtitle,
-  children,
-  variant,
-  className,
-  ...props
-}: CardProps) {
+export function Card({ title, subtitle, children, variant, className, ...props }: CardProps) {
   return (
     <View className={cn(cardVariants({ variant }), className)} {...props}>
-      {title && (
-        <Text className="text-lg font-semibold text-content">
-          {title}
-        </Text>
-      )}
-      {subtitle && (
-        <Text className="mt-1 text-sm text-content-secondary">
-          {subtitle}
-        </Text>
-      )}
+      {title && <Text className="text-content text-lg font-semibold">{title}</Text>}
+      {subtitle && <Text className="text-content-secondary mt-1 text-sm">{subtitle}</Text>}
       {children && <View className="mt-3">{children}</View>}
     </View>
-  );
+  )
 }
