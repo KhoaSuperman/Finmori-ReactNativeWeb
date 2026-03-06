@@ -1,57 +1,149 @@
-import * as Device from "expo-device"
-import { Platform, View } from "react-native"
-import { SafeAreaView } from "react-native-safe-area-context"
+import { useRouter } from "expo-router"
+import { Platform, Pressable, ScrollView, View } from "react-native"
+import { useSafeAreaInsets } from "react-native-safe-area-context"
 
-import { AnimatedIcon } from "@/components/animated-icon"
-import { HintRow } from "@/components/hint-row"
-import { ThemedText } from "@/components/themed-text"
-import { ThemedView } from "@/components/themed-view"
+import { Card } from "@/components/ui-kit/Card"
+import { Typography } from "@/components/ui-kit/Typography"
 import { WebBadge } from "@/components/web-badge"
 
-function getDevMenuHint() {
-  if (Platform.OS === "web") {
-    return <ThemedText type="small">use browser devtools</ThemedText>
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    )
-  }
-  const shortcut = Platform.OS === "android" ? "cmd+m (or ctrl+m)" : "cmd+d"
+function NavCard({
+  title,
+  description,
+  onPress
+}: {
+  title: string;
+  description: string;
+  onPress: () => void
+}) {
   return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => ({
+        opacity: pressed ? 0.8 : 1,
+        transform: [{ scale: pressed ? 0.98 : 1 }]
+      })}
+    >
+      <Card variant="elevated" title={title}>
+        <Typography size="body-small" className="text-text-secondary mt-1">
+          {description}
+        </Typography>
+        <View className="mt-4 flex-row items-center">
+          <Typography size="caption" className="text-text-brand-primary font-bold">
+            Explore Details →
+          </Typography>
+        </View>
+      </Card>
+    </Pressable>
   )
 }
 
+const CORE_COMPONENTS = [
+  {
+    title: "Typography",
+    description: "Scale, font weights, and semantic variants for consistent text rendering.",
+    route: "/showcase/typography",
+  },
+  {
+    title: "Colors",
+    description: "Primitive and semantic color tokens for beautiful interfaces.",
+    route: "/showcase/colors",
+  },
+  {
+    title: "Cards",
+    description: "Elevated, outlined, and filled containers for structured content layouts.",
+    route: "/showcase/card",
+  },
+]
+
 export default function HomeScreen() {
+  const insets = useSafeAreaInsets()
+  const router = useRouter()
+
+  const platformPadding = {
+    paddingTop: Math.max(insets.top, 20),
+    paddingBottom: Math.max(insets.bottom, 40),
+  }
+
   return (
-    <ThemedView style={{ flex: 1, alignItems: "center" }}>
-      <SafeAreaView style={{ flex: 1, width: "100%", maxWidth: 800 }}>
-        <View className="flex-1 items-center gap-4 px-6 pb-20">
-          <View className="flex-1 items-center justify-center gap-6 px-6">
-            <AnimatedIcon />
-            <ThemedText type="title" className="text-center">
-              Welcome to&nbsp;Expo
-            </ThemedText>
+    <ScrollView
+      className="flex-1 bg-bg-primary"
+      contentContainerStyle={[{ alignItems: "center" }, platformPadding]}
+      showsVerticalScrollIndicator={false}
+    >
+      <View style={{ maxWidth: 800, width: "100%" }} className="gap-10 px-6">
+
+        {/* Premium Hero Header */}
+        <View className="items-center py-12 relative">
+          {/* Background Ambient Glow */}
+          <View className="absolute inset-x-0 top-1/2 -translate-y-1/2 items-center justify-center -z-10">
+            <View className="w-[200px] h-[200px] bg-bg-brand-secondary/10 rounded-full blur-[60px]" />
+            <View className="absolute w-[100px] h-[100px] bg-bg-brand-primary/5 rounded-full blur-[30px]" />
           </View>
 
-          <ThemedText type="code" className="uppercase">
-            get started
-          </ThemedText>
+          <View className="items-center gap-3">
+            <Typography size="display" weight="bold" className="text-center tracking-tight leading-[1.1]">
+              Finmori UI
+            </Typography>
+            <Typography size="body" weight="medium" className="text-text-secondary text-center max-w-[400px] leading-relaxed">
+              The high-end React Native design system for world-class mobile and web experiences.
+            </Typography>
+          </View>
 
-          <ThemedView type="backgroundElement" className="w-full gap-4 rounded-3xl px-4 py-6">
-            <HintRow title="Try editing" hint={<ThemedText type="code">src/app/index.tsx</ThemedText>} />
-            <HintRow title="Dev tools" hint={getDevMenuHint()} />
-            <HintRow title="Fresh start" hint={<ThemedText type="code">npm run reset-project</ThemedText>} />
-          </ThemedView>
-
-          {Platform.OS === "web" && <WebBadge />}
+          <View className="flex-row gap-3 mt-10">
+            <Pressable className="px-6 py-2.5 bg-bg-brand-solid rounded-full shadow-lg shadow-brand-primary/20 active:opacity-90">
+              <Typography size="body-small" weight="bold" className="text-text-white">Get Started</Typography>
+            </Pressable>
+            <Pressable className="px-6 py-2.5 border border-border-primary rounded-full active:bg-bg-secondary">
+              <Typography size="body-small" weight="semibold">Component Lab</Typography>
+            </Pressable>
+          </View>
         </View>
-      </SafeAreaView>
-    </ThemedView>
+
+        {/* Directory Section */}
+        <View nativeID="core-components" className="gap-6">
+          <View className="px-1 flex-row items-center justify-between border-b border-border-primary/50 pb-3">
+            <Typography size="h3" weight="bold" className="text-xl">Core Components</Typography>
+            <View className="bg-bg-secondary px-2 py-0.5 rounded-full">
+              <Typography size="tiny" weight="bold" className="text-text-tertiary">{CORE_COMPONENTS.length} Total</Typography>
+            </View>
+          </View>
+
+          <View className="gap-3">
+            {CORE_COMPONENTS.map((component) => (
+              <NavCard
+                key={component.title}
+                title={component.title}
+                description={component.description}
+                onPress={() => router.push(component.route as any)}
+              />
+            ))}
+          </View>
+        </View>
+
+        {/* Developer Info Section */}
+        <Card variant="filled" className="bg-surface-muted/20 border border-border-primary/10">
+          <Typography size="caption" weight="bold" className="text-text-tertiary uppercase tracking-[0.2em] mb-5 text-[10px]">
+            Project Environment
+          </Typography>
+          <View className="gap-3">
+            <View className="flex-row justify-between items-center">
+              <Typography size="body-small" weight="semibold" className="text-text-secondary text-[12px]">Platform</Typography>
+              <Typography size="body-small" className="text-text-primary font-mono capitalize px-1.5 py-0.5 bg-bg-secondary rounded-md text-[11px]">{Platform.OS}</Typography>
+            </View>
+            <View className="h-[1px] bg-border-primary/20" />
+            <View className="flex-row justify-between items-center">
+              <Typography size="body-small" weight="semibold" className="text-text-secondary text-[12px]">Entry Point</Typography>
+              <Typography size="body-small" className="text-text-primary font-mono text-[11px]">src/app/index.tsx</Typography>
+            </View>
+          </View>
+        </Card>
+
+        {Platform.OS === "web" && (
+          <View className="items-center py-8 opacity-40">
+            <WebBadge />
+          </View>
+        )}
+      </View>
+    </ScrollView>
   )
 }

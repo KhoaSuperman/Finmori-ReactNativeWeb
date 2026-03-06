@@ -1,9 +1,9 @@
-import { version } from "expo/package.json"
 import { Image } from "expo-image"
+import { version } from "expo/package.json"
 import React from "react"
 import { useColorScheme } from "react-native"
 
-import { ThemedText } from "./themed-text"
+import { Typography } from "@/components/ui-kit/Typography"
 import { ThemedView } from "./themed-view"
 
 export function WebBadge() {
@@ -11,9 +11,9 @@ export function WebBadge() {
 
   return (
     <ThemedView className="items-center gap-2 p-8">
-      <ThemedText type="code" variant="secondary" className="text-center">
+      <Typography size="caption" className="font-mono text-center text-text-secondary">
         v{version}
-      </ThemedText>
+      </Typography>
       <Image
         source={
           scheme === "dark"

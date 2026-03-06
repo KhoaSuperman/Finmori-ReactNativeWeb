@@ -1,8 +1,7 @@
 import React, { useState } from "react"
-import { Modal, Platform, Pressable, ScrollView, Text, View } from "react-native"
-import { useSafeAreaInsets } from "react-native-safe-area-context"
+import { Modal, Pressable, Text, View } from "react-native"
 
-import { BottomTabInset } from "@/constants/theme"
+import { ShowcasePage } from "@/components/showcase-page"
 
 type ColorToken = {
   name: string
@@ -899,47 +898,16 @@ function LivePreviewGrid() {
 }
 
 export default function ColorsScreen() {
-  const safeAreaInsets = useSafeAreaInsets()
-  const insets = {
-    ...safeAreaInsets,
-    bottom: safeAreaInsets.bottom + BottomTabInset + 16,
-  }
-
-  const contentPlatformStyle = Platform.select({
-    android: {
-      paddingTop: insets.top,
-      paddingLeft: insets.left,
-      paddingRight: insets.right,
-      paddingBottom: insets.bottom,
-    },
-    web: {
-      paddingTop: 64,
-      paddingBottom: 24,
-    },
-  })
-
   return (
-    <ScrollView
-      className="flex-1 bg-bg-primary"
-      contentInset={insets}
-      contentContainerStyle={[{ alignItems: "center" }, contentPlatformStyle]}
+    <ShowcasePage
+      title="Color variables"
+      description="Color variables (Figma's version of design tokens) store reusable values that can be applied to all kinds of design properties including fill and stroke colors. They act as a \u0022single source of truth\u0022 while allowing designers to create multiple color modes."
     >
-      <View style={{ maxWidth: 800, width: "100%" }} className="px-4">
-        <View className="py-8">
-          <Text className="mb-2 text-3xl font-bold text-text-primary">Color variables</Text>
-          <Text className="text-sm leading-5 text-text-tertiary">
-            Color variables (Figma's version of design tokens) store reusable values that can be applied to all kinds of
-            design properties including fill and stroke colors. They act as a "single source of truth" while allowing
-            designers to create multiple color modes.
-          </Text>
-        </View>
+      <LivePreviewGrid />
 
-        <LivePreviewGrid />
-
-        {COLOR_DATA.map((category) => (
-          <CategorySection key={category.title} category={category} />
-        ))}
-      </View>
-    </ScrollView>
+      {COLOR_DATA.map((category) => (
+        <CategorySection key={category.title} category={category} />
+      ))}
+    </ShowcasePage>
   )
 }

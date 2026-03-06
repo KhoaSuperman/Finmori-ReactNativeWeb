@@ -3,8 +3,8 @@ import { PropsWithChildren, useState } from "react"
 import { Pressable } from "react-native"
 import Animated, { FadeIn } from "react-native-reanimated"
 
-import { ThemedText } from "@/components/themed-text"
 import { ThemedView } from "@/components/themed-view"
+import { Typography } from "@/components/ui-kit/Typography"
 import { useTheme } from "@/hooks/use-theme"
 
 export function Collapsible({ children, title }: PropsWithChildren & { title: string }) {
@@ -24,7 +24,7 @@ export function Collapsible({ children, title }: PropsWithChildren & { title: st
           />
         </ThemedView>
 
-        <ThemedText type="small">{title}</ThemedText>
+        <Typography size="body-small" weight="medium">{title}</Typography>
       </Pressable>
       {isOpen && (
         <Animated.View entering={FadeIn.duration(200)}>

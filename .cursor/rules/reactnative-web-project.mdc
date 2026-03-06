@@ -20,6 +20,7 @@ This is a **design system mobile-first app** built with React Native for Web, pr
 - Entry point: `expo-router/entry` (not a custom index)
 - Utility function `cn()` from `@/lib/cn` (clsx + tailwind-merge) for merging class names
 - UI kit components live in `src/components/ui-kit/` with barrel export in `index.ts`
+- ALWAYS use `<Typography>` from `@/components/ui-kit/Typography` for text rendering. Do NOT use standard `<Text>` or legacy `<ThemedText>`.
 - Each UI kit component has a colocated `.stories.tsx` file
 - Theme colors defined in `tailwind.config.js` (primary, neutral, surface, content palettes)
 - Legacy theme constants in `src/constants/theme.ts` (Colors, Fonts, MaxContentWidth)
