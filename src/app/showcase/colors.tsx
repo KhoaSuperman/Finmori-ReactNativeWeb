@@ -724,12 +724,12 @@ const COLOR_DATA: ColorCategory[] = [
 function ColorPill({ hex, label, onPress }: { hex: string; label: string; onPress: () => void }) {
   return (
     <Pressable onPress={onPress} className="active:opacity-70">
-      <View className="flex-row items-center gap-1.5 rounded-lg border border-border-tertiary bg-bg-primary px-2 py-1.5">
-        <View className="flex h-5 w-5 items-center justify-center rounded border border-border-tertiary">
-          <View className="h-4 w-4 rounded border border-border-tertiary" style={{ backgroundColor: hex }} />
+      <View className="flex-row items-center gap-1.5 rounded-lg border border-tertiary bg-primary px-2 py-1.5">
+        <View className="flex h-5 w-5 items-center justify-center rounded border border-tertiary">
+          <View className="h-4 w-4 rounded border border-tertiary" style={{ backgroundColor: hex }} />
         </View>
 
-        <Text className="text-xs text-text-secondary" numberOfLines={1}>
+        <Text className="text-xs text-secondary" numberOfLines={1}>
           {label}
         </Text>
       </View>
@@ -747,11 +747,11 @@ function HexTooltip({ visible, hex, onClose }: { visible: boolean; hex: string; 
         className="flex-1 items-center justify-center"
         style={{ backgroundColor: "rgba(0,0,0,0.3)" }}
       >
-        <View className="flex-row items-center gap-3 rounded-2xl border border-border-secondary bg-bg-primary px-5 py-4">
+        <View className="flex-row items-center gap-3 rounded-2xl border border-secondary bg-primary px-5 py-4">
           <View className="h-10 w-10 rounded-lg" style={{ backgroundColor: hex }} />
           <View>
-            <Text className="mb-0.5 text-xs text-text-tertiary">Hex value</Text>
-            <Text className="font-mono text-lg font-semibold text-text-primary">{hex}</Text>
+            <Text className="mb-0.5 text-xs text-tertiary">Hex value</Text>
+            <Text className="font-mono text-lg font-semibold text-primary">{hex}</Text>
           </View>
         </View>
       </Pressable>
@@ -766,27 +766,27 @@ function TokenCard({ token }: { token: ColorToken }) {
   const darkLabel = token.darkAlias ? formatAlias(token.darkAlias) : token.darkHex || "—"
 
   return (
-    <View className="border-b border-border-tertiary px-3 py-4">
+    <View className="border-b border-tertiary px-3 py-4">
       <HexTooltip visible={!!tooltip} hex={tooltip ?? ""} onClose={() => setTooltip(null)} />
 
       <View className="mb-2">
-        <Text className="text-sm font-semibold text-text-primary">{token.name}</Text>
+        <Text className="text-sm font-semibold text-primary">{token.name}</Text>
       </View>
 
       <View className="mb-2 flex-row flex-wrap gap-2">
         <View className="gap-1">
-          <Text className="text-[10px] font-medium uppercase tracking-wider text-text-quaternary">Light</Text>
+          <Text className="text-[10px] font-medium uppercase tracking-wider text-quaternary">Light</Text>
           <ColorPill hex={token.lightHex} label={lightLabel} onPress={() => setTooltip(token.lightHex)} />
         </View>
         {token.darkHex ? (
           <View className="gap-1">
-            <Text className="text-[10px] font-medium uppercase tracking-wider text-text-quaternary">Dark</Text>
+            <Text className="text-[10px] font-medium uppercase tracking-wider text-quaternary">Dark</Text>
             <ColorPill hex={token.darkHex} label={darkLabel} onPress={() => setTooltip(token.darkHex)} />
           </View>
         ) : null}
       </View>
 
-      <Text className="text-xs leading-4 text-text-tertiary">{token.usage}</Text>
+      <Text className="text-xs leading-4 text-tertiary">{token.usage}</Text>
     </View>
   )
 }
@@ -795,14 +795,14 @@ function CategorySection({ category }: { category: ColorCategory }) {
   return (
     <View className="mb-8">
       <View className="mb-1.5 flex-row items-center gap-2">
-        <Text className="text-lg font-semibold text-text-primary">{category.title}</Text>
-        <View className="rounded-full bg-bg-brand-primary px-2 py-0.5">
+        <Text className="text-lg font-semibold text-primary">{category.title}</Text>
+        <View className="rounded-full bg-brand-primary px-2 py-0.5">
           <Text className="text-[10px] font-medium text-fg-brand-primary">Variables</Text>
         </View>
       </View>
-      <Text className="mb-3 text-sm leading-5 text-text-tertiary">{category.description}</Text>
+      <Text className="mb-3 text-sm leading-5 text-tertiary">{category.description}</Text>
 
-      <View className="overflow-hidden rounded-xl border border-border-tertiary bg-bg-primary">
+      <View className="overflow-hidden rounded-xl border border-tertiary bg-primary">
         {category.tokens.map((token) => (
           <TokenCard key={token.name} token={token} />
         ))}
@@ -815,10 +815,10 @@ function LiveSwatch({ cssVar, name }: { cssVar: string; name: string }) {
   return (
     <View className="items-center gap-1">
       <View
-        className="h-10 w-10 rounded-lg border border-border-secondary"
+        className="h-10 w-10 rounded-lg border border-secondary"
         style={{ backgroundColor: `var(${cssVar})` }}
       />
-      <Text className="text-center text-[10px] text-text-tertiary" numberOfLines={2}>
+      <Text className="text-center text-[10px] text-tertiary" numberOfLines={2}>
         {name}
       </Text>
     </View>
@@ -881,11 +881,11 @@ function LivePreviewGrid() {
 
   return (
     <View className="mb-8">
-      <Text className="mb-1 text-lg font-semibold text-text-primary">Live preview</Text>
-      <Text className="mb-3 text-sm text-text-tertiary">Swatches respond to your current color mode.</Text>
+      <Text className="mb-1 text-lg font-semibold text-primary">Live preview</Text>
+      <Text className="mb-3 text-sm text-tertiary">Swatches respond to your current color mode.</Text>
       {groups.map((group) => (
         <View key={group.label} className="mb-3">
-          <Text className="mb-2 text-xs font-semibold uppercase tracking-wider text-text-secondary">{group.label}</Text>
+          <Text className="mb-2 text-xs font-semibold uppercase tracking-wider text-secondary">{group.label}</Text>
           <View className="flex-row flex-wrap gap-3">
             {group.items.map((item) => (
               <LiveSwatch key={item.var} cssVar={item.var} name={item.name} />

@@ -1,0 +1,6 @@
+---
+alwaysApply: true
+---
+
+- Don't call/summon/use subagent if I don't asking for.
+- Use subagent without permission is not allowed.

@@ -49,7 +49,7 @@ When building a full-screen scrollable page, use this pattern:
 
 ```tsx
 <ScrollView
-  className="flex-1 bg-bg-primary"
+  className="flex-1 bg-primary"
   contentContainerStyle={[{ alignItems: 'center' }, platformPadding]}>
   <View style={{ maxWidth: 800, width: '100%' }} className="px-4">
     {/* content */}

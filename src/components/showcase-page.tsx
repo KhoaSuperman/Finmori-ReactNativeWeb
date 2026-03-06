@@ -24,7 +24,7 @@ export function ShowcasePage({ title, description, children }: ShowcasePageProps
         <>
             <Stack.Screen options={{ headerShown: false }} />
             <ScrollView
-                className="flex-1 bg-bg-primary"
+                className="flex-1 bg-primary"
                 contentContainerStyle={[{ alignItems: "center" }, platformPadding]}
                 showsVerticalScrollIndicator={false}
             >
@@ -32,17 +32,17 @@ export function ShowcasePage({ title, description, children }: ShowcasePageProps
                     <View className="gap-2 pt-6">
                         <Pressable
                             onPress={() => router.back()}
-                            className="flex-row items-center self-start mb-4 bg-bg-secondary px-3 py-1.5 rounded-full active:opacity-70"
+                            className="flex-row items-center self-start mb-4 bg-secondary px-3 py-1.5 rounded-full active:opacity-70"
                         >
-                            <Typography size="body-small" weight="semibold" className="text-text-secondary">
+                            <Typography size="body-small" weight="semibold" className="text-secondary">
                                 ← Back
                             </Typography>
                         </Pressable>
 
-                        <Typography size="display" weight="bold" className="text-text-primary">
+                        <Typography size="display" weight="bold" className="text-primary">
                             {title}
                         </Typography>
-                        <Typography size="body" className="text-text-secondary">
+                        <Typography size="body" className="text-secondary">
                             {description}
                         </Typography>
                     </View>

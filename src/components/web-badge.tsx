@@ -11,7 +11,7 @@ export function WebBadge() {
 
   return (
     <ThemedView className="items-center gap-2 p-8">
-      <Typography size="caption" className="font-mono text-center text-text-secondary">
+      <Typography size="caption" className="font-mono text-center text-secondary">
         v{version}
       </Typography>
       <Image

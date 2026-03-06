@@ -7,9 +7,9 @@ export type ThemedViewProps = ViewProps & {
 }
 
 const typeClasses: Record<NonNullable<ThemedViewProps["type"]>, string> = {
-  background: "bg-bg-primary",
-  backgroundElement: "bg-bg-secondary",
-  backgroundSelected: "bg-bg-tertiary",
+  background: "bg-primary",
+  backgroundElement: "bg-secondary",
+  backgroundSelected: "bg-tertiary",
 }
 
 export function ThemedView({ className, type = "background", ...otherProps }: ThemedViewProps) {

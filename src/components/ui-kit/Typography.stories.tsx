@@ -1,5 +1,5 @@
-import type { Meta, StoryObj } from "storybook"
 import { View } from "react-native"
+import type { Meta, StoryObj } from "storybook"
 
 import { Typography } from "./Typography"
 
@@ -8,7 +8,7 @@ const meta: Meta<typeof Typography> = {
   component: Typography,
   decorators: [
     (Story) => (
-      <View className="flex-1 justify-center bg-bg-primary p-4">
+      <View className="flex-1 justify-center bg-primary p-4">
         <Story />
       </View>
     ),
@@ -119,15 +119,15 @@ export const NumberStyles: Story = {
 
 export const ComposedCard: Story = {
   render: () => (
-    <View className="gap-3 rounded-2xl bg-bg-secondary p-5">
+    <View className="gap-3 rounded-2xl bg-secondary p-5">
       <Typography size="h1" weight="semibold">
         Portfolio balance
       </Typography>
       <Typography size="number-lg">$128,450.32</Typography>
-      <Typography size="caption" className="text-text-success-primary">
+      <Typography size="caption" className="text-success-primary">
         +2.4% today
       </Typography>
-      <Typography size="body" className="text-text-tertiary">
+      <Typography size="body" className="text-tertiary">
         Markets are showing strong momentum heading into Q2.
       </Typography>
     </View>

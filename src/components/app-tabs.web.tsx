@@ -28,7 +28,7 @@ function Header({ children, ...props }: { children: React.ReactNode }) {
   return (
     <View
       {...props}
-      className="fixed top-0 left-0 right-0 z-50 flex-row items-center justify-center border-b border-border-primary/50 bg-bg-primary/80 backdrop-blur-xl"
+      className="fixed top-0 left-0 right-0 z-50 flex-row items-center justify-center border-b border-primary/50 bg-primary/80 backdrop-blur-xl"
     >
       <View style={{ maxWidth: 1200, width: "100%" }} className="flex-row items-center h-14 px-4">
         {/* Logo Section */}
@@ -49,8 +49,8 @@ function Header({ children, ...props }: { children: React.ReactNode }) {
         <View className="flex-1" />
 
         {/* Action Section */}
-        <Pressable className="px-4 py-1.5 bg-bg-brand-solid rounded-full active:opacity-90">
-          <Typography size="caption" weight="bold" className="text-text-white text-[11px]">Get Started</Typography>
+        <Pressable className="px-4 py-1.5 bg-brand-solid rounded-full active:opacity-90">
+          <Typography size="caption" weight="bold" className="text-white text-[11px]">Get Started</Typography>
         </Pressable>
       </View>
     </View>
@@ -73,13 +73,13 @@ const HeaderLink = React.forwardRef<View, HeaderLinkProps>(
         <Typography
           size="body-small"
           weight={isFocused ? "bold" : "medium"}
-          className={isFocused ? "text-text-primary" : "text-text-secondary"}
+          className={isFocused ? "text-primary" : "text-secondary"}
           style={{ fontSize: 13 }}
         >
           {children}
         </Typography>
         {isFocused && (
-          <View className="absolute bottom-0 left-3 right-3 h-0.5 bg-bg-brand-solid rounded-full" />
+          <View className="absolute bottom-0 left-3 right-3 h-0.5 bg-brand-solid rounded-full" />
         )}
       </Pressable>
     )

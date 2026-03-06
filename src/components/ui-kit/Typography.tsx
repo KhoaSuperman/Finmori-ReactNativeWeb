@@ -3,7 +3,7 @@ import { Text, type TextProps } from "react-native"
 
 import { cn } from "@/lib/cn"
 
-const typographyVariants = cva("text-text-primary", {
+const typographyVariants = cva("text-primary", {
   variants: {
     size: {
       "display-xl": "font-display text-display-xl tracking-tighter",

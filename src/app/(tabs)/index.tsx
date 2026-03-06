@@ -24,11 +24,11 @@ function NavCard({
       })}
     >
       <Card variant="elevated" title={title}>
-        <Typography size="body-small" className="text-text-secondary mt-1">
+        <Typography size="body-small" className="text-secondary mt-1">
           {description}
         </Typography>
         <View className="mt-4 flex-row items-center">
-          <Typography size="caption" className="text-text-brand-primary font-bold">
+          <Typography size="caption" className="text-brand-primary font-bold">
             Explore Details →
           </Typography>
         </View>
@@ -66,7 +66,7 @@ export default function HomeScreen() {
 
   return (
     <ScrollView
-      className="flex-1 bg-bg-primary"
+      className="flex-1 bg-primary"
       contentContainerStyle={[{ alignItems: "center" }, platformPadding]}
       showsVerticalScrollIndicator={false}
     >
@@ -76,24 +76,24 @@ export default function HomeScreen() {
         <View className="items-center py-12 relative">
           {/* Background Ambient Glow */}
           <View className="absolute inset-x-0 top-1/2 -translate-y-1/2 items-center justify-center -z-10">
-            <View className="w-[200px] h-[200px] bg-bg-brand-secondary/10 rounded-full blur-[60px]" />
-            <View className="absolute w-[100px] h-[100px] bg-bg-brand-primary/5 rounded-full blur-[30px]" />
+            <View className="w-[200px] h-[200px] bg-brand-secondary/10 rounded-full blur-[60px]" />
+            <View className="absolute w-[100px] h-[100px] bg-brand-primary/5 rounded-full blur-[30px]" />
           </View>
 
           <View className="items-center gap-3">
             <Typography size="display" weight="bold" className="text-center tracking-tight leading-[1.1]">
               Finmori UI
             </Typography>
-            <Typography size="body" weight="medium" className="text-text-secondary text-center max-w-[400px] leading-relaxed">
+            <Typography size="body" weight="medium" className="text-secondary text-center max-w-[400px] leading-relaxed">
               The high-end React Native design system for world-class mobile and web experiences.
             </Typography>
           </View>
 
           <View className="flex-row gap-3 mt-10">
-            <Pressable className="px-6 py-2.5 bg-bg-brand-solid rounded-full shadow-lg shadow-brand-primary/20 active:opacity-90">
-              <Typography size="body-small" weight="bold" className="text-text-white">Get Started</Typography>
+            <Pressable className="px-6 py-2.5 bg-brand-solid rounded-full shadow-lg shadow-brand-primary/20 active:opacity-90">
+              <Typography size="body-small" weight="bold" className="text-white">Get Started</Typography>
             </Pressable>
-            <Pressable className="px-6 py-2.5 border border-border-primary rounded-full active:bg-bg-secondary">
+            <Pressable className="px-6 py-2.5 border border-primary rounded-full active:bg-secondary">
               <Typography size="body-small" weight="semibold">Component Lab</Typography>
             </Pressable>
           </View>
@@ -101,10 +101,10 @@ export default function HomeScreen() {
 
         {/* Directory Section */}
         <View nativeID="core-components" className="gap-6">
-          <View className="px-1 flex-row items-center justify-between border-b border-border-primary/50 pb-3">
+          <View className="px-1 flex-row items-center justify-between border-b border-primary/50 pb-3">
             <Typography size="h3" weight="bold" className="text-xl">Core Components</Typography>
-            <View className="bg-bg-secondary px-2 py-0.5 rounded-full">
-              <Typography size="tiny" weight="bold" className="text-text-tertiary">{CORE_COMPONENTS.length} Total</Typography>
+            <View className="bg-secondary px-2 py-0.5 rounded-full">
+              <Typography size="tiny" weight="bold" className="text-tertiary">{CORE_COMPONENTS.length} Total</Typography>
             </View>
           </View>
 
@@ -121,19 +121,19 @@ export default function HomeScreen() {
         </View>
 
         {/* Developer Info Section */}
-        <Card variant="filled" className="bg-surface-muted/20 border border-border-primary/10">
-          <Typography size="caption" weight="bold" className="text-text-tertiary uppercase tracking-[0.2em] mb-5 text-[10px]">
+        <Card variant="filled" className="bg-surface-muted/20 border border-primary/10">
+          <Typography size="caption" weight="bold" className="text-tertiary uppercase tracking-[0.2em] mb-5 text-[10px]">
             Project Environment
           </Typography>
           <View className="gap-3">
             <View className="flex-row justify-between items-center">
-              <Typography size="body-small" weight="semibold" className="text-text-secondary text-[12px]">Platform</Typography>
-              <Typography size="body-small" className="text-text-primary font-mono capitalize px-1.5 py-0.5 bg-bg-secondary rounded-md text-[11px]">{Platform.OS}</Typography>
+              <Typography size="body-small" weight="semibold" className="text-secondary text-[12px]">Platform</Typography>
+              <Typography size="body-small" className="text-primary font-mono capitalize px-1.5 py-0.5 bg-secondary rounded-md text-[11px]">{Platform.OS}</Typography>
             </View>
             <View className="h-[1px] bg-border-primary/20" />
             <View className="flex-row justify-between items-center">
-              <Typography size="body-small" weight="semibold" className="text-text-secondary text-[12px]">Entry Point</Typography>
-              <Typography size="body-small" className="text-text-primary font-mono text-[11px]">src/app/index.tsx</Typography>
+              <Typography size="body-small" weight="semibold" className="text-secondary text-[12px]">Entry Point</Typography>
+              <Typography size="body-small" className="text-primary font-mono text-[11px]">src/app/index.tsx</Typography>
             </View>
           </View>
         </Card>
