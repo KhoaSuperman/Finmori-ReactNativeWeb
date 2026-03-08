@@ -1,6 +1,6 @@
 # gen-ui-for-component
 
-Let generate Jetpack Compose UI for component from design specs exported located at input folder.
+Let generate ReactNative UI kit for component from design specs exported located at input folder.
 
 # In design specs folder includes
 
@@ -15,8 +15,13 @@ Let generate Jetpack Compose UI for component from design specs exported located
 - Check variant is need to use `Code Component` or not. If yes, access via `Code File Path` and examine the usage of code component.
 - Examine `Code Component` usecases (properties and behaviors) before use them in component.
 
+# Component Showcase
+
+- Let implement component showcase following existing showcase pattern
+- Update the home screen to display latest showcase of component
+
 # Important Reminders
 
-- Run internal browser to test
+- Following existing css design system (typography, colors, gradients, padding, spacing, ...)
 
 This command will be available in chat with /gen-ui-for-component
