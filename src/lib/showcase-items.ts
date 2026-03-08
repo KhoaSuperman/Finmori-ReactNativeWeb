@@ -5,6 +5,7 @@ export type ShowcaseItem = {
 }
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
+  { title: "Media Slot", route: "/showcase/media-slot", description: "Scalable media container with image, letter, and icon variants" },
   { title: "Recap Card", route: "/showcase/recap-card", description: "Compact summary card with title, amount, and tendancy chip" },
   { title: "Buttons", route: "/showcase/buttons", description: "Interactive controls with multiple variants and states" },
   { title: "Typography", route: "/showcase/typography", description: "Headings, body text, and UI type scale" },
