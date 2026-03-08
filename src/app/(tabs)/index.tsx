@@ -49,6 +49,11 @@ const CORE_COMPONENTS = [
     route: "/showcase/colors",
   },
   {
+    title: "Primitive Colors",
+    description: "The foundational 375-token color palette across 32 scales that underpins all semantic tokens.",
+    route: "/showcase/primitive-colors",
+  },
+  {
     title: "Cards",
     description: "Elevated, outlined, and filled containers for structured content layouts.",
     route: "/showcase/card",
