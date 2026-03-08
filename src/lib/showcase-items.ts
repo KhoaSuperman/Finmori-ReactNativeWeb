@@ -5,6 +5,7 @@ export type ShowcaseItem = {
 }
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
+  { title: "Buttons", route: "/showcase/buttons", description: "Interactive controls with multiple variants and states" },
   { title: "Typography", route: "/showcase/typography", description: "Headings, body text, and UI type scale" },
   { title: "Colors", route: "/showcase/colors", description: "Semantic color tokens for light & dark" },
   { title: "Primitive Colors", route: "/showcase/primitive-colors", description: "Full primitive color palette" },
