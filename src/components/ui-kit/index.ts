@@ -1,3 +1,9 @@
+export {
+  ActivityItem,
+  activityItemVariants,
+  type ActivityItemProps,
+  type ActivityItemType,
+} from "./ActivityItem"
 export { Avatar, avatarVariants, type AvatarProps } from "./Avatar"
 export { BottomNavBar, type BottomNavBarProps, type BottomNavTab } from "./BottomNavBar"
 export {

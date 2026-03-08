@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Activity Item",
+    route: "/showcase/activity-item",
+    description: "Transaction activity row with avatar, label, and trailing amount or action button",
+  },
+  {
     title: "Section Title",
     route: "/showcase/section-title",
     description: "Compact section header with standard or uppercase title and optional action link",
