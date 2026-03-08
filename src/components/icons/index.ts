@@ -1,7 +1,10 @@
 export { AltArrowRightIcon } from "./AltArrowRightIcon"
+export { AppleIcon } from "./AppleIcon"
 export { ArrowRightDownIcon } from "./ArrowRightDownIcon"
 export { ArrowRightUpIcon } from "./ArrowRightUpIcon"
 export { EyeIcon } from "./EyeIcon"
 export { EyeOffIcon } from "./EyeOffIcon"
+export { MoreVerticalIcon } from "./MoreVerticalIcon"
 export { SearchIcon } from "./SearchIcon"
 export type { IconProps } from "./types"
+
