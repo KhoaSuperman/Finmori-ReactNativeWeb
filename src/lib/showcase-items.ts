@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Section Title",
+    route: "/showcase/section-title",
+    description: "Compact section header with standard or uppercase title and optional action link",
+  },
+  {
     title: "Text Divider",
     route: "/showcase/text-divider",
     description: "Section header with text label, available as line divider or colored background variant",

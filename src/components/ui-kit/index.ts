@@ -26,6 +26,12 @@ export { IconFrame, iconFrameVariants, type IconFrameProps } from "./IconFrame"
 export { MediaSlot, type MediaSlotProps, type MediaSlotVariant } from "./MediaSlot"
 export { RecapCard, type RecapCardProps } from "./RecapCard"
 export {
+  SectionTitle,
+  sectionTitleVariants,
+  type SectionTitleProps,
+  type SectionTitleType,
+} from "./SectionTitle"
+export {
   TextDivider,
   textDividerVariants,
   type TextDividerProps,
