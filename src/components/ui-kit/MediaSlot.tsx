@@ -33,24 +33,18 @@ interface MediaSlotIconProps extends MediaSlotBaseProps {
 
 type MediaSlotProps = MediaSlotImageProps | MediaSlotLetterProps | MediaSlotIconProps
 
-function LetterBackground({
-  size,
-  children,
-}: {
-  size: number
-  children: React.ReactNode
-}) {
+function LetterBackground({ size, children }: { size: number; children: React.ReactNode }) {
   const radius = Math.round(size * RADIUS_RATIO)
 
   if (Platform.OS === "web") {
     return (
       <View
+        className="bg-gradient-linear-20"
         style={
           {
             width: size,
             height: size,
             borderRadius: radius,
-            backgroundImage: "linear-gradient(135deg, #E9DEFA 0%, #FFF6EB 100%)",
             alignItems: "center",
             justifyContent: "center",
             overflow: "hidden",

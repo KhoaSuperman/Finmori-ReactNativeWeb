@@ -1,3 +1,4 @@
+export { Avatar, avatarVariants, type AvatarProps } from "./Avatar"
 export { BalanceCard, type BalanceCardProps } from "./BalanceCard"
 export { Button, buttonVariants, type ButtonProps, type ButtonVariant } from "./Button"
 export { Card } from "./Card"
