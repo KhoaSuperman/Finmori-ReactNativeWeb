@@ -2,5 +2,4 @@
 alwaysApply: true
 ---
 
-- Don't call/summon/use subagent if I don't asking for.
-- Use subagent without permission is not allowed.
+Do not invoke or utilize subagents unless explicitly requested. The use of subagents without prior permission is strictly prohibited.

@@ -53,7 +53,27 @@ const CORE_COMPONENTS = [
     description: "Elevated, outlined, and filled containers for structured content layouts.",
     route: "/showcase/card",
   },
-]
+  {
+    title: "Radius",
+    description: "Border radius tokens for consistent corner rounding across components.",
+    route: "/showcase/radius",
+  },
+  {
+    title: "Spacing",
+    description: "Spacing tokens for consistent padding, margin, and gap across layouts.",
+    route: "/showcase/spacing",
+  },
+  {
+    title: "Widths",
+    description: "Width tokens for consistent container and layout sizes across viewports.",
+    route: "/showcase/widths",
+  },
+  {
+    title: "Containers",
+    description: "Control how content is bounded and padded across different viewport sizes.",
+    route: "/showcase/containers",
+  },
+] as const
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets()
