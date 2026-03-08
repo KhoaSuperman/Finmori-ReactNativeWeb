@@ -12,6 +12,11 @@ export {
   type PaymentMethod,
 } from "./IconPaymentMethod"
 export { BalanceCard, type BalanceCardProps } from "./BalanceCard"
+export {
+  CardElement,
+  type CardElementProps,
+  type CardElementGradient,
+} from "./CardElement"
 export { BillingItem, type BillingItemProps } from "./BillingItem"
 export { Button, buttonVariants, type ButtonProps, type ButtonVariant } from "./Button"
 export { Card } from "./Card"

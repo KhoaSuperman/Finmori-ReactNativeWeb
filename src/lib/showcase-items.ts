@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Card Element",
+    route: "/showcase/card-element",
+    description: "Payment card with gradient background, balance, chip icons, masked number, and expiry date",
+  },
+  {
     title: "Card Type Icon",
     route: "/showcase/icon-card-type",
     description: "Card network brand icons (Visa, Mastercard, AMEX) with sm, md, and lg size variants",

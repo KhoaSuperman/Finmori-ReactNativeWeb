@@ -1,5 +1,7 @@
 export { AltArrowRightIcon } from "./AltArrowRightIcon"
 export { AppleIcon } from "./AppleIcon"
+export { CardChipIcon } from "./CardChipIcon"
+export { ContactlessIcon } from "./ContactlessIcon"
 export { ArrowRightDownIcon } from "./ArrowRightDownIcon"
 export { ArrowRightUpIcon } from "./ArrowRightUpIcon"
 export { EyeIcon } from "./EyeIcon"
