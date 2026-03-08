@@ -18,7 +18,7 @@ Let generate ReactNative UI kit for component from design specs exported located
 # Component Showcase
 
 - Let implement component showcase following existing showcase pattern
-- Update the home screen to display latest showcase of component
+- Update the home screen to display latest showcase of component. In the menu items, it should be first of `SHOWCASE_ITEMS` `(src\lib\showcase-items.ts)` list.
 
 # Important Reminders
 

@@ -5,6 +5,7 @@ export type ShowcaseItem = {
 }
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
+  { title: "Recap Card", route: "/showcase/recap-card", description: "Compact summary card with title, amount, and tendancy chip" },
   { title: "Buttons", route: "/showcase/buttons", description: "Interactive controls with multiple variants and states" },
   { title: "Typography", route: "/showcase/typography", description: "Headings, body text, and UI type scale" },
   { title: "Colors", route: "/showcase/colors", description: "Semantic color tokens for light & dark" },

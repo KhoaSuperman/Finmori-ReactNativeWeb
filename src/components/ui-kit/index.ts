@@ -3,6 +3,7 @@ export { Button, buttonVariants, type ButtonProps, type ButtonVariant } from "./
 export { Card } from "./Card"
 export { Chip, chipVariants, type ChipProps, type ChipTendancy } from "./Chip"
 export { IconFrame, iconFrameVariants, type IconFrameProps } from "./IconFrame"
+export { RecapCard, type RecapCardProps } from "./RecapCard"
 export {
   Typography,
   typographyVariants,

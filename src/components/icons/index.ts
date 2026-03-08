@@ -1,3 +1,4 @@
+export { AltArrowRightIcon } from "./AltArrowRightIcon"
 export { ArrowRightDownIcon } from "./ArrowRightDownIcon"
 export { ArrowRightUpIcon } from "./ArrowRightUpIcon"
 export { EyeIcon } from "./EyeIcon"
