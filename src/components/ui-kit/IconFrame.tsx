@@ -4,21 +4,18 @@ import { View, type ViewProps } from "react-native"
 
 import { cn } from "@/lib/cn"
 
-const iconFrameVariants = cva(
-  "items-center justify-center rounded-full border border-secondary bg-primary",
-  {
-    variants: {
-      size: {
-        sm: "h-6 w-6 p-xs",
-        md: "h-8 w-8 p-md",
-        lg: "h-10 w-10 p-lg",
-      },
-    },
-    defaultVariants: {
-      size: "md",
+const iconFrameVariants = cva("items-center justify-center rounded-full border border-secondary bg-primary", {
+  variants: {
+    size: {
+      sm: "h-6 w-6 p-xs",
+      md: "h-8 w-8 p-sm",
+      lg: "h-10 w-10 p-md",
     },
   },
-)
+  defaultVariants: {
+    size: "md",
+  },
+})
 
 const ICON_SIZE_MAP = {
   sm: 12,
@@ -32,13 +29,7 @@ interface IconFrameProps extends ViewProps, VariantProps<typeof iconFrameVariant
   className?: string
 }
 
-export function IconFrame({
-  icon,
-  iconColor,
-  size = "md",
-  className,
-  ...props
-}: IconFrameProps) {
+export function IconFrame({ icon, iconColor, size = "md", className, ...props }: IconFrameProps) {
   const resolvedSize = size ?? "md"
   const iconSize = ICON_SIZE_MAP[resolvedSize]
 

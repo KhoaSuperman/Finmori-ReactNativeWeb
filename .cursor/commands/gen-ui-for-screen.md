@@ -1,10 +1,11 @@
 # gen-ui-for-screen
 
-🎯 Task: Generate Jetpack Compose UI for screen from Figma design specs provided.
+🎯 Task: Generate ReactNative UI Web for screen from Figma design specs provided.
 
 You will be provided:
 
 - <specs-folder>
+- Subagent with model `Claude Opus 4.6 ` is allowed to use.
 
 ## Step 1: Understand the Design Context & Structure
 
@@ -13,6 +14,7 @@ You will be provided:
 
 ## Step 2: Parse the Screen Specification
 
+- Analyze preview of screen in `/previews/<screen_name>.png` to understand visualize structure.
 - Read main screen spec file identified in Step 1 (e.g., `screen.yaml` or `frame.yaml`).
 - Read it thoroughly from top to bottom.
 - ❌ Do not retrieve or read any referenced component files at this step.
@@ -33,12 +35,12 @@ Note:
 For each component node in the design, check if it has a codeFilePath field.
 → If yes, locate and load the corresponding source file.
 
-- **Mandatory: Examine ALL @Preview functions in detail**
-- **Pay special attention to @Preview functions that show:**
+- **Mandatory: Examine ALL component's StoryBook in detail**
+- **Pay special attention to Stories that show:**
   - Status components and their type mappings
   - Complex content usage patterns
   - Component composition examples
-- **Cross-reference Preview patterns with design spec requirements**
+- **Cross-reference Story patterns with design spec requirements**
 
 For components without a codeFilePath, treat them as new components.
 → Use their corresponding spec file (e.g., components/<name>.yaml) as the sole authoritative source for defining the new component.
@@ -49,29 +51,22 @@ For components without a codeFilePath, treat them as new components.
 - A list of all existing components, including (in table format):
   - Name
   - Code location
-  - Relevant `@Preview` functions — selected based on visual or semantic match with design intent
 
 - A list of all new components to be generated
 - A reflection of each compnt’s design spec parameters vs. actual code
 
-## **Step 4: Generate Compose UI Code**
+## **Step 4: Generate UI Code**
 
-Generate Compose UI based on the analyze result of Step 3.
-
-Add Preview UI for:
-
-- The Screen
-- Any Newly Created Components
+- Generate UI based on the analyze result of Step 3.
+- Introduce new route to the screen as page.
+- Natigate to the page.
 
 ## **Step 5: Visual Adjustment with Screenshot**
 
+Use `chrome dev tool` mcp to open app in mobile screen size for capture app screenshot.
+
 1. Get design screenshot, compare the generated UI against it.
 2. Make necessary adjustments to ensure accuracy and alignment.
-
-### Icon handling:
-
-- Reuse existing vector drawable if possible
-- Else, use `spek-cli` command to convert SVG icons from specs
 
 ## **Step 6: Summary**
 
@@ -84,10 +79,21 @@ Categorize them into:
 
 For components not used, include a brief explanation for each (e.g., redundant, incomplete spec, outside screen scope, etc.).
 
-# Important to reminders
+# Important reminders
 
-- Examine `Code Component` usecases (properties and behaviors) before use them in component.
-- Run `gradlew` build command to make sure project can build success, no complie errors.
-- DON'T use emoj as icon, Use `spek-cli svg-to-vd` cli command to convert svg icon to android vector drawable. Run `spek-cli svg-to-vd -h` for discover usage pattern.
+- Examine `Code Component` story (properties and behaviors) before use them in component.
+- Following existing css design system (typography, colors, gradients, padding, spacing, ...)
+
+## Lessons Learned (Common Pitfalls)
+
+### Each list item may have unique content
+
+- When the design shows a list of items, carefully check each item's `exposedInstances` and `overrides` in main spec yaml — they often have different icons, labels, or data.
+- Do NOT copy-paste the first item's props for all items. Map each item individually from the spec.
+
+### Negative margin overlap pattern
+
+- The header-body overlap uses `spacing: -xx` in the Container's auto-layout, which translates to `marginTop: -xx` on the Body.
+- The header's `paddingBottom: xx` creates the space that the body overlaps into. Both values must stay in sync.
 
 This command will be available in chat with /gen-ui-for-screen
