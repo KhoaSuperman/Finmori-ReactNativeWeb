@@ -64,6 +64,11 @@ const CORE_COMPONENTS = [
     route: "/showcase/radius",
   },
   {
+    title: "Shadows",
+    description: "Elevation and depth tokens for consistent visual hierarchy across components.",
+    route: "/showcase/shadows",
+  },
+  {
     title: "Spacing",
     description: "Spacing tokens for consistent padding, margin, and gap across layouts.",
     route: "/showcase/spacing",
