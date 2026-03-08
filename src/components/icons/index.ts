@@ -1,2 +1,6 @@
+export { ArrowRightDownIcon } from "./ArrowRightDownIcon"
+export { ArrowRightUpIcon } from "./ArrowRightUpIcon"
+export { EyeIcon } from "./EyeIcon"
+export { EyeOffIcon } from "./EyeOffIcon"
 export { SearchIcon } from "./SearchIcon"
 export type { IconProps } from "./types"

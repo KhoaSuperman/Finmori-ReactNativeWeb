@@ -17,4 +17,6 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   { title: "Gradients", route: "/showcase/gradients", description: "System & decorative gradient tokens" },
   { title: "Containers", route: "/showcase/containers", description: "Layout container tokens" },
   { title: "Icon Frame", route: "/showcase/icon-frame", description: "Circular icon container with border" },
+  { title: "Balance Card", route: "/showcase/balance-card", description: "Balance display with gradient text and visibility toggle" },
+  { title: "Chip", route: "/showcase/chip", description: "Tendancy indicator chip with positive/negative variants" },
 ] as const
