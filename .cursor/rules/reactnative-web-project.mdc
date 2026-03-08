@@ -68,6 +68,43 @@ When building a full-screen scrollable page, use this pattern:
 - **Prefer** vertical stacking for data-heavy UI (token lists, settings, detail rows). Only use horizontal row layouts for small elements like pills, badges, or icon+label pairs that naturally fit in ~160px.
 - **MaxContentWidth** is `800px` — this is the outer container cap, not a safe inner width. Content must still work at `320–390px` first.
 
+## Design System Colors — Two-Layer Architecture
+
+Colors use two layers defined in `tailwind.config.js` and `global.css`:
+
+1. **Primitive colors** — literal hex/rgba values in `tailwind.config.js` under `theme.extend.colors`
+   - Examples: `base-white` (#FFFFFF), `gray-light-800` (#293056), `brand-500` (#2F61F3), `gray-dark-alpha-300` (rgba 255,255,255,0.80)
+2. **Semantic tokens** — CSS variables (`var(--color-*)`) in `global.css`, mapped in `tailwind.config.js` under `textColor`, `backgroundColor`, `borderColor`
+   - Examples: `text-white`, `bg-primary`, `text-secondary`, `border-brand`
+
+### Opacity Modifier Rule (CRITICAL)
+
+Tailwind's `/80` opacity modifier **only works with literal color values**, NOT CSS variables. All semantic tokens are CSS variables.
+
+```tsx
+// ❌ WRONG — opacity modifier silently fails on semantic tokens (CSS variables)
+className="text-white/80"
+className="bg-primary/50"
+className="border-secondary/30"
+
+// ✅ CORRECT — use primitive colors with opacity modifiers
+className="text-base-white/80"
+className="bg-gray-light-800/50"
+
+// ✅ CORRECT — use pre-defined alpha primitives (no modifier needed)
+className="text-gray-dark-alpha-300"   // white at 80% opacity
+className="text-gray-dark-alpha-400"   // white at 56% opacity
+```
+
+### When to Use Which
+
+| Need | Use | Example |
+|------|-----|---------|
+| Themed color (light/dark) | Semantic token | `text-primary`, `bg-secondary` |
+| Fixed color, full opacity | Either layer | `text-white` or `text-base-white` |
+| Fixed color + custom opacity | Primitive + modifier | `text-base-white/80`, `bg-gray-light-800/50` |
+| White with standard opacity | Alpha primitive | `text-gray-dark-alpha-300` (80%) |
+
 ## Do NOT
 
 - Do NOT add webpack config — Metro handles web bundling
@@ -75,3 +112,4 @@ When building a full-screen scrollable page, use this pattern:
 - Do NOT import from `react-native-web` directly — always import from `react-native`
 - Do NOT install packages without checking Expo SDK 55 compatibility
 - Do NOT create `.native.tsx` files — the default (unsuffixed) file IS the native version
+- Do NOT use Tailwind opacity modifiers (`/80`, `/50`) on semantic color tokens — they are CSS variables and the modifier silently fails

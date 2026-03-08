@@ -1,4 +1,5 @@
 export { Avatar, avatarVariants, type AvatarProps } from "./Avatar"
+export { BottomNavBar, type BottomNavBarProps, type BottomNavTab } from "./BottomNavBar"
 export {
   IconCardType,
   iconCardTypeVariants,

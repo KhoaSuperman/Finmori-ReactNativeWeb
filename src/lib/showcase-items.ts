@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Bottom Nav Bar",
+    route: "/showcase/bottom-nav-bar",
+    description: "Pill-shaped bottom navigation with gradient icons, active/inactive tab states, and add-transaction button",
+  },
+  {
     title: "Card Element",
     route: "/showcase/card-element",
     description: "Payment card with gradient background, balance, chip icons, masked number, and expiry date",
