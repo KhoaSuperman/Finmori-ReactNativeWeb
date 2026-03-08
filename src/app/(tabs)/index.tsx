@@ -79,6 +79,11 @@ const CORE_COMPONENTS = [
     route: "/showcase/widths",
   },
   {
+    title: "Gradients",
+    description: "Linear gradient tokens built from the Gray primitive palette for rich backgrounds and surfaces.",
+    route: "/showcase/gradients",
+  },
+  {
     title: "Containers",
     description: "Control how content is bounded and padded across different viewport sizes.",
     route: "/showcase/containers",

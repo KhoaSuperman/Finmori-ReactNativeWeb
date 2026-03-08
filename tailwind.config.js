@@ -666,6 +666,38 @@ module.exports = {
         "2xl": "var(--shadow-2xl)",
         "3xl": "var(--shadow-3xl)",
       },
+      backgroundImage: {
+        /* Gray gradients */
+        "gradient-gray-600-500-90": "var(--gradient-gray-600-500-90)",
+        "gradient-gray-700-600-45": "var(--gradient-gray-700-600-45)",
+        "gradient-gray-800-600-45": "var(--gradient-gray-800-600-45)",
+        "gradient-gray-800-600-90": "var(--gradient-gray-800-600-90)",
+        "gradient-gray-800-700-26": "var(--gradient-gray-800-700-26)",
+        "gradient-gray-900-600-45": "var(--gradient-gray-900-600-45)",
+        "gradient-gray-900-700-45": "var(--gradient-gray-900-700-45)",
+        "gradient-gray-50-white-180": "var(--gradient-gray-50-white-180)",
+        "gradient-gray-100-white-180": "var(--gradient-gray-100-white-180)",
+        "gradient-gray-100-25-180": "var(--gradient-gray-100-25-180)",
+        "gradient-gray-100-50-180": "var(--gradient-gray-100-50-180)",
+        "gradient-gray-200-25-180": "var(--gradient-gray-200-25-180)",
+        "gradient-gray-200-50-180": "var(--gradient-gray-200-50-180)",
+        "gradient-gray-200-100-180": "var(--gradient-gray-200-100-180)",
+        /* Brand gradients */
+        "gradient-brand-600-500-90": "var(--gradient-brand-600-500-90)",
+        "gradient-brand-700-600-45": "var(--gradient-brand-700-600-45)",
+        "gradient-brand-800-600-45": "var(--gradient-brand-800-600-45)",
+        "gradient-brand-800-600-90": "var(--gradient-brand-800-600-90)",
+        "gradient-brand-800-700-26": "var(--gradient-brand-800-700-26)",
+        "gradient-brand-900-600-45": "var(--gradient-brand-900-600-45)",
+        "gradient-brand-900-700-45": "var(--gradient-brand-900-700-45)",
+        /* Linear (decorative) gradients */
+        ...Object.fromEntries(
+          Array.from({ length: 91 }, (_, i) => {
+            const num = String(i + 1).padStart(2, "0");
+            return [`gradient-linear-${num}`, `var(--gradient-linear-${num})`];
+          }),
+        ),
+      },
     },
   },
   plugins: [],
