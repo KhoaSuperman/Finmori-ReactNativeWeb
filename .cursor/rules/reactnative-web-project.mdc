@@ -24,6 +24,7 @@ This is a **design system mobile-first app** built with React Native for Web, pr
 - Each UI kit component has a colocated `.stories.tsx` file
 - Theme colors defined in `tailwind.config.js` (primary, neutral, surface, content palettes)
 - Legacy theme constants in `src/constants/theme.ts` (Colors, Fonts, MaxContentWidth)
+- SVG icons live in `src/components/icons/` as React Native SVG components (see `svg-icon-conventions` rule)
 - Hooks in `src/hooks/`, utilities in `src/lib/`
 
 ## Platform-Specific Files

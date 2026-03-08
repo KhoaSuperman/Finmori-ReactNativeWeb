@@ -16,4 +16,5 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   { title: "Widths", route: "/showcase/widths", description: "Width constraint tokens" },
   { title: "Gradients", route: "/showcase/gradients", description: "System & decorative gradient tokens" },
   { title: "Containers", route: "/showcase/containers", description: "Layout container tokens" },
+  { title: "Icon Frame", route: "/showcase/icon-frame", description: "Circular icon container with border" },
 ] as const
