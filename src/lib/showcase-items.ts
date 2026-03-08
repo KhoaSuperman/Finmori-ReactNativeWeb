@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Payment Method Icon",
+    route: "/showcase/icon-payment-method",
+    description: "Branded payment method icons with sm, md, and lg size variants",
+  },
+  {
     title: "Billing Item",
     route: "/showcase/billing-item",
     description: "Compact billing card with service icon, invoice label, price, and remaining time",

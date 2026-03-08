@@ -1,4 +1,10 @@
 export { Avatar, avatarVariants, type AvatarProps } from "./Avatar"
+export {
+  IconPaymentMethod,
+  iconPaymentMethodVariants,
+  type IconPaymentMethodProps,
+  type PaymentMethod,
+} from "./IconPaymentMethod"
 export { BalanceCard, type BalanceCardProps } from "./BalanceCard"
 export { BillingItem, type BillingItemProps } from "./BillingItem"
 export { Button, buttonVariants, type ButtonProps, type ButtonVariant } from "./Button"
