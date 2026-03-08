@@ -43,7 +43,7 @@ export function RecapCard({
         {amount}
       </Typography>
 
-      <Chip tendancy={tendancy} label={chipLabel} />
+      <Chip tendancy={tendancy} label={chipLabel} className="self-start" />
     </View>
   )
 
