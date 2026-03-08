@@ -25,5 +25,11 @@ export { Chip, chipVariants, type ChipProps, type ChipTendancy } from "./Chip"
 export { IconFrame, iconFrameVariants, type IconFrameProps } from "./IconFrame"
 export { MediaSlot, type MediaSlotProps, type MediaSlotVariant } from "./MediaSlot"
 export { RecapCard, type RecapCardProps } from "./RecapCard"
+export {
+  TextDivider,
+  textDividerVariants,
+  type TextDividerProps,
+  type TextDividerType,
+} from "./TextDivider"
 export { Typography, typographyVariants, type TypographySize, type TypographyWeight } from "./Typography"
 

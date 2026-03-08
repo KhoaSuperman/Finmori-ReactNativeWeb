@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Text Divider",
+    route: "/showcase/text-divider",
+    description: "Section header with text label, available as line divider or colored background variant",
+  },
+  {
     title: "Bottom Nav Bar",
     route: "/showcase/bottom-nav-bar",
     description: "Pill-shaped bottom navigation with gradient icons, active/inactive tab states, and add-transaction button",
