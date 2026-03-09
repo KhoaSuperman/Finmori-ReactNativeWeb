@@ -22,12 +22,16 @@ export default function AvatarShowcase() {
         </Typography>
         <View className="flex-row flex-wrap items-center gap-6 rounded-2xl border border-tertiary bg-primary p-xl">
           <View className="items-center gap-2">
-            <Avatar form="circle" variant="image" source={{ uri: AVATAR_URI }} />
-            <Typography size="caption" className="text-tertiary">Circle</Typography>
+            <Avatar form="circle" variant="image" {...{ source: { uri: AVATAR_URI } }} />
+            <Typography size="caption" className="text-tertiary">
+              Circle
+            </Typography>
           </View>
           <View className="items-center gap-2">
-            <Avatar form="square" variant="image" source={{ uri: AVATAR_URI }} />
-            <Typography size="caption" className="text-tertiary">Square</Typography>
+            <Avatar form="square" variant="image" {...{ source: { uri: AVATAR_URI } }} />
+            <Typography size="caption" className="text-tertiary">
+              Square
+            </Typography>
           </View>
         </View>
       </View>
@@ -41,20 +45,22 @@ export default function AvatarShowcase() {
         </Typography>
         <View className="flex-row flex-wrap items-center gap-4 rounded-2xl border border-tertiary bg-primary p-xl">
           <View className="items-center gap-2">
-            <Avatar form="circle" variant="image" source={{ uri: AVATAR_URI }} />
-            <Typography size="caption" className="text-tertiary">Image</Typography>
+            <Avatar form="circle" variant="image" {...{ source: { uri: AVATAR_URI } }} />
+            <Typography size="caption" className="text-tertiary">
+              Image
+            </Typography>
           </View>
           <View className="items-center gap-2">
-            <Avatar form="circle" variant="letter" text="JD" />
-            <Typography size="caption" className="text-tertiary">Letter</Typography>
+            <Avatar form="circle" variant="letter" {...{ text: "JD" }} />
+            <Typography size="caption" className="text-tertiary">
+              Letter
+            </Typography>
           </View>
           <View className="items-center gap-2">
-            <Avatar
-              form="circle"
-              variant="icon"
-              icon={(props) => <SearchIcon {...props} />}
-            />
-            <Typography size="caption" className="text-tertiary">Icon</Typography>
+            <Avatar form="circle" variant="icon" {...{ icon: (props: any) => <SearchIcon {...props} /> }} />
+            <Typography size="caption" className="text-tertiary">
+              Icon
+            </Typography>
           </View>
         </View>
       </View>
@@ -68,20 +74,22 @@ export default function AvatarShowcase() {
         </Typography>
         <View className="flex-row flex-wrap items-center gap-4 rounded-2xl border border-tertiary bg-primary p-xl">
           <View className="items-center gap-2">
-            <Avatar form="square" variant="image" source={{ uri: AVATAR_URI }} />
-            <Typography size="caption" className="text-tertiary">Image</Typography>
+            <Avatar form="square" variant="image" {...{ source: { uri: AVATAR_URI } }} />
+            <Typography size="caption" className="text-tertiary">
+              Image
+            </Typography>
           </View>
           <View className="items-center gap-2">
-            <Avatar form="square" variant="letter" text="KN" />
-            <Typography size="caption" className="text-tertiary">Letter</Typography>
+            <Avatar form="square" variant="letter" {...{ text: "KN" }} />
+            <Typography size="caption" className="text-tertiary">
+              Letter
+            </Typography>
           </View>
           <View className="items-center gap-2">
-            <Avatar
-              form="square"
-              variant="icon"
-              icon={(props) => <SearchIcon {...props} />}
-            />
-            <Typography size="caption" className="text-tertiary">Icon</Typography>
+            <Avatar form="square" variant="icon" {...{ icon: (props: any) => <SearchIcon {...props} /> }} />
+            <Typography size="caption" className="text-tertiary">
+              Icon
+            </Typography>
           </View>
         </View>
       </View>
@@ -96,8 +104,10 @@ export default function AvatarShowcase() {
         <View className="flex-row flex-wrap items-end gap-4 rounded-2xl border border-tertiary bg-primary p-xl">
           {[40, 60, 80, 100, 140].map((s) => (
             <View key={s} className="items-center gap-2">
-              <Avatar form="circle" variant="image" source={{ uri: AVATAR_URI }} size={s} />
-              <Typography size="tiny" className="text-quaternary">{s}px</Typography>
+              <Avatar form="circle" variant="image" {...{ source: { uri: AVATAR_URI } }} size={s} />
+              <Typography size="tiny" className="text-quaternary">
+                {s}px
+              </Typography>
             </View>
           ))}
         </View>
@@ -113,8 +123,10 @@ export default function AvatarShowcase() {
         <View className="flex-row flex-wrap items-end gap-4 rounded-2xl border border-tertiary bg-primary p-xl">
           {[40, 60, 80, 100, 140].map((s) => (
             <View key={s} className="items-center gap-2">
-              <Avatar form="square" variant="image" source={{ uri: AVATAR_URI }} size={s} />
-              <Typography size="tiny" className="text-quaternary">{s}px</Typography>
+              <Avatar form="square" variant="image" {...{ source: { uri: AVATAR_URI } }} size={s} />
+              <Typography size="tiny" className="text-quaternary">
+                {s}px
+              </Typography>
             </View>
           ))}
         </View>
@@ -128,10 +140,10 @@ export default function AvatarShowcase() {
           Different initials in both forms.
         </Typography>
         <View className="flex-row flex-wrap gap-3 rounded-2xl border border-tertiary bg-primary p-xl">
-          <Avatar form="circle" variant="letter" text="AB" />
-          <Avatar form="circle" variant="letter" text="KN" />
-          <Avatar form="square" variant="letter" text="W" />
-          <Avatar form="square" variant="letter" text="ZX" />
+          <Avatar form="circle" variant="letter" {...{ text: "AB" }} />
+          <Avatar form="circle" variant="letter" {...{ text: "KN" }} />
+          <Avatar form="square" variant="letter" {...{ text: "W" }} />
+          <Avatar form="square" variant="letter" {...{ text: "ZX" }} />
         </View>
       </View>
     </ShowcasePage>
