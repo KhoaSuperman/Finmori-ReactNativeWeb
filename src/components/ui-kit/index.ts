@@ -1,4 +1,10 @@
 export { AmountInput, type AmountInputProps } from "./AmountInput"
+export {
+  HomeIndicatorBar,
+  homeIndicatorBarVariants,
+  type HomeIndicatorBarProps,
+  type HomeIndicatorBarType,
+} from "./HomeIndicatorBar"
 export { CardMenuItem, type CardMenuItemProps } from "./CardMenuItem"
 export {
   ActivityItem,

@@ -32,5 +32,7 @@ export { IllustrativeRentIcon } from "./IllustrativeRentIcon"
 export { IllustrativeShoppingIcon } from "./IllustrativeShoppingIcon"
 export { IllustrativeHealthIcon } from "./IllustrativeHealthIcon"
 export { IllustrativeMoreIcon } from "./IllustrativeMoreIcon"
+export { EditIcon } from "./EditIcon"
+export { TrashCanIcon } from "./TrashCanIcon"
 export type { IconProps } from "./types"
 

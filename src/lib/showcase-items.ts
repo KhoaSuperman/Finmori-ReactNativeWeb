@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Home Indicator Bar",
+    route: "/showcase/home-indicator-bar",
+    description: "Bottom bar with iOS home indicator pill and optional button layouts: single, horizontal pair, vertical pair, three buttons, or action sheet",
+  },
+  {
     title: "Card Menu Item",
     route: "/showcase/card-menu-item",
     description: "Category menu card with illustrative icon, label, and default/selected states",
