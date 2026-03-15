@@ -44,6 +44,13 @@ export {
   type SectionTitleType,
 } from "./SectionTitle"
 export {
+  TabItem,
+  tabItemVariants,
+  type TabItemProps,
+  type TabItemType,
+  type TabItemState,
+} from "./TabItem"
+export {
   TextDivider,
   textDividerVariants,
   type TextDividerProps,

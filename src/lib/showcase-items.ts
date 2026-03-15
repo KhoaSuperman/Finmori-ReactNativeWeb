@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Tab Item",
+    route: "/showcase/tab-item",
+    description: "Selectable tab with box (pill) and line (underline) type variants across default, selected, and disabled states",
+  },
+  {
     title: "Navigation Bar",
     route: "/showcase/navigation-bar",
     description: "Top navigation bar with back button, center content, and optional right action across five variants",
