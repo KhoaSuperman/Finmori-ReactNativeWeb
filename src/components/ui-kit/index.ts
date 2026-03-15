@@ -30,6 +30,12 @@ export { Card } from "./Card"
 export { Chip, chipVariants, type ChipProps, type ChipTendancy } from "./Chip"
 export { IconFrame, iconFrameVariants, type IconFrameProps } from "./IconFrame"
 export { MediaSlot, type MediaSlotProps, type MediaSlotVariant } from "./MediaSlot"
+export {
+  NavigationBar,
+  navigationBarVariants,
+  type NavigationBarProps,
+  type NavigationBarVariant,
+} from "./NavigationBar"
 export { RecapCard, type RecapCardProps } from "./RecapCard"
 export {
   SectionTitle,

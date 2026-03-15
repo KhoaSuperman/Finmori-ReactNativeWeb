@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Navigation Bar",
+    route: "/showcase/navigation-bar",
+    description: "Top navigation bar with back button, center content, and optional right action across five variants",
+  },
+  {
     title: "Activity Item",
     route: "/showcase/activity-item",
     description: "Transaction activity row with avatar, label, and trailing amount or action button",
