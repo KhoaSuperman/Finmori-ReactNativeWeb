@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Transaction Text Input",
+    route: "/showcase/transaction-text-input",
+    description: "Inline text input for naming a transaction with placeholder, focussed, typing, and active states",
+  },
+  {
     title: "Amount Input",
     route: "/showcase/amount-input",
     description: "Large numeric input with display font, blinking cursor, and automatic thousand-separator formatting",

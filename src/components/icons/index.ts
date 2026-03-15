@@ -1,4 +1,5 @@
 export { AddCircleBoldIcon } from "./AddCircleBoldIcon"
+export { CloseCircleBoldIcon } from "./CloseCircleBoldIcon"
 export { AltArrowDownIcon } from "./AltArrowDownIcon"
 export { AltArrowLeftIcon } from "./AltArrowLeftIcon"
 export { AltArrowRightIcon } from "./AltArrowRightIcon"
