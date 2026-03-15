@@ -1,4 +1,5 @@
 export { AmountInput, type AmountInputProps } from "./AmountInput"
+export { CardMenuItem, type CardMenuItemProps } from "./CardMenuItem"
 export {
   ActivityItem,
   activityItemVariants,

@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Card Menu Item",
+    route: "/showcase/card-menu-item",
+    description: "Category menu card with illustrative icon, label, and default/selected states",
+  },
+  {
     title: "List Item",
     route: "/showcase/list-item",
     description: "Settings-style row with optional leading icon, label, help text, trailing value, and chevron",
