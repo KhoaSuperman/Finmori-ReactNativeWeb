@@ -1,3 +1,4 @@
+export { AmountInput, type AmountInputProps } from "./AmountInput"
 export {
   ActivityItem,
   activityItemVariants,

@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Amount Input",
+    route: "/showcase/amount-input",
+    description: "Large numeric input with display font, blinking cursor, and automatic thousand-separator formatting",
+  },
+  {
     title: "Tab Bar",
     route: "/showcase/tab-bar",
     description: "Horizontal tab container with box (segmented control) and line (underline) type variants supporting 2–4 tabs",
