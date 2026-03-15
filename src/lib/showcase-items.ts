@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Tab Bar",
+    route: "/showcase/tab-bar",
+    description: "Horizontal tab container with box (segmented control) and line (underline) type variants supporting 2–4 tabs",
+  },
+  {
     title: "Tab Item",
     route: "/showcase/tab-item",
     description: "Selectable tab with box (pill) and line (underline) type variants across default, selected, and disabled states",

@@ -44,6 +44,13 @@ export {
   type SectionTitleType,
 } from "./SectionTitle"
 export {
+  TabBar,
+  tabBarVariants,
+  type TabBarProps,
+  type TabBarType,
+  type TabBarTab,
+} from "./TabBar"
+export {
   TabItem,
   tabItemVariants,
   type TabItemProps,
