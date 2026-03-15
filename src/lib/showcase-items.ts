@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Add Transaction",
+    route: "/screens/add_transaction",
+    description: "Full-screen form to add an expense or income transaction with amount, note, date, and category selection",
+  },
+  {
     title: "Home Indicator Bar",
     route: "/showcase/home-indicator-bar",
     description: "Bottom bar with iOS home indicator pill and optional button layouts: single, horizontal pair, vertical pair, three buttons, or action sheet",
