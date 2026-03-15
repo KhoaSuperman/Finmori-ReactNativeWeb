@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "List Item",
+    route: "/showcase/list-item",
+    description: "Settings-style row with optional leading icon, label, help text, trailing value, and chevron",
+  },
+  {
     title: "Transaction Text Input",
     route: "/showcase/transaction-text-input",
     description: "Inline text input for naming a transaction with placeholder, focussed, typing, and active states",

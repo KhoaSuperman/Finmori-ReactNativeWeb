@@ -30,6 +30,7 @@ export { Button, buttonVariants, type ButtonProps, type ButtonVariant } from "./
 export { Card } from "./Card"
 export { Chip, chipVariants, type ChipProps, type ChipTendancy } from "./Chip"
 export { IconFrame, iconFrameVariants, type IconFrameProps } from "./IconFrame"
+export { ListItem, type ListItemProps } from "./ListItem"
 export { MediaSlot, type MediaSlotProps, type MediaSlotVariant } from "./MediaSlot"
 export {
   NavigationBar,
