@@ -582,8 +582,11 @@ module.exports = {
           "brand-primary": "var(--color-fg-brand-primary)",
           "brand-secondary": "var(--color-fg-brand-secondary)",
           "error-primary": "var(--color-fg-error-primary)",
+          "error-secondary": "var(--color-fg-error-secondary)",
           "warning-primary": "var(--color-fg-warning-primary)",
+          "warning-secondary": "var(--color-fg-warning-secondary)",
           "success-primary": "var(--color-fg-success-primary)",
+          "success-secondary": "var(--color-fg-success-secondary)",
         },
       },
       /* ── Border color tokens ─ border-primary, border-brand, etc. ── */
@@ -693,8 +696,8 @@ module.exports = {
         /* Linear (decorative) gradients */
         ...Object.fromEntries(
           Array.from({ length: 91 }, (_, i) => {
-            const num = String(i + 1).padStart(2, "0");
-            return [`gradient-linear-${num}`, `var(--gradient-linear-${num})`];
+            const num = String(i + 1).padStart(2, "0")
+            return [`gradient-linear-${num}`, `var(--gradient-linear-${num})`]
           }),
         ),
       },

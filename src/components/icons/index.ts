@@ -37,5 +37,8 @@ export { IllustrativeMoreIcon } from "./IllustrativeMoreIcon"
 export { EditIcon } from "./EditIcon"
 export { TrashCanIcon } from "./TrashCanIcon"
 export { SortOutlineIcon } from "./SortOutlineIcon"
+export { IllustrativeIncomeIcon } from "./IllustrativeIncomeIcon"
+export { IllustrativeExpenseIcon } from "./IllustrativeExpenseIcon"
+export { MoreHorizontalIcon } from "./MoreHorizontalIcon"
 export type { IconProps } from "./types"
 

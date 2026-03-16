@@ -73,6 +73,12 @@ export {
   type TextDividerType,
 } from "./TextDivider"
 export { FilterChip, filterChipVariants, type FilterChipProps } from "./FilterChip"
+export {
+  IncomeExpenseCard,
+  incomeExpenseCardVariants,
+  type IncomeExpenseCardProps,
+  type IncomeExpenseCardType,
+} from "./IncomeExpenseCard"
 export { SearchField, type SearchFieldProps } from "./SearchField"
 export { TransactionTextInput, type TransactionTextInputProps } from "./TransactionTextInput"
 export { Typography, typographyVariants, type TypographySize, type TypographyWeight } from "./Typography"

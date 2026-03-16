@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Income & Expense Card",
+    route: "/showcase/income-expense-card",
+    description:
+      "Compact summary card showing income or expense totals with illustrative icon, amount, and menu action",
+  },
+  {
     title: "Transaction History",
     route: "/screens/transaction_history",
     description:
