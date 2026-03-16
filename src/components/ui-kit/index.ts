@@ -79,6 +79,11 @@ export {
   type IncomeExpenseCardProps,
   type IncomeExpenseCardType,
 } from "./IncomeExpenseCard"
+export {
+  IncomeExpenseChart,
+  type IncomeExpenseChartProps,
+  type ChartDataItem,
+} from "./IncomeExpenseChart"
 export { SearchField, type SearchFieldProps } from "./SearchField"
 export { TransactionTextInput, type TransactionTextInputProps } from "./TransactionTextInput"
 export { Typography, typographyVariants, type TypographySize, type TypographyWeight } from "./Typography"

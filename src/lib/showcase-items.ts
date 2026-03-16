@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Income & Expense Chart",
+    route: "/showcase/income-expense-chart",
+    description:
+      "Bar chart comparing income and expense values over time with Y-axis grid lines, date labels, and a color-coded legend",
+  },
+  {
     title: "Income & Expense Card",
     route: "/showcase/income-expense-card",
     description:
