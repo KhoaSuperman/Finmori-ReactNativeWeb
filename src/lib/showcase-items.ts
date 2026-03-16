@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Transaction History",
+    route: "/screens/transaction_history",
+    description:
+      "Full-screen transaction history with search, filter chips, grouped day sections, and bottom navigation",
+  },
+  {
     title: "Filter Chip",
     route: "/showcase/filter-chip",
     description:
