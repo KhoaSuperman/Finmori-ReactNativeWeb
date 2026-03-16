@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Search Field",
+    route: "/showcase/search-field",
+    description: "Search input with placeholder, focused, typing, and active states, plus optional Cancel button and clear action",
+  },
+  {
     title: "Add Transaction",
     route: "/screens/add_transaction",
     description: "Full-screen form to add an expense or income transaction with amount, note, date, and category selection",
