@@ -36,5 +36,6 @@ export { IllustrativeHealthIcon } from "./IllustrativeHealthIcon"
 export { IllustrativeMoreIcon } from "./IllustrativeMoreIcon"
 export { EditIcon } from "./EditIcon"
 export { TrashCanIcon } from "./TrashCanIcon"
+export { SortOutlineIcon } from "./SortOutlineIcon"
 export type { IconProps } from "./types"
 

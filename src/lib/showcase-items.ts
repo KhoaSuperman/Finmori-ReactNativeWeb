@@ -6,6 +6,11 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Filter Chip",
+    route: "/showcase/filter-chip",
+    description: "Compact interactive chip for filtering content, available in label and icon variants with selected/unselected states",
+  },
+  {
     title: "Search Field",
     route: "/showcase/search-field",
     description: "Search input with placeholder, focused, typing, and active states, plus optional Cancel button and clear action",
