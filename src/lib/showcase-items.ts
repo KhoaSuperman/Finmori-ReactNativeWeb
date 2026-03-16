@@ -8,22 +8,26 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
     title: "Filter Chip",
     route: "/showcase/filter-chip",
-    description: "Compact interactive chip for filtering content, available in label and icon variants with selected/unselected states",
+    description:
+      "Compact interactive chip for filtering content, available in label and icon variants with selected/unselected states",
   },
   {
     title: "Search Field",
     route: "/showcase/search-field",
-    description: "Search input with placeholder, focused, typing, and active states, plus optional Cancel button and clear action",
+    description:
+      "Search input with placeholder, focused, typing, and active states, plus optional Cancel button and clear action",
   },
   {
     title: "Add Transaction",
     route: "/screens/add_transaction",
-    description: "Full-screen form to add an expense or income transaction with amount, note, date, and category selection",
+    description:
+      "Full-screen form to add an expense or income transaction with amount, note, date, and category selection",
   },
   {
     title: "Home Indicator Bar",
     route: "/showcase/home-indicator-bar",
-    description: "Bottom bar with iOS home indicator pill and optional button layouts: single, horizontal pair, vertical pair, three buttons, or action sheet",
+    description:
+      "Bottom bar with iOS home indicator pill and optional button layouts: single, horizontal pair, vertical pair, three buttons, or action sheet",
   },
   {
     title: "Card Menu Item",
@@ -48,12 +52,14 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
     title: "Tab Bar",
     route: "/showcase/tab-bar",
-    description: "Horizontal tab container with box (segmented control) and line (underline) type variants supporting 2–4 tabs",
+    description:
+      "Horizontal tab container with box (segmented control) and line (underline) type variants supporting 2–4 tabs",
   },
   {
     title: "Tab Item",
     route: "/showcase/tab-item",
-    description: "Selectable tab with box (pill) and line (underline) type variants across default, selected, and disabled states",
+    description:
+      "Selectable tab with box (pill) and line (underline) type variants across default, selected, and disabled states",
   },
   {
     title: "Navigation Bar",
@@ -78,7 +84,8 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
     title: "Bottom Nav Bar",
     route: "/showcase/bottom-nav-bar",
-    description: "Pill-shaped bottom navigation with gradient icons, active/inactive tab states, and add-transaction button",
+    description:
+      "Pill-shaped bottom navigation with gradient icons, active/inactive tab states, and add-transaction button",
   },
   {
     title: "Card Element",

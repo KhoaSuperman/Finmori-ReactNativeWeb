@@ -24,8 +24,11 @@ const activityItemVariants = cva("rounded-xl bg-primary", {
 
 type ActivityItemType = NonNullable<VariantProps<typeof activityItemVariants>["type"]>
 
+type AmountVariant = "default" | "income" | "outcome"
+
 interface TrailingDefault {
   amount: string
+  amountVariant?: AmountVariant
   balanceLabel?: string
   paymentMethod?: PaymentMethod
 }
@@ -112,7 +115,15 @@ export function ActivityItem({
             </View>
           ) : (
             <View className="items-end gap-xxs">
-              <Typography size="body-small" weight="semibold" className="text-primary">
+              <Typography
+                size="body-small"
+                weight="semibold"
+                className={
+                  trailing.amountVariant === "income"
+                    ? "text-success-primary"
+                    : "text-primary"
+                }
+              >
                 {trailing.amount}
               </Typography>
               {trailing.balanceLabel && (
@@ -135,4 +146,4 @@ export function ActivityItem({
   )
 }
 
-export { activityItemVariants, type ActivityItemProps, type ActivityItemType }
+export { activityItemVariants, type ActivityItemProps, type ActivityItemType, type AmountVariant }

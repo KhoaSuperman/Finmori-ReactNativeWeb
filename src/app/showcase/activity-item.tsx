@@ -49,6 +49,7 @@ export default function ActivityItemShowcase() {
             overline="01/02/2026 · 00:00"
             trailing={{
               amount: "+S$ 5,000.00",
+              amountVariant: "income",
             }}
             showDivider={false}
             avatarProps={{
