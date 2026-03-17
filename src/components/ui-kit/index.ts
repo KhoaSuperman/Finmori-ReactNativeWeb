@@ -43,6 +43,7 @@ export {
 export { RecapCard, type RecapCardProps } from "./RecapCard"
 export { SearchField, type SearchFieldProps } from "./SearchField"
 export { SectionTitle, sectionTitleVariants, type SectionTitleProps, type SectionTitleType } from "./SectionTitle"
+export { SpendingChart, type SpendingChartProps, type SpendingDataPoint } from "./SpendingChart"
 export { TabBar, tabBarVariants, type TabBarProps, type TabBarTab, type TabBarType } from "./TabBar"
 export { TabItem, tabItemVariants, type TabItemProps, type TabItemState, type TabItemType } from "./TabItem"
 export { TextDivider, textDividerVariants, type TextDividerProps, type TextDividerType } from "./TextDivider"

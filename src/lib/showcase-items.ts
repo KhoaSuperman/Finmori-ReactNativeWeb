@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Spending Chart",
+    route: "/showcase/spending-chart",
+    description:
+      "Line chart showing spending over time with dashed grid lines, Y-axis value labels, interactive SVG polyline, tooltip, and indicator dot",
+  },
+  {
     title: "Indicator Dots",
     route: "/showcase/indicator-dots",
     description:
