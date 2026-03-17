@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Tooltip",
+    route: "/showcase/tooltip",
+    description:
+      "Dark tooltip bubble with directional arrow, supporting top-center, bottom-center, left, and right placements",
+  },
+  {
     title: "Income & Expense Chart",
     route: "/showcase/income-expense-chart",
     description:
