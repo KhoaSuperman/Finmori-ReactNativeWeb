@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Indicator Dots",
+    route: "/showcase/indicator-dots",
+    description:
+      "Dot-based position indicator for carousels and pagers, with an active dot showing a halo ring and inactive dots as smaller dimmed circles",
+  },
+  {
     title: "Tooltip",
     route: "/showcase/tooltip",
     description:

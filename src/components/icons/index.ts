@@ -44,5 +44,6 @@ export { TooltipArrowUpIcon } from "./TooltipArrowUpIcon"
 export { TooltipArrowDownIcon } from "./TooltipArrowDownIcon"
 export { TooltipArrowLeftIcon } from "./TooltipArrowLeftIcon"
 export { TooltipArrowRightIcon } from "./TooltipArrowRightIcon"
+export { IndicatorDotActiveIcon } from "./IndicatorDotActiveIcon"
 export type { IconProps } from "./types"
 

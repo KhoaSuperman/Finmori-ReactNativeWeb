@@ -10,6 +10,7 @@ export { CardElement, type CardElementGradient, type CardElementProps } from "./
 export { CardMenuItem, type CardMenuItemProps } from "./CardMenuItem"
 export { Chip, chipVariants, type ChipProps, type ChipTendancy } from "./Chip"
 export { FilterChip, filterChipVariants, type FilterChipProps } from "./FilterChip"
+export { IndicatorDots, indicatorDotsVariants, type IndicatorDotsProps, type IndicatorDotsVariants } from "./IndicatorDots"
 export {
     HomeIndicatorBar,
     homeIndicatorBarVariants,
