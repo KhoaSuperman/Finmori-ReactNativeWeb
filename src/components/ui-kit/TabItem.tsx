@@ -48,8 +48,15 @@ interface TabItemProps
   extends Omit<PressableProps, "children">,
     VariantProps<typeof tabItemVariants> {
   label: string
-  icon?: React.ReactNode
+  /** Pass a render function to receive the resolved icon color for the current state */
+  icon?: ((color: string) => React.ReactNode) | React.ReactNode
   className?: string
+}
+
+const iconColorVars: Record<TabItemState, string> = {
+  default: "var(--color-fg-secondary)",
+  selected: "var(--color-fg-primary)",
+  disabled: "var(--color-fg-disabled)",
 }
 
 export function TabItem({
@@ -62,6 +69,9 @@ export function TabItem({
 }: TabItemProps) {
   const resolvedState = state ?? "default"
   const resolvedType = type ?? "box"
+  const iconColor = iconColorVars[resolvedState]
+
+  const renderedIcon = typeof icon === "function" ? icon(iconColor) : icon
 
   return (
     <Pressable
@@ -69,7 +79,7 @@ export function TabItem({
       className={cn(tabItemVariants({ type: resolvedType, state: resolvedState }), className)}
       {...props}
     >
-      {icon}
+      {renderedIcon}
       <Typography
         size="body"
         weight={textWeight[resolvedState]}

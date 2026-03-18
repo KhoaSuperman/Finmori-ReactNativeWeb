@@ -1,7 +1,11 @@
 import type { Meta, StoryObj } from "storybook"
 import { View } from "react-native"
 
+import { ChartPieSliceOutlineIcon } from "@/components/icons"
+
 import { TabItem } from "./TabItem"
+
+const tabIcon = (color: string) => <ChartPieSliceOutlineIcon size={20} color={color} />
 
 const meta: Meta<typeof TabItem> = {
   title: "UI Kit/TabItem",
@@ -24,6 +28,7 @@ export const BoxDefault: Story = {
     type: "box",
     state: "default",
     label: "Tab 1",
+    icon: tabIcon,
   },
 }
 
@@ -32,6 +37,7 @@ export const BoxSelected: Story = {
     type: "box",
     state: "selected",
     label: "Tab 1",
+    icon: tabIcon,
   },
 }
 
@@ -40,6 +46,7 @@ export const BoxDisabled: Story = {
     type: "box",
     state: "disabled",
     label: "Tab 1",
+    icon: tabIcon,
   },
 }
 
@@ -48,6 +55,7 @@ export const LineDefault: Story = {
     type: "line",
     state: "default",
     label: "Tab 1",
+    icon: tabIcon,
   },
 }
 
@@ -56,6 +64,7 @@ export const LineSelected: Story = {
     type: "line",
     state: "selected",
     label: "Tab 1",
+    icon: tabIcon,
   },
 }
 
@@ -64,5 +73,6 @@ export const LineDisabled: Story = {
     type: "line",
     state: "disabled",
     label: "Tab 1",
+    icon: tabIcon,
   },
 }

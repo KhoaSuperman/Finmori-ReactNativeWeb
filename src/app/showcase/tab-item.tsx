@@ -1,11 +1,14 @@
 import { useState } from "react"
 import { View } from "react-native"
 
+import { ChartPieSliceOutlineIcon } from "@/components/icons"
 import { ShowcasePage } from "@/components/showcase-page"
 import { TabItem, type TabItemState } from "@/components/ui-kit/TabItem"
 import { Typography } from "@/components/ui-kit/Typography"
 
 const TABS = ["Overview", "Activity", "Cards", "Settings"]
+
+const tabIcon = (color: string) => <ChartPieSliceOutlineIcon size={20} color={color} />
 
 function InteractiveBoxTabs() {
   const [activeIndex, setActiveIndex] = useState(0)
@@ -18,6 +21,7 @@ function InteractiveBoxTabs() {
           type="box"
           state={activeIndex === i ? "selected" : "default"}
           label={tab}
+          icon={tabIcon}
           onPress={() => setActiveIndex(i)}
         />
       ))}
@@ -36,6 +40,7 @@ function InteractiveLineTabs() {
           type="line"
           state={activeIndex === i ? "selected" : "default"}
           label={tab}
+          icon={tabIcon}
           onPress={() => setActiveIndex(i)}
         />
       ))}
@@ -50,8 +55,8 @@ function StateRow({ state, label }: { state: TabItemState; label: string }) {
         {label}
       </Typography>
       <View className="flex-row flex-wrap gap-3">
-        <TabItem type="box" state={state} label="Tab 1" />
-        <TabItem type="line" state={state} label="Tab 1" />
+        <TabItem type="box" state={state} label="Tab 1" icon={tabIcon} />
+        <TabItem type="line" state={state} label="Tab 1" icon={tabIcon} />
       </View>
     </View>
   )
