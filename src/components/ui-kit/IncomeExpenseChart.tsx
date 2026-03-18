@@ -21,23 +21,11 @@ export interface IncomeExpenseChartProps extends ViewProps {
 const DEFAULT_Y_TICKS = [2000, 1000, 500, 100, 0]
 const BAR_AREA_HEIGHT = 170
 
-const EXPENSE_GRADIENT =
-  Platform.OS === "web"
-    ? "linear-gradient(180deg, #fecdd3, #fda4af)"
-    : undefined
+const EXPENSE_GRADIENT = Platform.OS === "web" ? "linear-gradient(180deg, #fecdd3, #fda4af)" : undefined
 
-const INCOME_GRADIENT =
-  Platform.OS === "web"
-    ? "linear-gradient(180deg, #aceee5, #84fab0)"
-    : undefined
+const INCOME_GRADIENT = Platform.OS === "web" ? "linear-gradient(180deg, #aceee5, #84fab0)" : undefined
 
-function BarFill({
-  height,
-  type,
-}: {
-  height: number
-  type: "expense" | "income"
-}) {
+function BarFill({ height, type }: { height: number; type: "expense" | "income" }) {
   const gradient = type === "expense" ? EXPENSE_GRADIENT : INCOME_GRADIENT
   const fallbackColor = type === "expense" ? "#fda4af" : "#84fab0"
 
@@ -46,9 +34,7 @@ function BarFill({
       className="flex-1 rounded-md"
       style={[
         { height },
-        Platform.OS === "web"
-          ? ({ backgroundImage: gradient } as any)
-          : { backgroundColor: fallbackColor },
+        Platform.OS === "web" ? ({ backgroundImage: gradient } as any) : { backgroundColor: fallbackColor },
       ]}
     />
   )
@@ -63,9 +49,7 @@ function GridLine({ isDashed }: { isDashed: boolean }) {
           {
             height: 1,
             borderBottomWidth: 1,
-            borderBottomColor: isDashed
-              ? "var(--color-border-secondary)"
-              : "var(--color-border-primary)",
+            borderBottomColor: isDashed ? "var(--color-border-secondary)" : "var(--color-border-primary)",
             borderStyle: isDashed ? "dashed" : "solid",
           } as any
         }
@@ -75,40 +59,23 @@ function GridLine({ isDashed }: { isDashed: boolean }) {
 
   return (
     <View
-      className={cn(
-        "flex-1",
-        isDashed ? "border-b border-dashed border-secondary" : "border-b border-primary",
-      )}
+      className={cn("flex-1", isDashed ? "border-b border-dashed border-secondary" : "border-b border-primary")}
       style={{ height: 1 }}
     />
   )
 }
 
-export function IncomeExpenseChart({
-  data,
-  maxValue,
-  className,
-  formatValue,
-  ...props
-}: IncomeExpenseChartProps) {
-  const resolvedMax =
-    maxValue ??
-    Math.max(...data.flatMap((d) => [d.expense, d.income]), ...DEFAULT_Y_TICKS)
+export function IncomeExpenseChart({ data, maxValue, className, formatValue, ...props }: IncomeExpenseChartProps) {
+  const resolvedMax = maxValue ?? Math.max(...data.flatMap((d) => [d.expense, d.income]), ...DEFAULT_Y_TICKS)
 
-  const yTicks = maxValue
-    ? generateTicks(maxValue)
-    : DEFAULT_Y_TICKS
+  const yTicks = maxValue ? generateTicks(maxValue) : DEFAULT_Y_TICKS
 
   const format = formatValue ?? ((v: number) => `${v}$`)
 
-  const barHeight = (value: number) =>
-    resolvedMax > 0 ? (value / resolvedMax) * BAR_AREA_HEIGHT : 0
+  const barHeight = (value: number) => (resolvedMax > 0 ? (value / resolvedMax) * BAR_AREA_HEIGHT : 0)
 
   return (
-    <View
-      className={cn("rounded-2xl px-xl", className)}
-      {...props}
-    >
+    <View className={cn("rounded-2xl p-xl", className)} {...props}>
       {/* Chart area */}
       <View style={{ paddingVertical: 3 }}>
         <View className="gap-xxs">
@@ -119,16 +86,8 @@ export function IncomeExpenseChart({
               {yTicks.map((tick, i) => {
                 const isBase = i === yTicks.length - 1
                 return (
-                  <View
-                    key={tick}
-                    className="flex-row items-center gap-sm"
-                  >
-                    <Typography
-                      size="tiny"
-                      weight="regular"
-                      className="text-tertiary"
-                      style={{ minWidth: 40 }}
-                    >
+                  <View key={tick} className="flex-row items-center gap-sm">
+                    <Typography size="tiny" weight="regular" className="text-tertiary" style={{ minWidth: 40 }}>
                       {format(tick)}
                     </Typography>
                     <GridLine isDashed={!isBase} />
@@ -154,31 +113,17 @@ export function IncomeExpenseChart({
                   className="flex-1 flex-row items-end gap-xxs"
                   style={{ height: BAR_AREA_HEIGHT }}
                 >
-                  <BarFill
-                    height={barHeight(item.expense)}
-                    type="expense"
-                  />
-                  <BarFill
-                    height={barHeight(item.income)}
-                    type="income"
-                  />
+                  <BarFill height={barHeight(item.expense)} type="expense" />
+                  <BarFill height={barHeight(item.income)} type="income" />
                 </View>
               ))}
             </View>
           </View>
 
           {/* X-axis date labels */}
-          <View
-            className="flex-row items-center"
-            style={{ justifyContent: "space-around", paddingRight: 20 }}
-          >
+          <View className="flex-row items-center" style={{ justifyContent: "space-around", paddingRight: 20 }}>
             {data.map((item) => (
-              <Typography
-                key={item.label}
-                size="tiny"
-                weight="regular"
-                className="text-tertiary"
-              >
+              <Typography key={item.label} size="tiny" weight="regular" className="text-tertiary">
                 {item.label}
               </Typography>
             ))}
@@ -187,10 +132,7 @@ export function IncomeExpenseChart({
       </View>
 
       {/* Legend */}
-      <View
-        className="flex-row items-center justify-center gap-5xl"
-        style={{ marginTop: 16 }}
-      >
+      <View className="flex-row items-center justify-center gap-5xl" style={{ marginTop: 16 }}>
         <LegendItem type="expense" label="Expense" />
         <LegendItem type="income" label="Income" />
       </View>
@@ -198,13 +140,7 @@ export function IncomeExpenseChart({
   )
 }
 
-function LegendItem({
-  type,
-  label,
-}: {
-  type: "expense" | "income"
-  label: string
-}) {
+function LegendItem({ type, label }: { type: "expense" | "income"; label: string }) {
   const gradient = type === "expense" ? EXPENSE_GRADIENT : INCOME_GRADIENT
   const fallbackColor = type === "expense" ? "#fda4af" : "#84fab0"
 
@@ -214,9 +150,7 @@ function LegendItem({
         className="rounded-xxs"
         style={[
           { width: 16, height: 16 },
-          Platform.OS === "web"
-            ? ({ backgroundImage: gradient } as any)
-            : { backgroundColor: fallbackColor },
+          Platform.OS === "web" ? ({ backgroundImage: gradient } as any) : { backgroundColor: fallbackColor },
         ]}
       />
       <Typography size="caption" weight="regular" className="text-primary">
