@@ -6,6 +6,18 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Tab Item",
+    route: "/showcase/tab-item",
+    description:
+      "Selectable tab with box (pill) and line (underline) type variants across default, selected, and disabled states",
+  },
+  {
+    title: "Tab Bar",
+    route: "/showcase/tab-bar",
+    description:
+      "Horizontal tab container with box (segmented control) and line (underline) type variants supporting 2–4 tabs",
+  },
+  {
     title: "Spending Chart",
     route: "/showcase/spending-chart",
     description:
@@ -84,18 +96,6 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
     title: "Amount Input",
     route: "/showcase/amount-input",
     description: "Large numeric input with display font, blinking cursor, and automatic thousand-separator formatting",
-  },
-  {
-    title: "Tab Bar",
-    route: "/showcase/tab-bar",
-    description:
-      "Horizontal tab container with box (segmented control) and line (underline) type variants supporting 2–4 tabs",
-  },
-  {
-    title: "Tab Item",
-    route: "/showcase/tab-item",
-    description:
-      "Selectable tab with box (pill) and line (underline) type variants across default, selected, and disabled states",
   },
   {
     title: "Navigation Bar",

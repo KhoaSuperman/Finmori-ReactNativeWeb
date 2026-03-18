@@ -32,44 +32,49 @@ const tabItemVariants = cva("flex-row items-center justify-center gap-md", {
 type TabItemType = NonNullable<VariantProps<typeof tabItemVariants>["type"]>
 type TabItemState = NonNullable<VariantProps<typeof tabItemVariants>["state"]>
 
-const textClassName: Record<TabItemState, string> = {
-  default: "text-secondary",
-  selected: "text-primary",
-  disabled: "text-disabled",
+const textClassMap: Record<TabItemType, Record<TabItemState, string>> = {
+  box: {
+    default: "text-secondary",
+    selected: "text-primary",
+    disabled: "text-disabled",
+  },
+  line: {
+    default: "text-secondary",
+    selected: "text-brand-secondary",
+    disabled: "text-disabled",
+  },
 }
 
-const textWeight: Record<TabItemState, "regular" | "semibold"> = {
+const textWeightMap: Record<TabItemState, "regular" | "semibold"> = {
   default: "regular",
   selected: "semibold",
   disabled: "regular",
 }
 
-interface TabItemProps
-  extends Omit<PressableProps, "children">,
-    VariantProps<typeof tabItemVariants> {
+const iconColorMap: Record<TabItemType, Record<TabItemState, string>> = {
+  box: {
+    default: "var(--color-fg-secondary)",
+    selected: "var(--color-fg-primary)",
+    disabled: "var(--color-fg-disabled)",
+  },
+  line: {
+    default: "var(--color-fg-tertiary)",
+    selected: "var(--color-fg-brand-primary)",
+    disabled: "var(--color-fg-disabled)",
+  },
+}
+
+interface TabItemProps extends Omit<PressableProps, "children">, VariantProps<typeof tabItemVariants> {
   label: string
   /** Pass a render function to receive the resolved icon color for the current state */
   icon?: ((color: string) => React.ReactNode) | React.ReactNode
   className?: string
 }
 
-const iconColorVars: Record<TabItemState, string> = {
-  default: "var(--color-fg-secondary)",
-  selected: "var(--color-fg-primary)",
-  disabled: "var(--color-fg-disabled)",
-}
-
-export function TabItem({
-  type = "box",
-  state = "default",
-  label,
-  icon,
-  className,
-  ...props
-}: TabItemProps) {
+export function TabItem({ type = "box", state = "default", label, icon, className, ...props }: TabItemProps) {
   const resolvedState = state ?? "default"
   const resolvedType = type ?? "box"
-  const iconColor = iconColorVars[resolvedState]
+  const iconColor = iconColorMap[resolvedType][resolvedState]
 
   const renderedIcon = typeof icon === "function" ? icon(iconColor) : icon
 
@@ -82,16 +87,18 @@ export function TabItem({
       {renderedIcon}
       <Typography
         size="body"
-        weight={textWeight[resolvedState]}
-        className={textClassName[resolvedState]}
+        weight={textWeightMap[resolvedState]}
+        className={textClassMap[resolvedType][resolvedState]}
       >
         {label}
       </Typography>
       {resolvedType === "line" && resolvedState === "selected" && (
-        <View className="absolute bottom-0 left-0 right-0 h-[2px] bg-fg-brand-primary" />
+        //increacase the height of the line to 4px
+        <View className="absolute bottom-0 left-0 right-0 h-[3px] bg-fg-brand-primary" />
       )}
     </Pressable>
   )
 }
 
-export { tabItemVariants, type TabItemProps, type TabItemType, type TabItemState }
+export { tabItemVariants, type TabItemProps, type TabItemState, type TabItemType }
+

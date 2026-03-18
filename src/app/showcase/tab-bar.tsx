@@ -1,13 +1,28 @@
 import { useState } from "react"
 import { View } from "react-native"
 
+import { ChartPieSliceOutlineIcon } from "@/components/icons"
 import { ShowcasePage } from "@/components/showcase-page"
 import { TabBar } from "@/components/ui-kit/TabBar"
 import { Typography } from "@/components/ui-kit/Typography"
 
-const TABS_2 = [{ label: "Overview" }, { label: "Activity" }]
-const TABS_3 = [{ label: "Overview" }, { label: "Activity" }, { label: "Cards" }]
-const TABS_4 = [{ label: "Overview" }, { label: "Activity" }, { label: "Cards" }, { label: "Settings" }]
+const tabIcon = (color: string) => <ChartPieSliceOutlineIcon size={20} color={color} />
+
+const TABS_2 = [
+  { label: "Overview", icon: tabIcon },
+  { label: "Breakdown", icon: tabIcon },
+]
+const TABS_3 = [
+  { label: "Overview", icon: tabIcon },
+  { label: "Activity", icon: tabIcon },
+  { label: "Cards", icon: tabIcon },
+]
+const TABS_4 = [
+  { label: "Overview", icon: tabIcon },
+  { label: "Activity", icon: tabIcon },
+  { label: "Cards", icon: tabIcon },
+  { label: "Settings", icon: tabIcon },
+]
 
 function InteractiveBox2() {
   const [active, setActive] = useState(0)
@@ -66,14 +81,14 @@ export default function TabBarShowcase() {
         </View>
       </View>
 
-      <View className="gap-6">
+      {/* <View className="gap-6">
         <Typography size="h3" weight="bold" className="px-1">
           Box — 4 Tabs
         </Typography>
         <View className="rounded-2xl border border-tertiary bg-primary p-xl">
           <InteractiveBox4 />
         </View>
-      </View>
+      </View> */}
 
       <View className="gap-6">
         <Typography size="h3" weight="bold" className="px-1">
@@ -82,7 +97,7 @@ export default function TabBarShowcase() {
         <Typography size="body-small" className="px-1 text-tertiary">
           Full-width underline style with a bottom highlight bar on the active tab.
         </Typography>
-        <View className="overflow-hidden rounded-2xl border border-tertiary bg-primary">
+        <View className="fg-tertiary p-xl">
           <InteractiveLine2 />
         </View>
       </View>
@@ -96,14 +111,14 @@ export default function TabBarShowcase() {
         </View>
       </View>
 
-      <View className="gap-6">
+      {/* <View className="gap-6">
         <Typography size="h3" weight="bold" className="px-1">
           Line — 4 Tabs
         </Typography>
         <View className="overflow-hidden rounded-2xl border border-tertiary bg-primary">
           <InteractiveLine4 />
         </View>
-      </View>
+      </View> */}
     </ShowcasePage>
   )
 }

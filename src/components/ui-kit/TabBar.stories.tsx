@@ -1,11 +1,20 @@
 import type { Meta, StoryObj } from "storybook"
 import { View } from "react-native"
 
+import { ChartPieSliceOutlineIcon } from "@/components/icons"
+
 import { TabBar } from "./TabBar"
 
-const TABS_2 = [{ label: "Tab 1" }, { label: "Tab 2" }]
-const TABS_3 = [{ label: "Tab 1" }, { label: "Tab 2" }, { label: "Tab 3" }]
-const TABS_4 = [{ label: "Tab 1" }, { label: "Tab 2" }, { label: "Tab 3" }, { label: "Tab 4" }]
+const tabIcon = (color: string) => <ChartPieSliceOutlineIcon size={20} color={color} />
+
+const TABS_2 = [{ label: "Tab 1", icon: tabIcon }, { label: "Tab 2", icon: tabIcon }]
+const TABS_3 = [{ label: "Tab 1", icon: tabIcon }, { label: "Tab 2", icon: tabIcon }, { label: "Tab 3", icon: tabIcon }]
+const TABS_4 = [
+  { label: "Tab 1", icon: tabIcon },
+  { label: "Tab 2", icon: tabIcon },
+  { label: "Tab 3", icon: tabIcon },
+  { label: "Tab 4", icon: tabIcon },
+]
 
 const meta: Meta<typeof TabBar> = {
   title: "UI Kit/TabBar",
