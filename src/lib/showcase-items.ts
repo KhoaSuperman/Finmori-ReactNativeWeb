@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Analytics Overview",
+    route: "/screens/analytics_overview",
+    description:
+      "Full-screen analytics dashboard with income/expense cards, 3-month bar chart, spending trend line chart, and tab navigation",
+  },
+  {
     title: "Spending Chart",
     route: "/showcase/spending-chart",
     description:
