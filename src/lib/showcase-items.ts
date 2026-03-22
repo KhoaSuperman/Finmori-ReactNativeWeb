@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Progress Bar with Controller",
+    route: "/showcase/progress-bar-with-controller",
+    description:
+      "A progress bar with a controller dot indicator, showing fill progress from 0% to 100% with a green dot at the current position",
+  },
+  {
     title: "Category Breakdown Item",
     route: "/showcase/category-breakdown-item",
     description:

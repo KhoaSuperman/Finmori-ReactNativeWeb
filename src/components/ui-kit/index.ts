@@ -37,6 +37,7 @@ export {
 export { IncomeExpenseChart, type ChartDataItem, type IncomeExpenseChartProps } from "./IncomeExpenseChart"
 export { ListItem, type ListItemProps } from "./ListItem"
 export { MediaSlot, type MediaSlotProps, type MediaSlotVariant } from "./MediaSlot"
+export { ProgressBarWithController, type ProgressBarWithControllerProps } from "./ProgressBarWithController"
 export {
     NavigationBar,
     navigationBarVariants,
