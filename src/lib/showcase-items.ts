@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Category Icon",
+    route: "/showcase/category-icon",
+    description:
+      "Circular 32px container with white background and subtle border for displaying illustrative category icons",
+  },
+  {
     title: "Expense Chart",
     route: "/showcase/expense-chart",
     description:
