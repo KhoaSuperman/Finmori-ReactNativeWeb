@@ -9,7 +9,7 @@ import {
   IllustrativeShoppingIcon,
 } from "@/components/icons"
 import { ShowcasePage } from "@/components/showcase-page"
-import { ExpenseChart, DEFAULT_CATEGORIES, type ExpenseCategory } from "@/components/ui-kit/ExpenseChart"
+import { DEFAULT_CATEGORIES, ExpenseChart, type ExpenseCategory } from "@/components/ui-kit/ExpenseChart"
 import { Typography } from "@/components/ui-kit/Typography"
 
 const FEWER_CATEGORIES: ExpenseCategory[] = [
@@ -18,35 +18,35 @@ const FEWER_CATEGORIES: ExpenseCategory[] = [
     label: "Meals",
     value: 30,
     gradient: ["#ff7a00", "#ffd439"],
-    icon: (props) => <IllustrativeMealIcon {...props} />,
+    icon: <IllustrativeMealIcon />,
   },
   {
     id: "groceries",
     label: "Groceries",
     value: 25,
     gradient: ["#f49062", "#fd371f"],
-    icon: (props) => <IllustrativeGroceryIcon {...props} />,
+    icon: <IllustrativeGroceryIcon />,
   },
   {
     id: "rent",
     label: "Rent",
     value: 20,
     gradient: ["#ffd3a5", "#fd6585"],
-    icon: (props) => <IllustrativeRentIcon {...props} />,
+    icon: <IllustrativeRentIcon />,
   },
   {
     id: "shopping",
     label: "Shopping",
     value: 15,
     gradient: ["#ffd1ff", "#fad0c4"],
-    icon: (props) => <IllustrativeShoppingIcon {...props} />,
+    icon: <IllustrativeShoppingIcon />,
   },
   {
     id: "fun",
     label: "Fun",
     value: 10,
     gradient: ["#ce9ffc", "#7367f0"],
-    icon: (props) => <IllustrativeEntertainmentIcon {...props} />,
+    icon: <IllustrativeEntertainmentIcon />,
   },
 ]
 
@@ -61,8 +61,8 @@ export default function ExpenseChartShowcase() {
           Default (7 Categories)
         </Typography>
         <Typography size="body-small" className="px-1 text-tertiary">
-          Full expense breakdown with all default categories: Meals, Groceries, Rent, Shopping, Fun,
-          Transport, and Health.
+          Full expense breakdown with all default categories: Meals, Groceries, Rent, Shopping, Fun, Transport, and
+          Health.
         </Typography>
         <View className="items-center rounded-2xl border border-secondary bg-primary py-6">
           <ExpenseChart categories={DEFAULT_CATEGORIES} />

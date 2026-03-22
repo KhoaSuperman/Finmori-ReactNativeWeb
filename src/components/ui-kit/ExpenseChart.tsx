@@ -20,7 +20,7 @@ export interface ExpenseCategory {
   label: string
   value: number
   gradient: [string, string]
-  icon: React.ReactNode
+  icon: React.JSX.Element
 }
 
 export interface ExpenseChartProps extends ViewProps {
@@ -35,49 +35,49 @@ const DEFAULT_CATEGORIES: ExpenseCategory[] = [
     label: "Meals",
     value: 5.74,
     gradient: ["#ff7a00", "#ffd439"],
-    icon: <IllustrativeMealIcon size={24} />,
+    icon: <IllustrativeMealIcon />,
   },
   {
     id: "groceries",
     label: "Groceries",
     value: 8.77,
     gradient: ["#f49062", "#fd371f"],
-    icon: <IllustrativeGroceryIcon size={24} />,
+    icon: <IllustrativeGroceryIcon />,
   },
   {
     id: "rent",
     label: "Rent",
     value: 12.09,
     gradient: ["#ffd3a5", "#fd6585"],
-    icon: <IllustrativeRentIcon size={24} />,
+    icon: <IllustrativeRentIcon />,
   },
   {
     id: "shopping",
     label: "Shopping",
     value: 15.19,
     gradient: ["#ffd1ff", "#fad0c4"],
-    icon: <IllustrativeShoppingIcon size={24} />,
+    icon: <IllustrativeShoppingIcon />,
   },
   {
     id: "fun",
     label: "Fun",
     value: 18.04,
     gradient: ["#ce9ffc", "#7367f0"],
-    icon: <IllustrativeEntertainmentIcon size={24} />,
+    icon: <IllustrativeEntertainmentIcon />,
   },
   {
     id: "transport",
     label: "Transport",
     value: 17.31,
     gradient: ["#f093fb", "#f5576c"],
-    icon: <IllustrativeTransportIcon size={24} />,
+    icon: <IllustrativeTransportIcon />,
   },
   {
     id: "health",
     label: "Health",
     value: 22.93,
     gradient: ["#ff9de4", "#ffeaf6"],
-    icon: <IllustrativeHealthIcon size={24} />,
+    icon: <IllustrativeHealthIcon />,
   },
 ]
 

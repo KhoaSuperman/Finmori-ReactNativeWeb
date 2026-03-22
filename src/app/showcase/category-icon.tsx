@@ -6,25 +6,23 @@ import {
   IllustrativeGroceryIcon,
   IllustrativeHealthIcon,
   IllustrativeMealIcon,
-  IllustrativeMoreIcon,
   IllustrativeRentIcon,
   IllustrativeShoppingIcon,
-  IllustrativeTransportIcon,
+  IllustrativeTransportIcon
 } from "@/components/icons"
 import { ShowcasePage } from "@/components/showcase-page"
 import { CategoryIcon } from "@/components/ui-kit/CategoryIcon"
 import { Typography } from "@/components/ui-kit/Typography"
 
 const CATEGORIES = [
-  { id: "business", label: "Business", icon: <IllustrativeBusinessIcon size={24} /> },
-  { id: "groceries", label: "Groceries", icon: <IllustrativeGroceryIcon size={24} /> },
-  { id: "meal", label: "Meal", icon: <IllustrativeMealIcon size={24} /> },
-  { id: "entertainment", label: "Entertainment", icon: <IllustrativeEntertainmentIcon size={24} /> },
-  { id: "transport", label: "Transport", icon: <IllustrativeTransportIcon size={24} /> },
-  { id: "rent", label: "Rent", icon: <IllustrativeRentIcon size={24} /> },
-  { id: "shopping", label: "Shopping", icon: <IllustrativeShoppingIcon size={24} /> },
-  { id: "health", label: "Health", icon: <IllustrativeHealthIcon size={24} /> },
-  { id: "more", label: "More", icon: <IllustrativeMoreIcon size={24} /> },
+  { id: "business", label: "Business", icon: <IllustrativeBusinessIcon /> },
+  { id: "groceries", label: "Groceries", icon: <IllustrativeGroceryIcon /> },
+  { id: "meal", label: "Meal", icon: <IllustrativeMealIcon /> },
+  { id: "entertainment", label: "Entertainment", icon: <IllustrativeEntertainmentIcon /> },
+  { id: "transport", label: "Transport", icon: <IllustrativeTransportIcon /> },
+  { id: "rent", label: "Rent", icon: <IllustrativeRentIcon /> },
+  { id: "shopping", label: "Shopping", icon: <IllustrativeShoppingIcon /> },
+  { id: "health", label: "Health", icon: <IllustrativeHealthIcon /> },
 ]
 
 export default function CategoryIconShowcase() {
@@ -43,8 +41,12 @@ export default function CategoryIconShowcase() {
         <View className="flex-row items-center gap-4">
           <CategoryIcon icon={<IllustrativeBusinessIcon size={24} />} />
           <View className="gap-0.5">
-            <Typography size="body-small" weight="semibold">Category Icon (32px)</Typography>
-            <Typography size="caption" className="text-tertiary">24px illustrative icon</Typography>
+            <Typography size="body-small" weight="semibold">
+              Category Icon (32px)
+            </Typography>
+            <Typography size="caption" className="text-tertiary">
+              24px illustrative icon
+            </Typography>
           </View>
         </View>
       </View>
