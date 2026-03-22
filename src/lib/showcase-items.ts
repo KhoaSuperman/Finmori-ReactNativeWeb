@@ -30,6 +30,12 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
       "Full-screen analytics dashboard with income/expense cards, 3-month bar chart, spending trend line chart, and tab navigation",
   },
   {
+    title: "Analytics Breakdown",
+    route: "/screens/analytics_breakdown",
+    description:
+      "Full-screen expense breakdown with donut chart, category icons, and itemized list of spending by category",
+  },
+  {
     title: "Spending Chart",
     route: "/showcase/spending-chart",
     description:
