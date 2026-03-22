@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Category Breakdown Item",
+    route: "/showcase/category-breakdown-item",
+    description:
+      "List row showing a category icon, percentage share, category name, and amount — used in expense breakdown views",
+  },
+  {
     title: "Category Icon",
     route: "/showcase/category-icon",
     description:

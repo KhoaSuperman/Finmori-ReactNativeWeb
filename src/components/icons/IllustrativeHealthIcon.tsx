@@ -4,7 +4,7 @@ import type { IconProps } from "./types"
 
 export function IllustrativeHealthIcon({ size = 24, ...props }: Omit<IconProps, "color">) {
   return (
-    <Svg width={size} height={size} fill="none" {...props}>
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         fill="#575B6D"
         d="M15.854 8.67H7.726V5.855A1.226 1.226 0 0 1 8.95 4.631h5.68a1.226 1.226 0 0 1 1.224 1.225V8.67Zm-7.21-.92h6.291V5.855a.306.306 0 0 0-.306-.306H8.95a.307.307 0 0 0-.306.306V7.75Z"

@@ -1,6 +1,6 @@
+import { useRouter } from "expo-router"
 import React, { useState } from "react"
 import { ScrollView, View } from "react-native"
-import { useRouter } from "expo-router"
 
 import {
   CalendarDotsIcon,
@@ -23,15 +23,7 @@ import { TabBar } from "@/components/ui-kit/TabBar"
 import { TransactionTextInput } from "@/components/ui-kit/TransactionTextInput"
 import { Typography } from "@/components/ui-kit/Typography"
 
-type CategoryId =
-  | "groceries"
-  | "meal"
-  | "transport"
-  | "rent"
-  | "fun"
-  | "health"
-  | "shopping"
-  | "more"
+type CategoryId = "groceries" | "meal" | "transport" | "rent" | "fun" | "health" | "shopping" | "more"
 
 const CATEGORIES: {
   id: CategoryId
@@ -46,12 +38,12 @@ const CATEGORIES: {
   {
     id: "meal",
     label: "Meal",
-    icon: <IllustrativeMealIcon size={40} />,
+    icon: <IllustrativeMealIcon size={56} />,
   },
   {
     id: "transport",
     label: "Transport",
-    icon: <IllustrativeTransportIcon size={40} />,
+    icon: <IllustrativeTransportIcon size={56} />,
   },
   {
     id: "rent",
@@ -61,7 +53,7 @@ const CATEGORIES: {
   {
     id: "fun",
     label: "Fun",
-    icon: <IllustrativeEntertainmentIcon size={40} />,
+    icon: <IllustrativeEntertainmentIcon size={56} />,
   },
   {
     id: "health",
@@ -76,7 +68,7 @@ const CATEGORIES: {
   {
     id: "more",
     label: "More",
-    icon: <IllustrativeMoreIcon size={40} />,
+    icon: <IllustrativeMoreIcon size={56} />,
   },
 ]
 
@@ -85,8 +77,7 @@ export default function AddTransactionScreen() {
   const [tabIndex, setTabIndex] = useState(0)
   const [amount, setAmount] = useState("1200465")
   const [note, setNote] = useState("Lunar Year Foods for whole family")
-  const [selectedCategory, setSelectedCategory] =
-    useState<CategoryId>("groceries")
+  const [selectedCategory, setSelectedCategory] = useState<CategoryId>("groceries")
 
   const row1 = CATEGORIES.slice(0, 4)
   const row2 = CATEGORIES.slice(4, 8)
@@ -99,12 +90,7 @@ export default function AddTransactionScreen() {
         title="New Transaction"
         showRightIcon={false}
         leftIcon={
-          <Typography
-            size="body"
-            weight="medium"
-            className="text-brand-tertiary"
-            style={{ fontSize: 17 }}
-          >
+          <Typography size="body" weight="medium" className="text-brand-tertiary" style={{ fontSize: 17 }}>
             Cancel
           </Typography>
         }
@@ -130,10 +116,7 @@ export default function AddTransactionScreen() {
         {/* Amount Container */}
         <View className="items-center px-xl py-xl" style={{ gap: 8 }}>
           {/* Amount Input Row */}
-          <View
-            className="flex-row items-end justify-center"
-            style={{ gap: 8, maxWidth: "100%" }}
-          >
+          <View className="flex-row items-end justify-center" style={{ gap: 8, maxWidth: "100%" }}>
             <Typography
               size="display-xl"
               weight="semibold"
@@ -147,18 +130,11 @@ export default function AddTransactionScreen() {
             >
               $
             </Typography>
-            <AmountInput
-              value={amount}
-              onChangeValue={(raw) => setAmount(raw)}
-              maxLength={7}
-            />
+            <AmountInput value={amount} onChangeValue={(raw) => setAmount(raw)} maxLength={7} />
           </View>
 
           {/* Transaction Note Input */}
-          <TransactionTextInput
-            value={note}
-            onChangeValue={setNote}
-          />
+          <TransactionTextInput value={note} onChangeValue={setNote} />
         </View>
 
         {/* Date Container */}
@@ -178,10 +154,7 @@ export default function AddTransactionScreen() {
         {/* Category Menu */}
         <View style={{ paddingVertical: 8 }}>
           {/* Row 1 */}
-          <View
-            className="flex-row px-xl"
-            style={{ justifyContent: "space-between" }}
-          >
+          <View className="flex-row px-xl" style={{ justifyContent: "space-between" }}>
             {row1.map((cat) => (
               <CardMenuItem
                 key={cat.id}
@@ -194,10 +167,7 @@ export default function AddTransactionScreen() {
           </View>
 
           {/* Row 2 */}
-          <View
-            className="flex-row px-xl"
-            style={{ justifyContent: "space-between" }}
-          >
+          <View className="flex-row px-xl" style={{ justifyContent: "space-between" }}>
             {row2.map((cat) => (
               <CardMenuItem
                 key={cat.id}
@@ -212,11 +182,7 @@ export default function AddTransactionScreen() {
       </ScrollView>
 
       {/* Bottom Bar */}
-      <HomeIndicatorBar
-        type="1-button"
-        primaryLabel="Save"
-        onPrimaryPress={() => {}}
-      />
+      <HomeIndicatorBar type="1-button" primaryLabel="Save" onPrimaryPress={() => {}} />
     </View>
   )
 }

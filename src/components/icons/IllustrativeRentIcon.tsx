@@ -4,7 +4,7 @@ import type { IconProps } from "./types"
 
 export function IllustrativeRentIcon({ size = 24, ...props }: Omit<IconProps, "color">) {
   return (
-    <Svg width={size} height={size} fill="none" {...props}>
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
       <Path fill="#EAECF5" d="M4.423 9.755h14.643V20.21H4.423V9.755Z" />
       <Path fill="#344D5B" d="M20.12 10.199H3.369l2.854-4.573h11.044l2.855 4.573Z" />
       <Path fill="#6895F8" d="M5.276 10.914h2.257v1.047H5.276v-1.047Z" />

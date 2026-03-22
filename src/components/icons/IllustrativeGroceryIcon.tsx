@@ -4,7 +4,7 @@ import type { IconProps } from "./types"
 
 export function IllustrativeGroceryIcon({ size = 24, ...props }: Omit<IconProps, "color">) {
   return (
-    <Svg width={size} height={size} fill="none" {...props}>
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
       <Path
         fill="#EAA14E"
         d="M14.797 9.94c-.14-.766.226-1.559.33-1.763a.062.062 0 0 1 .08-.03l.324.13a.062.062 0 0 1 .022.103 1.812 1.812 0 0 0-.494 1.716"

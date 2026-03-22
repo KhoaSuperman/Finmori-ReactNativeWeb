@@ -4,7 +4,7 @@ import type { IconProps } from "./types"
 
 export function IllustrativeMealIcon({ size = 24, ...props }: Omit<IconProps, "color">) {
   return (
-    <Svg width={size} height={size} fill="none" {...props}>
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
       <G clipPath="url(#a)">
         <Path fill="#3A556A" d="M12 20.21A8.421 8.421 0 1 0 12 3.37a8.421 8.421 0 0 0 0 16.842Z" />
         <Path fill="#2F4859" d="M3.58 11.79A8.419 8.419 0 0 1 12 3.369a8.419 8.419 0 0 1 8.421 8.42H3.58Z" />

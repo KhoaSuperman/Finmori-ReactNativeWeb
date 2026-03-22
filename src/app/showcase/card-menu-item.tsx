@@ -17,13 +17,13 @@ import { Typography } from "@/components/ui-kit/Typography"
 
 const CATEGORIES = [
   { id: "groceries", label: "Groceries", icon: <IllustrativeGroceryIcon size={56} /> },
-  { id: "meal", label: "Meal", icon: <IllustrativeMealIcon size={40} /> },
-  { id: "entertainment", label: "Entertainment", icon: <IllustrativeEntertainmentIcon size={40} /> },
-  { id: "transport", label: "Transport", icon: <IllustrativeTransportIcon size={40} /> },
+  { id: "meal", label: "Meal", icon: <IllustrativeMealIcon size={56} /> },
+  { id: "entertainment", label: "Entertainment", icon: <IllustrativeEntertainmentIcon size={56} /> },
+  { id: "transport", label: "Transport", icon: <IllustrativeTransportIcon size={56} /> },
   { id: "rent", label: "Rent", icon: <IllustrativeRentIcon size={56} /> },
   { id: "shopping", label: "Shopping", icon: <IllustrativeShoppingIcon size={56} /> },
   { id: "health", label: "Health", icon: <IllustrativeHealthIcon size={56} /> },
-  { id: "more", label: "More", icon: <IllustrativeMoreIcon size={40} /> },
+  { id: "more", label: "More", icon: <IllustrativeMoreIcon size={56} /> },
 ]
 
 export default function CardMenuItemShowcase() {
@@ -43,16 +43,8 @@ export default function CardMenuItemShowcase() {
           Default and selected variants.
         </Typography>
         <View className="flex-row gap-4">
-          <CardMenuItem
-            label="Groceries"
-            icon={<IllustrativeGroceryIcon size={56} />}
-            selected={false}
-          />
-          <CardMenuItem
-            label="Groceries"
-            icon={<IllustrativeGroceryIcon size={56} />}
-            selected={true}
-          />
+          <CardMenuItem label="Groceries" icon={<IllustrativeGroceryIcon size={56} />} selected={false} />
+          <CardMenuItem label="Groceries" icon={<IllustrativeGroceryIcon size={56} />} selected={true} />
         </View>
       </View>
 
@@ -66,12 +58,7 @@ export default function CardMenuItemShowcase() {
         </Typography>
         <View className="flex-row flex-wrap gap-2">
           {CATEGORIES.map((cat) => (
-            <CardMenuItem
-              key={cat.id}
-              label={cat.label}
-              icon={cat.icon}
-              selected={false}
-            />
+            <CardMenuItem key={cat.id} label={cat.label} icon={cat.icon} selected={false} />
           ))}
         </View>
       </View>
