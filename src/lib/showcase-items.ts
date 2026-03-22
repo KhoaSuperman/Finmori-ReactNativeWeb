@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Expense Chart",
+    route: "/showcase/expense-chart",
+    description:
+      "Donut chart showing expense breakdown by category with gradient arcs, indicator lines, and illustrative category icons",
+  },
+  {
     title: "Analytics Overview",
     route: "/screens/analytics_overview",
     description:
