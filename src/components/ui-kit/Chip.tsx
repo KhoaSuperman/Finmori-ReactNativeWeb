@@ -9,8 +9,8 @@ import { Typography } from "./Typography"
 const chipVariants = cva("flex-row items-center gap-xs rounded-full px-sm py-sm", {
   variants: {
     tendancy: {
-      positive: "bg-success-secondary",
-      negative: "bg-error-secondary",
+      positive: "bg-success",
+      negative: "bg-error",
     },
   },
   defaultVariants: {
@@ -21,8 +21,8 @@ const chipVariants = cva("flex-row items-center gap-xs rounded-full px-sm py-sm"
 type ChipTendancy = NonNullable<VariantProps<typeof chipVariants>["tendancy"]>
 
 const tendancyTextColor: Record<ChipTendancy, string> = {
-  positive: "text-success-primary",
-  negative: "text-error-primary",
+  positive: "text-success",
+  negative: "text-error",
 }
 
 const tendancyIconColor: Record<ChipTendancy, string> = {

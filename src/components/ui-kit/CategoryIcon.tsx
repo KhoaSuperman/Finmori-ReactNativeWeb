@@ -12,7 +12,7 @@ export function CategoryIcon({ icon, className, ...props }: CategoryIconProps) {
   return (
     <View
       className={cn(
-        "h-8 w-8 items-center justify-center rounded-full border border-secondary bg-primary",
+        "border-utility-gray-200 h-8 w-8 items-center justify-center rounded-full border bg-primary",
         className,
       )}
       {...props}

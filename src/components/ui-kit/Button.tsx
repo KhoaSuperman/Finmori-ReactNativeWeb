@@ -52,18 +52,18 @@ const buttonVariants = cva(
       {
         variant: "primary",
         destructive: true,
-        className: "bg-error-solid",
+        className: "bg-error-600",
       },
       {
         variant: "secondary",
         destructive: true,
         className:
-          "border-0 bg-error-primary",
+          "border-0 bg-error",
       },
       {
         variant: "tertiary",
         destructive: true,
-        className: "border-error-subtle bg-primary",
+        className: "border-error bg-primary",
       },
     ],
     defaultVariants: {
@@ -99,7 +99,7 @@ function getTextColorClass(
   }
   if (destructive) {
     if (variant === "primary") return "text-white"
-    return "text-error-primary"
+    return "text-error"
   }
   switch (variant) {
     case "primary":
@@ -122,10 +122,10 @@ function getIconColorClass(
   destructive: boolean,
   disabled: boolean,
 ): string {
-  if (disabled) return "text-fg-disabled-subtle"
+  if (disabled) return "text-fg-disabled"
   if (destructive) {
     if (variant === "primary") return "text-fg-white"
-    return "text-fg-error-secondary"
+    return "text-fg-error"
   }
   switch (variant) {
     case "primary":
@@ -187,9 +187,9 @@ function getLoadingContainerClass(variant: ButtonVariant): string {
     case "primary":
       return "bg-gray-light-400"
     case "secondary":
-      return "bg-primary-hover"
+      return "bg-gray-light-50"
     case "tertiary":
-      return "bg-primary-hover"
+      return "bg-gray-light-50"
     default:
       return ""
   }

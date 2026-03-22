@@ -13,14 +13,14 @@ import {
 } from "@/components/icons"
 import { cn } from "@/lib/cn"
 
-import { IconFrame } from "./IconFrame"
+import { CategoryIcon } from "./CategoryIcon"
 
 export interface ExpenseCategory {
   id: string
   label: string
   value: number
   gradient: [string, string]
-  icon: (props: { size: number }) => React.ReactNode
+  icon: React.ReactNode
 }
 
 export interface ExpenseChartProps extends ViewProps {
@@ -35,49 +35,49 @@ const DEFAULT_CATEGORIES: ExpenseCategory[] = [
     label: "Meals",
     value: 5.74,
     gradient: ["#ff7a00", "#ffd439"],
-    icon: (props) => <IllustrativeMealIcon {...props} />,
+    icon: <IllustrativeMealIcon size={24} />,
   },
   {
     id: "groceries",
     label: "Groceries",
     value: 8.77,
     gradient: ["#f49062", "#fd371f"],
-    icon: (props) => <IllustrativeGroceryIcon {...props} />,
+    icon: <IllustrativeGroceryIcon size={24} />,
   },
   {
     id: "rent",
     label: "Rent",
     value: 12.09,
     gradient: ["#ffd3a5", "#fd6585"],
-    icon: (props) => <IllustrativeRentIcon {...props} />,
+    icon: <IllustrativeRentIcon size={24} />,
   },
   {
     id: "shopping",
     label: "Shopping",
     value: 15.19,
     gradient: ["#ffd1ff", "#fad0c4"],
-    icon: (props) => <IllustrativeShoppingIcon {...props} />,
+    icon: <IllustrativeShoppingIcon size={24} />,
   },
   {
     id: "fun",
     label: "Fun",
     value: 18.04,
     gradient: ["#ce9ffc", "#7367f0"],
-    icon: (props) => <IllustrativeEntertainmentIcon {...props} />,
+    icon: <IllustrativeEntertainmentIcon size={24} />,
   },
   {
     id: "transport",
     label: "Transport",
     value: 17.31,
     gradient: ["#f093fb", "#f5576c"],
-    icon: (props) => <IllustrativeTransportIcon {...props} />,
+    icon: <IllustrativeTransportIcon size={24} />,
   },
   {
     id: "health",
     label: "Health",
     value: 22.93,
     gradient: ["#ff9de4", "#ffeaf6"],
-    icon: (props) => <IllustrativeHealthIcon {...props} />,
+    icon: <IllustrativeHealthIcon size={24} />,
   },
 ]
 
@@ -91,14 +91,7 @@ function polarToCartesian(cx: number, cy: number, r: number, angleRad: number) {
   }
 }
 
-function describeArc(
-  cx: number,
-  cy: number,
-  outerR: number,
-  innerR: number,
-  startAngle: number,
-  endAngle: number,
-) {
+function describeArc(cx: number, cy: number, outerR: number, innerR: number, startAngle: number, endAngle: number) {
   const sweep = endAngle - startAngle
   const largeArc = sweep > Math.PI ? 1 : 0
 
@@ -116,12 +109,7 @@ function describeArc(
   ].join(" ")
 }
 
-export function ExpenseChart({
-  categories = DEFAULT_CATEGORIES,
-  size = 240,
-  className,
-  ...props
-}: ExpenseChartProps) {
+export function ExpenseChart({ categories = DEFAULT_CATEGORIES, size = 240, className, ...props }: ExpenseChartProps) {
   const ringSize = (size * 160) / 240
   const ringOffset = (size * 40) / 240
   const outerR = ringSize / 2
@@ -163,11 +151,7 @@ export function ExpenseChart({
   }, [arcs, size])
 
   return (
-    <View
-      style={{ width: size, height: size }}
-      className={cn("relative", className)}
-      {...props}
-    >
+    <View style={{ width: size, height: size }} className={cn("relative", className)} {...props}>
       <Svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
         <Defs>
           {arcs.map((arc, i) => {
@@ -231,10 +215,7 @@ export function ExpenseChart({
               height: pos.iconSize,
             }}
           >
-            <IconFrame
-              size="md"
-              icon={({ size: s }) => arc.icon({ size: s })}
-            />
+            <CategoryIcon icon={arc.icon} />
           </View>
         )
       })}

@@ -10,8 +10,8 @@ import { Typography } from "./Typography"
 const incomeExpenseCardVariants = cva("rounded-2xl border border-tertiary p-4 gap-2", {
   variants: {
     type: {
-      income: "bg-success-primary",
-      expense: "bg-error-primary",
+      income: "bg-success",
+      expense: "bg-error",
     },
   },
   defaultVariants: {
@@ -47,7 +47,7 @@ export function IncomeExpenseCard({
         <View
           className={cn(
             "h-10 w-10 items-center justify-center rounded-full",
-            isIncome ? "bg-fg-success-secondary" : "bg-fg-error-secondary",
+            isIncome ? "bg-fg-success" : "bg-fg-error",
           )}
         >
           {isIncome ? <IllustrativeIncomeIcon size={23} /> : <IllustrativeExpenseIcon size={23} />}
@@ -67,7 +67,7 @@ export function IncomeExpenseCard({
         <Typography
           size="h1"
           weight="semibold"
-          className={cn("font-display tracking-tighter", isIncome ? "text-success-primary" : "text-error-primary")}
+          className={cn("font-display tracking-tighter", isIncome ? "text-success" : "text-error")}
         >
           {amount}
         </Typography>

@@ -124,7 +124,7 @@ export const ComposedCard: Story = {
         Portfolio balance
       </Typography>
       <Typography size="number-lg">$128,450.32</Typography>
-      <Typography size="caption" className="text-success-primary">
+      <Typography size="caption" className="text-success">
         +2.4% today
       </Typography>
       <Typography size="body" className="text-tertiary">

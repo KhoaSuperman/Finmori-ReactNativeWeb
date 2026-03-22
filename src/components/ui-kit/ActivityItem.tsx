@@ -120,7 +120,7 @@ export function ActivityItem({
                 weight="semibold"
                 className={
                   trailing.amountVariant === "income"
-                    ? "text-success-primary"
+                    ? "text-success"
                     : "text-primary"
                 }
               >

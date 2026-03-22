@@ -68,7 +68,7 @@ function ActionSheetItem({ label, icon, onPress, isFirst, isLast, destructive }:
         <Typography
           size="body"
           weight="medium"
-          className={cn("flex-1", destructive ? "text-error-primary" : "text-primary")}
+          className={cn("flex-1", destructive ? "text-error" : "text-primary")}
         >
           {label}
         </Typography>
