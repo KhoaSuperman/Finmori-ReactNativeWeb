@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Tag",
+    route: "/showcase/tag",
+    description:
+      "Compact label pill with 8 color variants (black, red, yellow, green, blue, purple, cyan, pink) and optional dismiss action",
+  },
+  {
     title: "Progress Bar with Controller",
     route: "/showcase/progress-bar-with-controller",
     description:
