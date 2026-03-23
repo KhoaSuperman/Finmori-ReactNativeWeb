@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Goals Card Minimize",
+    route: "/showcase/goals-card-minimize",
+    description:
+      "Compact savings goal card showing title, current/target amounts, progress bar, and time remaining",
+  },
+  {
     title: "Tag",
     route: "/showcase/tag",
     description:

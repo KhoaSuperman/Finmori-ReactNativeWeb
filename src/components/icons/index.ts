@@ -49,5 +49,6 @@ export { TooltipArrowLeftIcon } from "./TooltipArrowLeftIcon"
 export { TooltipArrowRightIcon } from "./TooltipArrowRightIcon"
 export { IndicatorDotActiveIcon } from "./IndicatorDotActiveIcon"
 export { XOutlinedIcon } from "./XOutlinedIcon"
+export { ChevronRightOutlinedIcon } from "./ChevronRightOutlinedIcon"
 export type { IconProps } from "./types"
 

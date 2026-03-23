@@ -1,0 +1,64 @@
+---
+description: Correct pattern for using ImageBackground in React Native components
+globs: **/*.tsx
+alwaysApply: false
+---
+
+# ImageBackground Pattern
+
+`ImageBackground` does **not** size itself — it inherits dimensions from its parent or its own `style`. Without explicit sizing it collapses to 0×0 and the image disappears.
+
+## The Two-Layer Pattern (ALWAYS use this)
+
+Wrap `ImageBackground` in an outer `View` that owns the shape/clip, then give `ImageBackground` `width: "100%", height: "100%"` so it fills that container. Content goes **inside** `ImageBackground` as children — the children's natural height drives the outer View's height.
+
+```tsx
+// ✅ CORRECT
+<View className="overflow-hidden rounded-xl">
+  <ImageBackground
+    source={bgImage}
+    resizeMode="cover"
+    style={{ width: "100%", height: "100%" }}
+  >
+    {/* content drives the height */}
+    <View className="p-md gap-md">
+      {/* ... */}
+    </View>
+  </ImageBackground>
+</View>
+```
+
+## Why NOT absolute-positioned `<Image>`
+
+```tsx
+// ❌ WRONG — image collapses because parent has no explicit height
+<View className="overflow-hidden rounded-xl">
+  <Image
+    source={bgImage}
+    resizeMode="cover"
+    className="absolute inset-0 h-full w-full"
+  />
+  <View className="p-md gap-md">{/* ... */}</View>
+</View>
+```
+
+`h-full` / `height: "100%"` on an absolutely-positioned child resolves against the parent's **explicit** height. When the parent is content-sized (HUG), it has no explicit height, so `100%` resolves to `0` and the image is invisible.
+
+## Fixed-size containers
+
+When the parent has a fixed height (e.g. a full-screen hero), the absolute approach works — but `ImageBackground` is still preferred for clarity:
+
+```tsx
+// ✅ Also fine when parent height is explicit
+<View style={{ height: 200 }} className="overflow-hidden rounded-xl">
+  <ImageBackground source={bgImage} resizeMode="cover" style={{ flex: 1 }}>
+    {/* ... */}
+  </ImageBackground>
+</View>
+```
+
+## Checklist
+
+- [ ] `ImageBackground` always has an explicit `style` with `width`/`height` or `flex: 1`
+- [ ] `overflow-hidden` + `borderRadius` live on the **outer** `View`, not on `ImageBackground`
+- [ ] Never use `<Image className="absolute inset-0 h-full w-full">` on a content-sized parent
