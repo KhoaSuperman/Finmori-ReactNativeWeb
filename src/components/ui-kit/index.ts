@@ -14,6 +14,7 @@ export { Chip, chipVariants, type ChipProps, type ChipTendancy } from "./Chip"
 export { ExpenseChart, type ExpenseCategory, type ExpenseChartProps, DEFAULT_CATEGORIES } from "./ExpenseChart"
 export { FilterChip, filterChipVariants, type FilterChipProps } from "./FilterChip"
 export { GoalsCardDefault, type GoalsCardDefaultProps } from "./GoalsCardDefault"
+export { GoalsCardDetails, type GoalsCardDetailsProps } from "./GoalsCardDetails"
 export { GoalsCardMinimize, type GoalsCardMinimizeProps } from "./GoalsCardMinimize"
 export { IndicatorDots, indicatorDotsVariants, type IndicatorDotsProps, type IndicatorDotsVariants } from "./IndicatorDots"
 export {
