@@ -4,7 +4,7 @@ import { ChevronRightOutlinedIcon, ClockIcon } from "@/components/icons"
 import { cn } from "@/lib/cn"
 
 import { ProgressBarWithController } from "./ProgressBarWithController"
-import { Tag } from "./Tag"
+import { Tag, type TagColor } from "./Tag"
 import { Typography } from "./Typography"
 
 export interface GoalsCardDefaultProps extends ViewProps {
@@ -24,6 +24,8 @@ export interface GoalsCardDefaultProps extends ViewProps {
   timeRemaining?: string
   /** Tag label shown next to the time (e.g. "50%") */
   progressTag?: string
+  /** Tag color variant */
+  tagColor?: TagColor
   /** Motivational message shown at the bottom */
   progressUpdate?: string
   onPress?: () => void
@@ -39,7 +41,8 @@ export function GoalsCardDefault({
   progress = 50,
   timeRemaining = "3 days 04:15:20",
   progressTag = "50%",
-  progressUpdate = "🚀 You're ahead of pace and should reach your goal 30% ahead of goal management.",
+  tagColor = "green",
+  progressUpdate = "",
   onPress,
   className,
   style,
@@ -66,7 +69,7 @@ export function GoalsCardDefault({
 
             {/* Product info */}
             <View className="flex-1 justify-center">
-              <Typography size="body-small" weight="regular" className="text-secondary">
+              <Typography size="body-small" weight="semibold" className="text-primary">
                 {category}
               </Typography>
               <Typography size="body-small" weight="regular" className="text-secondary" numberOfLines={1}>
@@ -101,7 +104,7 @@ export function GoalsCardDefault({
             </View>
 
             {/* Progress tag */}
-            <Tag color="green" label={progressTag} />
+            <Tag color={tagColor} label={progressTag} />
           </View>
 
           {/* Progress bar */}
@@ -121,9 +124,11 @@ export function GoalsCardDefault({
         </View>
 
         {/* Progress update message */}
-        <Typography size="caption" weight="regular" className="text-disabled">
-          {progressUpdate}
-        </Typography>
+        {!!progressUpdate && (
+          <Typography size="caption" weight="regular" className="text-disabled">
+            {progressUpdate}
+          </Typography>
+        )}
       </View>
     </Pressable>
   )

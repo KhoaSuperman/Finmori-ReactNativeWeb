@@ -7,6 +7,7 @@ import {
   BillListOutlineIcon,
   ChartPieBoldIcon,
   ChartPieOutlineIcon,
+  GoalFilledIcon,
   HomeSmileBoldIcon,
   HomeSmileOutlineIcon,
   UserCircleBoldIcon,
@@ -16,7 +17,7 @@ import { cn } from "@/lib/cn"
 
 import { Typography } from "./Typography"
 
-export type BottomNavTab = "home" | "history" | "analytic" | "profile"
+export type BottomNavTab = "home" | "history" | "analytic" | "goals" | "profile"
 
 const TAB_CONFIG = {
   home: {
@@ -30,9 +31,14 @@ const TAB_CONFIG = {
     BoldIcon: BillListBoldIcon,
   },
   analytic: {
-    label: "Analytic",
+    label: "Analytics",
     OutlineIcon: ChartPieOutlineIcon,
     BoldIcon: ChartPieBoldIcon,
+  },
+  goals: {
+    label: "Goals",
+    OutlineIcon: GoalFilledIcon,
+    BoldIcon: GoalFilledIcon,
   },
   profile: {
     label: "Profile",
@@ -55,7 +61,7 @@ export function BottomNavBar({
   className,
   ...rest
 }: BottomNavBarProps) {
-  const tabOrder: BottomNavTab[] = ["home", "history", "analytic", "profile"]
+  const tabOrder: BottomNavTab[] = ["home", "analytic", "goals", "profile"]
 
   return (
     <View className={cn("px-xl py-xs", className)} {...rest}>

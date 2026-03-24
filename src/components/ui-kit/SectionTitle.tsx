@@ -27,6 +27,7 @@ interface SectionTitleProps
     VariantProps<typeof sectionTitleVariants> {
   title: string
   actionLabel?: string
+  actionIcon?: React.ReactNode
   onAction?: () => void
   className?: string
 }
@@ -35,6 +36,7 @@ export function SectionTitle({
   type = "standard",
   title,
   actionLabel,
+  actionIcon,
   onAction,
   className,
   ...props
@@ -56,8 +58,9 @@ export function SectionTitle({
       </Typography>
       {actionLabel && (
         <Button
-          variant="link-gray"
+          variant="link-color"
           label={actionLabel}
+          iconLeft={actionIcon}
           onPress={onAction}
         />
       )}

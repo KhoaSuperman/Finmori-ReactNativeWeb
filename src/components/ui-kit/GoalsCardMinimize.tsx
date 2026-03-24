@@ -35,7 +35,7 @@ export function GoalsCardMinimize({
 }: GoalsCardMinimizeProps) {
   return (
     <Pressable onPress={onPress} style={style} {...(props as any)}>
-      <View className={cn("overflow-hidden rounded-xl", className)}>
+      <View className={cn("flex-1 overflow-hidden rounded-xl", className)}>
         <ImageBackground source={bgImage} resizeMode="cover" style={{ width: "100%", height: "100%" }}>
           <View className="gap-md p-md">
             {/* Header row: title + chevron */}
