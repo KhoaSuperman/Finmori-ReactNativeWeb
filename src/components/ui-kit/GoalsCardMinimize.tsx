@@ -1,4 +1,4 @@
-import { ImageBackground, Pressable, View, type ViewProps } from "react-native"
+import { ImageBackground, Pressable, View, type ViewProps, type ImageSourcePropType } from "react-native"
 
 import { ChevronRightOutlinedIcon } from "@/components/icons"
 import { cn } from "@/lib/cn"
@@ -6,7 +6,7 @@ import { cn } from "@/lib/cn"
 import { ProgressBarWithController } from "./ProgressBarWithController"
 import { Typography } from "./Typography"
 
-const bgImage = require("../../../assets/images/goals-card/bg_goals_card_minimize.png")
+const defaultBgImage = require("../../../assets/images/goals-card/bg_goals_card_minimize.png")
 
 export interface GoalsCardMinimizeProps extends ViewProps {
   title?: string
@@ -15,6 +15,8 @@ export interface GoalsCardMinimizeProps extends ViewProps {
   /** Progress value from 0 to 100 */
   progress?: number
   timeRemaining?: string
+  /** Background image source. Uses default image if not provided. */
+  bgImage?: ImageSourcePropType
   onPress?: () => void
   className?: string
 }
@@ -25,6 +27,7 @@ export function GoalsCardMinimize({
   targetAmount = "$250k",
   progress = 30,
   timeRemaining = "3 days 04:15:20",
+  bgImage = defaultBgImage,
   onPress,
   className,
   style,
