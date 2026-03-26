@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Recap Card",
+    route: "/showcase/recap-card",
+    description:
+      "Compact stat card showing a label and a value, with default, success, and critical status variants",
+  },
+  {
     title: "Goals Screen",
     route: "/screens/goals",
     description:
