@@ -6,16 +6,16 @@ import { cn } from "@/lib/cn"
 import { Chip, type ChipTendancy } from "./Chip"
 import { Typography } from "./Typography"
 
-interface RecapCardProps extends ViewProps {
+interface IncomeOutcomeTrendCardProps extends ViewProps {
   title: string
   amount: string
-  chipLabel: string
+  chipLabel?: string
   tendancy?: ChipTendancy
   onPress?: () => void
   className?: string
 }
 
-export function RecapCard({
+export function IncomeOutcomeTrendCard({
   title,
   amount,
   chipLabel,
@@ -23,7 +23,7 @@ export function RecapCard({
   onPress,
   className,
   ...props
-}: RecapCardProps) {
+}: IncomeOutcomeTrendCardProps) {
   const content = (
     <View
       className={cn(
@@ -39,11 +39,15 @@ export function RecapCard({
         <AltArrowRightIcon size={16} color="#3E4784" />
       </View>
 
-      <Typography size="body" weight="semibold" className="text-primary">
+      <Typography
+        size="h1"
+        weight="regular"
+        className="text-primary font-display tracking-tighter"
+      >
         {amount}
       </Typography>
 
-      <Chip tendancy={tendancy} label={chipLabel} className="self-start" />
+      {chipLabel && <Chip tendancy={tendancy} label={chipLabel} className="self-start" />}
     </View>
   )
 
@@ -58,4 +62,4 @@ export function RecapCard({
   return content
 }
 
-export type { RecapCardProps }
+export type { IncomeOutcomeTrendCardProps }

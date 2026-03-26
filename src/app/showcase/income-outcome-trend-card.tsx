@@ -1,13 +1,13 @@
 import { View } from "react-native"
 
 import { ShowcasePage } from "@/components/showcase-page"
-import { RecapCard } from "@/components/ui-kit/RecapCard"
+import { IncomeOutcomeTrendCard } from "@/components/ui-kit/IncomeOutcomeTrendCard"
 import { Typography } from "@/components/ui-kit/Typography"
 
-export default function RecapCardShowcase() {
+export default function IncomeOutcomeTrendCardShowcase() {
   return (
     <ShowcasePage
-      title="Recap Card"
+      title="Income Outcome Trend Card"
       description="Compact summary card showing a category title, monetary amount, and a tendancy chip indicator."
     >
       <View className="gap-6">
@@ -15,7 +15,7 @@ export default function RecapCardShowcase() {
           Positive Tendancy
         </Typography>
         <View className="flex-row flex-wrap gap-3">
-          <RecapCard
+          <IncomeOutcomeTrendCard
             title="Income"
             amount="+$5,420.00"
             chipLabel="8%"
@@ -23,7 +23,7 @@ export default function RecapCardShowcase() {
             className="flex-1"
             style={{ minWidth: 160 }}
           />
-          <RecapCard
+          <IncomeOutcomeTrendCard
             title="Savings"
             amount="+$1,230.50"
             chipLabel="12%"
@@ -39,7 +39,7 @@ export default function RecapCardShowcase() {
           Negative Tendancy
         </Typography>
         <View className="flex-row flex-wrap gap-3">
-          <RecapCard
+          <IncomeOutcomeTrendCard
             title="Expenses"
             amount="-$3,180.00"
             chipLabel="5%"
@@ -47,7 +47,7 @@ export default function RecapCardShowcase() {
             className="flex-1"
             style={{ minWidth: 160 }}
           />
-          <RecapCard
+          <IncomeOutcomeTrendCard
             title="Debt"
             amount="-$890.25"
             chipLabel="2.3%"
@@ -66,7 +66,7 @@ export default function RecapCardShowcase() {
           Income and expense cards side by side, as they would appear on a dashboard.
         </Typography>
         <View className="flex-row flex-wrap gap-3">
-          <RecapCard
+          <IncomeOutcomeTrendCard
             title="Income"
             amount="+$5,420.00"
             chipLabel="8%"
@@ -74,7 +74,7 @@ export default function RecapCardShowcase() {
             className="flex-1"
             style={{ minWidth: 160 }}
           />
-          <RecapCard
+          <IncomeOutcomeTrendCard
             title="Expenses"
             amount="-$3,180.00"
             chipLabel="3%"
@@ -89,7 +89,7 @@ export default function RecapCardShowcase() {
         <Typography size="h3" weight="bold" className="px-1">
           Single Card
         </Typography>
-        <RecapCard
+        <IncomeOutcomeTrendCard
           title="Total Balance"
           amount="$24,580.00"
           chipLabel="15.2%"

@@ -26,8 +26,7 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
     title: "Goals Card Minimize",
     route: "/showcase/goals-card-minimize",
-    description:
-      "Compact savings goal card showing title, current/target amounts, progress bar, and time remaining",
+    description: "Compact savings goal card showing title, current/target amounts, progress bar, and time remaining",
   },
   {
     title: "Tag",
@@ -169,6 +168,11 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
     description: "Top navigation bar with back button, center content, and optional right action across five variants",
   },
   {
+    title: "Home Screen",
+    route: "/screens/home",
+    description: "Home screen with income and outcome trend cards, recent transactions, and bottom navigation",
+  },
+  {
     title: "Activity Item",
     route: "/showcase/activity-item",
     description: "Transaction activity row with avatar, label, and trailing amount or action button",
@@ -216,8 +220,8 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
     description: "Scalable media container with image, letter, and icon variants",
   },
   {
-    title: "Recap Card",
-    route: "/showcase/recap-card",
+    title: "Income & Outcome Trend Card",
+    route: "/showcase/income-outcome-trend-card",
     description: "Compact summary card with title, amount, and tendancy chip",
   },
   {

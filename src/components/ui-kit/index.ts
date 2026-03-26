@@ -47,7 +47,7 @@ export {
     type NavigationBarProps,
     type NavigationBarVariant
 } from "./NavigationBar"
-export { RecapCard, type RecapCardProps } from "./RecapCard"
+export { IncomeOutcomeTrendCard, type IncomeOutcomeTrendCardProps } from "./IncomeOutcomeTrendCard"
 export { SearchField, type SearchFieldProps } from "./SearchField"
 export { SectionTitle, sectionTitleVariants, type SectionTitleProps, type SectionTitleType } from "./SectionTitle"
 export { SpendingChart, type SpendingChartProps, type SpendingDataPoint } from "./SpendingChart"

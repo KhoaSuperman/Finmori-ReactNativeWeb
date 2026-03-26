@@ -2,13 +2,7 @@ import React from "react"
 import { Image, ScrollView, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 
-import {
-  AppleIcon,
-  BellIcon,
-  PayPalIcon,
-  SearchIcon,
-  YoutubeIcon,
-} from "@/components/icons"
+import { AppleIcon, BellIcon, PayPalIcon, SearchIcon, YoutubeIcon } from "@/components/icons"
 import {
   ActivityItem,
   Avatar,
@@ -17,7 +11,7 @@ import {
   BottomNavBar,
   CardElement,
   IconFrame,
-  RecapCard,
+  IncomeOutcomeTrendCard,
   SectionTitle,
   Typography,
 } from "@/components/ui-kit"
@@ -64,12 +58,7 @@ export default function MainHomeScreen() {
             <View className="flex-row items-center">
               {/* User Info */}
               <View className="flex-1 flex-row items-center gap-lg">
-                <Avatar
-                  form="circle"
-                  size={44}
-                  variant="letter"
-                  text="JD"
-                />
+                <Avatar form="circle" variant="letter" {...{ text: "JD" }} />
                 <View>
                   <Typography size="body" weight="semibold" className="text-primary">
                     John Doe
@@ -82,16 +71,8 @@ export default function MainHomeScreen() {
 
               {/* Action Icons */}
               <View className="flex-row items-center gap-lg">
-                <IconFrame
-                  size="lg"
-                  icon={(p) => <SearchIcon {...p} />}
-                  className="bg-base-white border-secondary"
-                />
-                <IconFrame
-                  size="lg"
-                  icon={(p) => <BellIcon {...p} />}
-                  className="bg-base-white border-secondary"
-                />
+                <IconFrame size="lg" icon={(p) => <SearchIcon {...p} />} className="border-secondary bg-base-white" />
+                <IconFrame size="lg" icon={(p) => <BellIcon {...p} />} className="border-secondary bg-base-white" />
               </View>
             </View>
 
@@ -133,14 +114,14 @@ export default function MainHomeScreen() {
 
           {/* Recap Cards */}
           <View className="flex-row gap-md px-xl py-md">
-            <RecapCard
+            <IncomeOutcomeTrendCard
               title="Total Spent"
               amount="+$5,420.00"
               chipLabel="8%"
               tendancy="negative"
               className="flex-1"
             />
-            <RecapCard
+            <IncomeOutcomeTrendCard
               title="Saved"
               amount="+$5,420.00"
               chipLabel="8%"
@@ -151,11 +132,7 @@ export default function MainHomeScreen() {
 
           {/* Upcoming Payments / Billing */}
           <View className="gap-md">
-            <SectionTitle
-              title="Recent Transactions"
-              actionLabel="See all"
-              type="standard"
-            />
+            <SectionTitle title="Recent Transactions" actionLabel="See all" type="standard" />
             <ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
@@ -197,11 +174,7 @@ export default function MainHomeScreen() {
 
           {/* Recent Transactions List */}
           <View className="gap-md">
-            <SectionTitle
-              title="Recent Transactions"
-              actionLabel="See all"
-              type="standard"
-            />
+            <SectionTitle title="Recent Transactions" actionLabel="See all" type="standard" />
             <View className="gap-md px-xl">
               <ActivityItem
                 type="default"
