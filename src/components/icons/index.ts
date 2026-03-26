@@ -56,5 +56,7 @@ export { GoalFilledIcon } from "./GoalFilledIcon"
 export { IllustrativeVacationIcon } from "./IllustrativeVacationIcon"
 export { IllustrativeIphoneIcon } from "./IllustrativeIphoneIcon"
 export { IllustrativeRelocationIcon } from "./IllustrativeRelocationIcon"
+export { SpotifyIcon } from "./SpotifyIcon"
+export { NotionIcon } from "./NotionIcon"
 export type { IconProps } from "./types"
 

@@ -1,5 +1,5 @@
 ---
-description: Conventions for converting SVG icon/image files to React Native SVG icon components
+description: Conventions for converting SVG icon/image files to React Native SVG icon components (src/components/icons/)
 alwaysApply: false
 ---
 
