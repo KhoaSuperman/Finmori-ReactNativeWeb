@@ -1,141 +1,57 @@
 ---
-description: Conventions for converting SVG icon/image files to React Native SVG icon components (src/components/icons/)
+description: ALWAYS use @svgr/cli to convert SVG files into React Native icon components. NEVER write icon TSX manually from SVG source.
+globs: src/components/icons/*.tsx
 alwaysApply: false
 ---
 
-# SVG Icon Conventions
+# SVG → Icon Component Conversion
 
-Icons live in `src/components/icons/` with barrel export in `index.ts`. Uses `react-native-svg`.
+> **STOP: Before writing any icon `.tsx` file manually, run `@svgr/cli` first.**
 
-## Standard Icon Props
+## Step 1 — Run the CLI (always do this first)
 
-Every icon accepts `{ size?: number; color?: string }` via the shared `IconProps` type from `./types.ts`.
+For single-color icons (replace fill with `color` prop):
+```sh
+npx @svgr/cli --native --typescript --no-dimensions --expand-props end --replace-attr-values "#000000=currentColor" -- path/to/icon.svg > src/components/icons/MyIcon.tsx
+```
+
+For brand/logo icons with hardcoded colors (Spotify, PayPal, Notion — do NOT replace fills):
+```sh
+npx @svgr/cli --native --typescript --no-dimensions --expand-props end -- path/to/icon.svg > src/components/icons/MyIcon.tsx
+```
+
+## Step 2 — Fix the generated file (always required)
+
+1. **Import** — replace any generated `SvgProps` import with `import type { IconProps } from "./types"`
+2. **Props** — change signature to `({ size = 16, color = "currentColor", ...props }: IconProps)`
+3. **Size** — add `width={size} height={size}` back on root `<Svg>` (`--no-dimensions` removes them)
+4. **ClipPath IDs** — shorten verbose Figma IDs (e.g. `clip0_14508_8231` → `myicon_clip`) to avoid collisions
+5. **Path data** — NEVER alter path `d` coordinates — even tiny changes break shapes
+
+## Step 3 — Barrel export
+
+Add to `src/components/icons/index.ts`:
+```ts
+export { MyIcon } from "./MyIcon"
+```
+
+## Standard shape all icons must conform to
 
 ```tsx
 import Svg, { Path } from "react-native-svg"
 import type { IconProps } from "./types"
 
-export function ExampleIcon({ size = 16, color = "currentColor", ...props }: IconProps) {
+export function MyIcon({ size = 16, color = "currentColor", ...props }: IconProps) {
   return (
-    <Svg width={size} height={size} viewBox="0 0 16 16" fill="none" {...props}>
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none" {...props}>
       <Path d="..." fill={color} />
     </Svg>
   )
 }
 ```
 
-## Converting SVGs with @svgr/cli (Preferred Method)
+## Manual conversion — last resort only
 
-Use `@svgr/cli` to automate conversion. It handles JSX camelCase renaming, React Native SVG imports, and TypeScript output.
-
-### One-time setup
-
-Install as a dev dependency (already installed if present in `package.json`):
-
-```sh
-npm install --save-dev @svgr/cli
-```
-
-Create a `.svgrrc.js` config at the project root to encode all project conventions:
-
-```js
-// .svgrrc.js
-module.exports = {
-  native: true, // use react-native-svg imports
-  typescript: true, // generate .tsx files
-  expandProps: "end", // spread ...props on root <Svg>
-  svgo: true, // optimize SVG with SVGO
-  prettier: true, // format output
-  template: require("./svgr-template.js"),
-}
-```
-
-Create a custom template `svgr-template.js` at the project root to match the project's `IconProps` pattern:
-
-```js
-// svgr-template.js
-const template = (variables, { tpl }) => {
-  return tpl`
-import type { IconProps } from "./types"
-
-export function ${variables.componentName}({ size = 16, color = "currentColor", ...props }: IconProps) {
-  return (
-    ${variables.jsx}
-  )
-}
-`
-}
-module.exports = template
-```
-
-### Convert a single SVG file
-
-```sh
-# Output to stdout (preview)
-npx @svgr/cli --native --typescript -- icons/my-icon.svg
-
-# Output to a specific file
-npx @svgr/cli --native --typescript -- icons/my-icon.svg > src/components/icons/MyIcon.tsx
-
-# Using the project .svgrrc.js config
-npx @svgr/cli -- icons/my-icon.svg > src/components/icons/MyIcon.tsx
-```
-
-### Convert a whole directory
-
-```sh
-# Convert all SVGs in a folder, output to icons directory
-npx @svgr/cli --out-dir src/components/icons -- icons/
-
-# Skip already-existing files (safe re-run)
-npx @svgr/cli --out-dir src/components/icons --ignore-existing -- icons/
-```
-
-### Key CLI options
-
-| Option                                      | Purpose                                                                           |
-| ------------------------------------------- | --------------------------------------------------------------------------------- |
-| `--native`                                  | Use `react-native-svg` imports (required)                                         |
-| `--typescript`                              | Generate `.tsx` with TypeScript                                                   |
-| `--no-dimensions`                           | Remove `width`/`height` from root SVG (use when controlling size via `size` prop) |
-| `--expand-props end`                        | Spread `...props` at end of root SVG props                                        |
-| `--replace-attr-values "#000=currentColor"` | Replace hardcoded fill colors with `currentColor`                                 |
-| `--out-dir <dir>`                           | Output all files into a directory                                                 |
-| `--ignore-existing`                         | Skip files that already exist in `--out-dir`                                      |
-| `--no-index`                                | Disable auto-generated `index.js`                                                 |
-| `--template <file>`                         | Use a custom component template                                                   |
-| `--index-template <file>`                   | Use a custom index template                                                       |
-| `--filename-case pascal`                    | PascalCase output filenames (default)                                             |
-| `--ext tsx`                                 | Use `.tsx` extension                                                              |
-
-### Recommended one-liner for a single Figma export
-
-```sh
-npx @svgr/cli --native --typescript --no-dimensions --expand-props end \
-  --replace-attr-values "#000={props.color}" \
-  -- path/to/figma-export.svg > src/components/icons/MyIcon.tsx
-```
-
-## Post-generation Manual Fixes
-
-After running SVGR, review the generated file for these project-specific adjustments:
-
-1. **Import** — ensure the import is `import type { IconProps } from "./types"` (not a generated SvgProps type)
-2. **Props signature** — change to `({ size = 16, color = "currentColor", ...props }: IconProps)` if the template didn't handle it
-3. **Color** — replace any remaining hardcoded `fill="#XXXXXX"` / `stroke="#XXXXXX"` on shape elements with `{color}`. Keep `fill="white"` on clip-path rects and `fill="none"` on the root `<Svg>`
-4. **Size** — ensure `width={size} height={size}` on root `<Svg>` (SVGR `--no-dimensions` removes them; add back with the prop)
-5. **ClipPath IDs** — SVGR's SVGO prefixes IDs automatically, but replace any verbose generated IDs (e.g. `clip0_14508_8231`) with short stable IDs (e.g. `search_clip`) to avoid collisions
-6. **Path data** — NEVER simplify, round, or rewrite path coordinates — even small changes break `evenodd` fill rules and produce filled blobs instead of outlines
-7. **Barrel export** — add the new icon to `src/components/icons/index.ts`
-
-## Manual Conversion (Fallback)
-
-If SVGR is not available or the SVG is too complex, convert manually:
-
-1. **Path data** — copy the `d` attribute **exactly** from the source SVG
-2. **Attributes** — rename HTML attrs to JSX camelCase: `fill-rule` → `fillRule`, `clip-rule` → `clipRule`, `clip-path` → `clipPath`, `stroke-width` → `strokeWidth`, `stroke-linecap` → `strokeLinecap`, `stroke-linejoin` → `strokeLinejoin`
-3. **Color** — replace hardcoded `fill="#XXXXXX"` / `stroke="#XXXXXX"` on shape elements with `{color}`. Keep `fill="white"` on clip-path rects and `fill="none"` on the root `<Svg>`
-4. **Size** — replace fixed `width`/`height` on root `<svg>` with `{size}`. Keep the original `viewBox`
-5. **ClipPath IDs** — replace Figma-generated IDs with short stable IDs (e.g. `search_clip`)
-6. **Spread rest props** — always spread `...props` on the root `<Svg>`
-7. **Barrel export** — add the new icon to `src/components/icons/index.ts`
+Only if `@svgr/cli` is unavailable or crashes. Follow the same output shape above, and:
+- Rename HTML attrs to JSX camelCase: `fill-rule` → `fillRule`, `clip-rule` → `clipRule`, `clip-path` → `clipPath`, `stroke-width` → `strokeWidth`
+- NEVER rewrite or round path `d` coordinates

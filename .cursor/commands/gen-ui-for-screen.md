@@ -63,7 +63,7 @@ For components without a codeFilePath, treat them as new components.
 
 ## **Step 5: Visual Adjustment with Screenshot**
 
-Use `chrome dev tool` mcp to open app in mobile screen size for capture app screenshot.
+Use built-in `Cursor Browser` that already resized in mobile screen size to open app for capture screenshot.
 
 1. Get design screenshot, compare the generated UI against it.
 2. Make necessary adjustments to ensure accuracy and alignment.

@@ -1,0 +1,36 @@
+---
+description: How to scroll inside React Native Web ScrollView using Cursor Browser tools
+alwaysApply: false
+---
+
+# Cursor Browser — Scrolling in React Native Web
+
+React Native Web's `ScrollView` renders as a scrollable `div` container. Browser-level scroll (page scroll) does NOT work on it.
+
+## Rule: Always scroll by ref
+
+1. Take a snapshot to get element refs
+2. Identify the `ScrollView` container — it appears as `role: generic` in the snapshot, typically `ref: e2` (the first generic child after nav buttons)
+3. Scroll within it using the `ref` parameter:
+
+```
+browser_scroll({ ref: "e2", direction: "down", amount: 500 })
+```
+
+## ❌ What does NOT work
+
+```
+browser_scroll({ deltaY: 500, x: 220, y: 400 })   // page-level scroll — ignored by RN ScrollView
+```
+
+## ✅ What works
+
+```
+browser_scroll({ ref: "e2", direction: "down", amount: 500 })
+browser_scroll({ ref: "e2", direction: "up", amount: 300 })
+```
+
+The confirmed scroll output looks like:
+
+> `Scrolled container by (0, 497.77px)`
+> If you see `"no scroll occurred (may be at edge)"` — you're scrolling the wrong target (page vs container).
