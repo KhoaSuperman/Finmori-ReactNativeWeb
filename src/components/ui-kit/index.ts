@@ -1,4 +1,5 @@
 export { ActivityItem, activityItemVariants, type ActivityItemProps, type ActivityItemType } from "./ActivityItem"
+export { AvatarWithIcon, type AvatarWithIconProps } from "./AvatarWithIcon"
 export { AmountInput, type AmountInputProps } from "./AmountInput"
 export { Avatar, avatarVariants, type AvatarProps } from "./Avatar"
 export { BalanceCard, type BalanceCardProps } from "./BalanceCard"

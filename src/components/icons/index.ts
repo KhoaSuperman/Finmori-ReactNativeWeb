@@ -1,4 +1,5 @@
 export { AddCircleBoldIcon } from "./AddCircleBoldIcon"
+export { CameraOutlineIcon } from "./CameraOutlineIcon"
 export { CalendarDotsIcon } from "./CalendarDotsIcon"
 export { CloseCircleBoldIcon } from "./CloseCircleBoldIcon"
 export { AltArrowDownIcon } from "./AltArrowDownIcon"

@@ -81,10 +81,13 @@ Check the `spacing` / `gap` / `padding` sections in `tailwind.config.js` for exa
 
 Map shadow tokens to the existing shadow scale in `tailwind.config.js` (`shadow-xs`, `shadow-sm`, `shadow-md`, `shadow-lg`, `shadow-xl`). Check the `boxShadow` section for exact keys.
 
+If the spec has an **Effects** table with a `DROP_SHADOW` that has no matching token, apply it as inline `style` using exact spec values: `shadowColor`, `shadowOpacity`, `shadowRadius`, `shadowOffset`, and `elevation` (Android).
+
 # Code Component
 
 - Check variant is need to use `Code Component` or not. If yes, access via `Code File Path` and examine the usage of code component.
 - Examine `Code Component` usecases (properties and behaviors) before use them in component.
+- **When writing the showcase**, use only prop combinations that are valid per the component's TypeScript interface — never omit required props.
 
 # Component Showcase
 

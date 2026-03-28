@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Avatar with Icon",
+    route: "/showcase/avatar-with-icon",
+    description:
+      "Avatar with a camera action badge anchored to the bottom-right corner, used in profile photo upload flows",
+  },
+  {
     title: "Goals Details Screen",
     route: "/screens/goals_details",
     description:

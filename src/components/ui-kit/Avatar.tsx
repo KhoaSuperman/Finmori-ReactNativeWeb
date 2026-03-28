@@ -27,7 +27,9 @@ interface AvatarBaseProps extends ViewProps, VariantProps<typeof avatarVariants>
   className?: string
 }
 
-type AvatarProps = AvatarBaseProps & Omit<MediaSlotProps, "size" | "className">
+type DistributeMediaSlot<T> = T extends MediaSlotProps ? AvatarBaseProps & Omit<T, "size" | "className"> : never
+
+type AvatarProps = DistributeMediaSlot<MediaSlotProps>
 
 export function Avatar({ form = "circle", size = OUTER_SIZE, className, ...mediaProps }: AvatarProps) {
   const scale = size / OUTER_SIZE
