@@ -4,6 +4,7 @@ import { ImageBackground, ScrollView, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 import {
+  AltArrowLeftIcon,
   AppleIcon,
   IllustrativeVacationIcon,
   MoreVerticalIcon,
@@ -23,6 +24,51 @@ import {
 import { Typography } from "@/components/ui-kit/Typography"
 
 const headerBgImage = require("../../../../assets/images/goals-details/bg_goals_details_header-3x.png")
+
+const TRANSACTIONS = [
+  {
+    key: "apple-1",
+    label: "Apple Invoice #1234",
+    overline: "31/12/2025 · 15:00",
+    amount: "-S$ 20.00",
+    avatarProps: {
+      variant: "icon" as const,
+      icon: (p: { size?: number; color?: string }) => <AppleIcon {...p} />,
+      iconColor: "#000000",
+    },
+  },
+  {
+    key: "paypal-1",
+    label: "Paypal Invoice #1234",
+    overline: "31/12/2025 · 15:00",
+    amount: "-S$ 20.00",
+    avatarProps: {
+      variant: "icon" as const,
+      icon: (p: { size?: number; color?: string }) => <PayPalIcon {...p} />,
+      iconColor: "#003087",
+    },
+  },
+  {
+    key: "spotify-1",
+    label: "Apple Invoice #1234",
+    overline: "31/12/2025 · 15:00",
+    amount: "-S$ 20.00",
+    avatarProps: {
+      variant: "icon" as const,
+      icon: (p: { size?: number; color?: string }) => <SpotifyIcon {...p} />,
+    },
+  },
+  {
+    key: "notion-1",
+    label: "Apple Invoice #1234",
+    overline: "31/12/2025 · 15:00",
+    amount: "-S$ 20.00",
+    avatarProps: {
+      variant: "icon" as const,
+      icon: (p: { size?: number; color?: string }) => <NotionIcon {...p} />,
+    },
+  },
+]
 
 export default function GoalsDetailsScreen() {
   const insets = useSafeAreaInsets()
@@ -96,14 +142,22 @@ export default function GoalsDetailsScreen() {
           <View className="gap-md px-xl py-md">
             {/* Row 1 */}
             <View className="flex-row gap-md">
-              <RecapCard title="Monthly Target" value="$30K" status="default" style={{ flex: 1 }} />
-              <RecapCard title="This Month" value="$35K" status="success" style={{ flex: 1 }} />
+              <View className="flex-1">
+                <RecapCard title="Monthly Target" value="$30K" status="default" />
+              </View>
+              <View className="flex-1">
+                <RecapCard title="This Month" value="$35K" status="success" />
+              </View>
             </View>
 
             {/* Row 2 */}
             <View className="flex-row gap-md">
-              <RecapCard title="Start Date" value="03 Aug, 2026" status="default" style={{ flex: 1 }} />
-              <RecapCard title="Avg. Monthly" value="$33K" status="default" style={{ flex: 1 }} />
+              <View className="flex-1">
+                <RecapCard title="Start Date" value="03 Aug, 2026" status="default" />
+              </View>
+              <View className="flex-1">
+                <RecapCard title="Avg. Monthly" value="$33K" status="default" />
+              </View>
             </View>
           </View>
         </View>
@@ -113,54 +167,17 @@ export default function GoalsDetailsScreen() {
           <SectionTitle title="Recent Transactions" type="standard" actionLabel="View All" />
 
           <View className="gap-md px-xl">
-            {/* Apple Invoice */}
-            <ActivityItem
-              label="Apple Invoice #1234"
-              overline="31/12/2025 · 15:00"
-              trailing={{ amount: "-S$ 20.00" }}
-              avatarProps={{
-                variant: "icon",
-                icon: (p) => <AppleIcon {...p} />,
-                iconColor: "#000000",
-              }}
-              showDivider={false}
-            />
-
-            {/* Paypal Invoice */}
-            <ActivityItem
-              label="Paypal Invoice #1234"
-              overline="31/12/2025 · 15:00"
-              trailing={{ amount: "-S$ 20.00" }}
-              avatarProps={{
-                variant: "icon",
-                icon: (p) => <PayPalIcon {...p} />,
-              }}
-              showDivider={false}
-            />
-
-            {/* Spotify Invoice */}
-            <ActivityItem
-              label="Apple Invoice #1234"
-              overline="31/12/2025 · 15:00"
-              trailing={{ amount: "-S$ 20.00" }}
-              avatarProps={{
-                variant: "icon",
-                icon: (p) => <SpotifyIcon {...p} />,
-              }}
-              showDivider={false}
-            />
-
-            {/* Notion Invoice */}
-            <ActivityItem
-              label="Apple Invoice #1234"
-              overline="31/12/2025 · 15:00"
-              trailing={{ amount: "-S$ 20.00" }}
-              avatarProps={{
-                variant: "icon",
-                icon: (p) => <NotionIcon {...p} />,
-              }}
-              showDivider={false}
-            />
+            {TRANSACTIONS.map((tx, index) => (
+              <ActivityItem
+                key={tx.key}
+                type="default"
+                label={tx.label}
+                overline={tx.overline}
+                trailing={{ amount: tx.amount }}
+                avatarProps={tx.avatarProps}
+                showDivider={index < TRANSACTIONS.length - 1}
+              />
+            ))}
           </View>
         </View>
       </ScrollView>
@@ -172,6 +189,7 @@ export default function GoalsDetailsScreen() {
           bottom: 0,
           left: 0,
           right: 0,
+          paddingBottom: insets.bottom,
         }}
       >
         <BottomNavBar activeTab="goals" />

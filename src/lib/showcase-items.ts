@@ -8,7 +8,8 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
     title: "Goals Details Screen",
     route: "/screens/goals_details",
-    description: "Full goals detail view with progress, statistics, and recent transactions",
+    description:
+      "Goal detail screen with header background image, avatar, goal stats, progress card, recap cards, and recent transactions list",
   },
   {
     title: "Recap Card",

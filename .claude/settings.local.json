@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git mv:*)"
+      "Bash(git mv:*)",
+      "Bash(git fsck:*)",
+      "Bash(git add:*)",
+      "Bash(git cherry-pick:*)"
     ]
   }
 }
