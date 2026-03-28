@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Setting Single",
+    route: "/showcase/setting-single",
+    description:
+      "Settings row with a branded icon badge, label, and trailing navigation chevron or activation toggle",
+  },
+  {
     title: "Avatar with Icon",
     route: "/showcase/avatar-with-icon",
     description:

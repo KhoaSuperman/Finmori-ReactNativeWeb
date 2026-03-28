@@ -51,6 +51,7 @@ export {
 } from "./NavigationBar"
 export { IncomeOutcomeTrendCard, type IncomeOutcomeTrendCardProps } from "./IncomeOutcomeTrendCard"
 export { SearchField, type SearchFieldProps } from "./SearchField"
+export { SettingSingle, type SettingSingleProps, type SettingSingleType } from "./SettingSingle"
 export { SectionTitle, sectionTitleVariants, type SectionTitleProps, type SectionTitleType } from "./SectionTitle"
 export { SpendingChart, type SpendingChartProps, type SpendingDataPoint } from "./SpendingChart"
 export { TabBar, tabBarVariants, type TabBarProps, type TabBarTab, type TabBarType } from "./TabBar"
