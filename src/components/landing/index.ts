@@ -1,0 +1,5 @@
+export { FooterSection } from "./FooterSection"
+export { HeroSection } from "./HeroSection"
+export { PhoneDeviceFrame } from "./PhoneDeviceFrame"
+export { ScreensGallery } from "./ScreensGallery"
+export { UIKitsGallery } from "./UIKitsGallery"

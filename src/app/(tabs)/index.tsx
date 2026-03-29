@@ -1,57 +1,144 @@
 import { useRouter } from "expo-router"
-import { Pressable, ScrollView, View } from "react-native"
+import { useRef, useState } from "react"
+import { Modal, Platform, ScrollView, useWindowDimensions, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 
-import { Typography } from "@/components/ui-kit/Typography"
-import { SHOWCASE_ITEMS } from "@/lib/showcase-items"
+import {
+  FooterSection,
+  HeroSection,
+  ScreensGallery,
+  UIKitsGallery,
+} from "@/components/landing"
+import { Image, PREVIEW_IMAGES } from "@/lib/preview-images"
+import { ShowcaseItem } from "@/lib/showcase-items"
 
-export default function HomeScreen() {
+import { Typography } from "@/components/ui-kit/Typography"
+
+/**
+ * Modal for displaying UI Kit previews on desktop
+ * Only used for non-screen items
+ */
+function PreviewModal({
+  item,
+  onClose,
+}: {
+  item: ShowcaseItem | null
+  onClose: () => void
+}) {
+  const { width } = useWindowDimensions()
+  const isDesktop = Platform.OS === "web" && width > 768
+
+  if (!item || !isDesktop) return null
+
+  const previewSource: Image | undefined = item.previewImage ? PREVIEW_IMAGES[item.previewImage] : undefined
+
+  return (
+    <Modal transparent animationType="fade" visible={!!item} onRequestClose={onClose}>
+      <View
+        className="flex-1 items-center justify-center"
+        style={{ backgroundColor: "rgba(0,0,0,0.7)" }}
+      >
+        {/* Preview container */}
+        <View
+          style={{
+            width: Math.min(width * 0.8, 600),
+            maxHeight: 800,
+            borderRadius: 20,
+            overflow: "hidden",
+            backgroundColor: "#1a1a1a",
+          }}
+        >
+          {previewSource ? (
+            <Image
+              source={previewSource}
+              style={[
+                { width: "100%", height: "100%" },
+                Platform.OS === "web" && ({ objectFit: "contain" } as object),
+              ]}
+              resizeMode="contain"
+            />
+          ) : (
+            <View className="flex-1 items-center justify-center gap-3 p-8">
+              <Typography size="h3" weight="semibold" className="text-primary">
+                {item.title}
+              </Typography>
+              <Typography size="body" className="text-center text-secondary">
+                {item.description}
+              </Typography>
+            </View>
+          )}
+        </View>
+
+        {/* Close button */}
+        <View style={{ marginTop: 24 }}>
+          <Typography
+            size="body"
+            weight="medium"
+            className="text-base-white"
+            style={{ cursor: "pointer" }}
+            onPress={onClose}
+          >
+            Close
+          </Typography>
+        </View>
+      </View>
+    </Modal>
+  )
+}
+
+export default function LandingPage() {
   const insets = useSafeAreaInsets()
   const router = useRouter()
+  const { width } = useWindowDimensions()
+  const isDesktop = Platform.OS === "web" && width > 768
+  const scrollRef = useRef<ScrollView>(null)
+
+  const [previewItem, setPreviewItem] = useState<ShowcaseItem | null>(null)
 
   const platformPadding = {
     paddingTop: Math.max(insets.top, 20),
     paddingBottom: Math.max(insets.bottom, 40),
   }
 
-  return (
-    <ScrollView
-      className="flex-1 bg-primary"
-      contentContainerStyle={[{ alignItems: "center" }, platformPadding]}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={{ maxWidth: 800, width: "100%" }} className="gap-8 px-4">
-        <View className="gap-2 pt-10">
-          <Typography size="display" weight="bold" className="text-primary">
-            Design System
-          </Typography>
-          <Typography size="body" className="text-secondary">
-            Browse tokens, components, and patterns that make up the Finmori design system.
-          </Typography>
-        </View>
+  const handleItemPress = (item: ShowcaseItem) => {
+    if (isDesktop && item.category !== "screen") {
+      // For UI Kits on desktop, show preview modal
+      setPreviewItem(item)
+    } else {
+      // For screens on mobile, or always on mobile
+      router.push(item.route as any)
+    }
+  }
 
-        <View className="gap-3 pb-10">
-          {SHOWCASE_ITEMS.map((item) => (
-            <Pressable
-              key={item.route}
-              onPress={() => router.push(item.route as any)}
-              className="flex-row items-center gap-4 rounded-2xl border border-tertiary bg-primary px-5 py-4 active:opacity-70"
-            >
-              <View className="flex-1 gap-1">
-                <Typography size="body" weight="semibold" className="text-primary">
-                  {item.title}
-                </Typography>
-                <Typography size="caption" className="text-tertiary">
-                  {item.description}
-                </Typography>
-              </View>
-              <Typography size="body" className="text-quaternary">
-                →
-              </Typography>
-            </Pressable>
-          ))}
+  const handleExplorePress = () => {
+    scrollRef.current?.scrollTo({ y: 600, animated: true })
+  }
+
+  return (
+    <>
+      <ScrollView
+        ref={scrollRef}
+        className="flex-1 bg-primary"
+        contentContainerStyle={[{ alignItems: "center" }, platformPadding]}
+        showsVerticalScrollIndicator={false}
+      >
+        <View style={{ maxWidth: 1200, width: "100%" }}>
+          <HeroSection onExplorePress={handleExplorePress} />
+
+          <View className="mx-4 border-t border-tertiary" />
+
+          <ScreensGallery onItemPress={handleItemPress} />
+
+          <View className="mx-4 border-t border-tertiary" />
+
+          <UIKitsGallery onItemPress={handleItemPress} />
+
+          <FooterSection />
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+
+      {/* Preview modal for UI Kits on desktop */}
+      <PreviewModal item={previewItem} onClose={() => setPreviewItem(null)} />
+    </>
   )
 }
