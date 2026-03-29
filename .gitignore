@@ -46,3 +46,6 @@ app-example
 storybook-static/
 
 .vercel
+
+# IDE & AI tools
+.vscode/

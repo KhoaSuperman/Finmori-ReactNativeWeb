@@ -4,7 +4,8 @@
       "Bash(git mv:*)",
       "Bash(git fsck:*)",
       "Bash(git add:*)",
-      "Bash(git cherry-pick:*)"
+      "mcp__ide__getDiagnostics",
+      "Bash(npx tsc:*)"
     ]
   }
 }

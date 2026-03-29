@@ -1,7 +1,14 @@
 {
-  "name": "reactnative_web",
+  "name": "finmori-react-native-web",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "description": "A mobile-first fintech design system built with React Native Web, NativeWind, and Storybook.",
+  "keywords": ["react-native", "react-native-web", "expo", "design-system", "nativewind", "tailwindcss", "storybook", "fintech", "mobile-first"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KhoaSuperman/Finmori-ReactNativeWeb"
+  },
+  "license": "MIT",
   "scripts": {
     "start": "expo start",
     "web": "expo start --web",
@@ -61,5 +68,5 @@
     "typescript": "~5.9.2",
     "vite": "^7.3.1"
   },
-  "private": true
+  "private": false
 }
