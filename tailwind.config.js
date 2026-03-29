@@ -763,6 +763,7 @@ module.exports = {
         "brand-solid": "var(--color-bg-brand-solid)",
         "brand-section": "var(--color-bg-brand-section)",
         error: "var(--color-bg-error)",
+        "error-secondary": "var(--color-bg-error-secondary)",
         warning: "var(--color-bg-warning)",
         success: "var(--color-bg-success)",
         fg: {

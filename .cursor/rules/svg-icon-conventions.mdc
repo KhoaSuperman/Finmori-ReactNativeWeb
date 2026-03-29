@@ -1,9 +1,7 @@
 ---
 description: ALWAYS use @svgr/cli to convert SVG files into React Native icon components. NEVER write icon TSX manually from SVG source.
-globs: src/components/icons/*.tsx
 alwaysApply: false
 ---
-
 # SVG → Icon Component Conversion
 
 > **STOP: Before writing any icon `.tsx` file manually, run `@svgr/cli` first.**

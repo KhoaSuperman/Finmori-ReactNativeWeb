@@ -51,14 +51,20 @@ function Toggle({ value, onValueChange, disabled }: ToggleProps) {
 // ─── SettingSingle ────────────────────────────────────────────────────────────
 
 type SettingSingleType = "navigation" | "activation"
+type SettingSingleVariant = "default" | "danger"
 
 interface SettingSingleProps extends ViewProps {
   /** Row label */
   label: string
-  /** Icon rendered inside the 44×44 brand-colored badge */
+  /** Icon rendered inside the 44×44 badge */
   icon: React.ReactNode
   /** Determines trailing element: chevron (navigation) or toggle (activation) */
   type: SettingSingleType
+  /**
+   * "default" — brand-primary badge background, brand chevron.
+   * "danger"  — error-100 badge background, error fg icon and chevron.
+   */
+  variant?: SettingSingleVariant
   /** Toggle value — only used when type="activation" */
   toggleValue?: boolean
   /** Toggle change handler — only used when type="activation" */
@@ -74,6 +80,7 @@ export function SettingSingle({
   label,
   icon,
   type,
+  variant = "default",
   toggleValue = false,
   onToggleChange,
   onPress,
@@ -83,6 +90,7 @@ export function SettingSingle({
   ...viewProps
 }: SettingSingleProps) {
   const isNavigation = type === "navigation"
+  const isDanger = variant === "danger"
   const Container = isNavigation && onPress ? Pressable : View
 
   return (
@@ -98,7 +106,10 @@ export function SettingSingle({
     >
       {/* Icon badge */}
       <View
-        className="items-center justify-center rounded-full bg-brand-primary"
+        className={cn(
+          "items-center justify-center rounded-full",
+          isDanger ? "bg-error-secondary" : "bg-brand-primary",
+        )}
         style={{ width: 44, height: 44 }}
       >
         {icon}
@@ -113,7 +124,10 @@ export function SettingSingle({
 
       {/* Trailing element */}
       {isNavigation ? (
-        <ChevronRightOutlinedIcon size={24} color="#4E5BA6" />
+        <ChevronRightOutlinedIcon
+          size={24}
+          color={isDanger ? "var(--color-fg-error)" : "var(--color-fg-brand-primary)"}
+        />
       ) : (
         <Toggle
           value={toggleValue}
@@ -125,4 +139,4 @@ export function SettingSingle({
   )
 }
 
-export type { SettingSingleProps, SettingSingleType }
+export type { SettingSingleProps, SettingSingleType, SettingSingleVariant }

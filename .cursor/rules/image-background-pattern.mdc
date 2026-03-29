@@ -1,9 +1,7 @@
 ---
 description: Correct pattern for using ImageBackground in React Native components
-globs: **/*.tsx
 alwaysApply: false
 ---
-
 # ImageBackground Pattern
 
 `ImageBackground` does **not** size itself — it inherits dimensions from its parent or its own `style`. Without explicit sizing it collapses to 0×0 and the image disappears.

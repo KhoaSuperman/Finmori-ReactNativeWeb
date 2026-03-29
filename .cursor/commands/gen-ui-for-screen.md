@@ -5,7 +5,6 @@
 You will be provided:
 
 - <specs-folder>
-- Subagent with model `Claude Opus 4.6 ` is allowed to use.
 
 ## Step 1: Understand the Design Context & Structure
 
@@ -57,16 +56,19 @@ For components without a codeFilePath, treat them as new components.
 
 ## **Step 4: Generate UI Code**
 
-- Generate UI based on the analyze result of Step 3.
+- **Before writing JSX**, read the `screen-layout-patterns` rule (`.cursor/rules/screen-layout-patterns.mdc`) and select the correct screen skeleton (Pattern A, B, or C) based on the design spec's header structure.
+- Generate UI based on the analyze result of Step 3, using the selected skeleton as the structural foundation.
 - Introduce new route to the screen as page.
-- Natigate to the page.
+- Navigate to the page.
 
-## **Step 5: Visual Adjustment with Screenshot**
+## **Step 5: Visual Adjustment with Screenshot** - Use Subagent
 
 Use built-in `Cursor Browser` that already resized in mobile screen size to open app for capture screenshot.
 
-1. Get design screenshot, compare the generated UI against it.
+1. Get design screenshot in folder `<specs-folder/previews/<screen_name>.png` , compare the generated UI against it.
 2. Make necessary adjustments to ensure accuracy and alignment.
+
+_This task is complicated, MUST summon subagent_
 
 ## **Step 6: Summary**
 

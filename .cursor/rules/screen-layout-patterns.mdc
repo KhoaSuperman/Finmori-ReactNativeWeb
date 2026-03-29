@@ -1,0 +1,95 @@
+---
+description: Screen skeleton patterns for building full-screen pages — header overlap, flat header, sticky bottom bar
+globs: src/app/screens/**/*.tsx
+alwaysApply: false
+---
+
+# Screen Layout Patterns
+
+Every screen in this app follows one of these structural skeletons. Pick the right one **before** writing any JSX.
+
+## Pattern A — Header Background with Content Overlap
+
+Used when an image/gradient header sits behind a nav bar AND content (avatar, card) that visually overlaps the background boundary.
+
+**Key insight**: The background is absolutely positioned with a fixed height. Content flows in normal document order on top of it. You control how far content "overlaps" the background by adjusting the padding on the content section — NOT by changing the background height.
+
+```tsx
+<View style={{ position: "relative" }}>
+  {/* Background — fixed height, absolutely positioned behind everything */}
+  <View style={{ position: "absolute", top: 0, left: 0, right: 0, height: BG_HEIGHT, overflow: "hidden" }}>
+    <ImageBackground source={bgImage} resizeMode="cover" style={{ width: "100%", height: "100%" }} />
+  </View>
+
+  {/* Nav bar — sits at the top, on top of the background */}
+  <View style={{ paddingTop: Math.max(insets.top, 44) }}>
+    <NavigationBar ... />
+  </View>
+
+  {/* Overlap content — paddingTop controls how far into the background it sits */}
+  <View className="items-center px-xl" style={{ paddingTop: OVERLAP_PT }}>
+    {/* Avatar, card, or hero content here */}
+  </View>
+</View>
+```
+
+**How to calculate OVERLAP_PT**: Look at the design spec. The avatar/content top edge should land at a specific Y relative to the background. Subtract the nav bar height (status bar + nav = ~100px) from that Y to get the padding.
+
+Examples: `goals_details` (bg 172px), `profile_settings` (bg 173px)
+
+## Pattern B — Header with Negative-Margin Body Overlap
+
+Used when the header is a self-contained block (with rounded corners, padding, etc.) and the body section overlaps upward into it.
+
+```tsx
+{/* Header — paddingBottom creates the overlap zone */}
+<View style={{ borderBottomLeftRadius: 24, borderBottomRightRadius: 24, overflow: "hidden", paddingBottom: OVERLAP }}>
+  <Image source={bg} style={{ position: "absolute", width: "110%", height: "120%", top: 0, left: 0 }} resizeMode="cover" />
+  <View style={{ height: Math.max(insets.top, 44) }} />
+  {/* Header content */}
+</View>
+
+{/* Body — negative marginTop pulls it up into the header's paddingBottom zone */}
+<View style={{ marginTop: -OVERLAP }}>
+  {/* Body content */}
+</View>
+```
+
+**Critical**: `paddingBottom` on header and `marginTop` (negative) on body MUST use the same `OVERLAP` value.
+
+Example: `home` screen (OVERLAP = 128)
+
+## Pattern C — Flat Screen (No Overlap)
+
+Used for screens with a plain or gradient background, no image, no overlap.
+
+```tsx
+<View className="flex-1" style={backgroundStyle}>
+  <View style={{ height: Math.max(insets.top, 44) }} />
+  <NavigationBar ... />
+  {/* Optional: TabBar, filters, etc. */}
+  <ScrollView className="flex-1" contentContainerStyle={{ paddingBottom: 120 }}>
+    {/* Content */}
+  </ScrollView>
+</View>
+```
+
+Examples: `analytics_overview`, `analytics_breakdown`, `transaction_history`
+
+## Sticky Bottom Bar (All Screens)
+
+Always absolutely positioned at the bottom, outside the ScrollView. Content needs `paddingBottom: 120` to avoid occlusion.
+
+```tsx
+<View style={{ position: "absolute", bottom: 0, left: 0, right: 0, paddingBottom: insets.bottom }}>
+  <BottomNavBar activeTab="..." />
+  <HomeIndicatorBar type="default" />
+</View>
+```
+
+## Decision Checklist
+
+1. Does the design have a background image/gradient behind the header? → **A or B**
+2. Does the body content overlap upward into the header (negative margin)? → **B**
+3. Does content sit on top of the background via padding? → **A**
+4. No background image, flat layout? → **C**
