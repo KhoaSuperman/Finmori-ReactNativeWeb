@@ -8,6 +8,7 @@ import {
   ChartPieBoldIcon,
   ChartPieOutlineIcon,
   GoalFilledIcon,
+  GoalOutlinedIcon,
   HomeSmileBoldIcon,
   HomeSmileOutlineIcon,
   UserCircleBoldIcon,
@@ -37,7 +38,7 @@ const TAB_CONFIG = {
   },
   goals: {
     label: "Goals",
-    OutlineIcon: GoalFilledIcon,
+    OutlineIcon: GoalOutlinedIcon,
     BoldIcon: GoalFilledIcon,
   },
   profile: {
