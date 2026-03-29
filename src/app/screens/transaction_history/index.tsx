@@ -170,7 +170,9 @@ export default function TransactionHistoryScreen() {
   })).filter((group) => group.transactions.length > 0)
 
   return (
-    <View className="flex-1 bg-primary" style={{ paddingTop: insets.top }}>
+    <View className="flex-1 bg-primary">
+      <View style={{ height: Math.max(insets.top, 44) }} />
+
       {/* ── Header ── */}
       <NavigationBar
         variant="with-title"

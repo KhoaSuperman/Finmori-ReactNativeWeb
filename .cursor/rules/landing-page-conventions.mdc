@@ -1,0 +1,54 @@
+---
+description: Conventions for landing page components — direct colors, no semantic tokens, standalone dark theme
+globs: src/components/landing/**
+alwaysApply: false
+---
+
+# Landing Page Conventions
+
+The landing page is a **standalone dark-themed** showcase. The rest of the app uses light theme by default, so semantic color tokens resolve to light-mode values and will break the landing page.
+
+## No Semantic Color Tokens
+
+Never use NativeWind semantic color classes in landing components. They resolve to the wrong theme.
+
+```tsx
+// ❌ WRONG — resolves to light-mode colors (dark text on white bg)
+className="text-primary"
+className="bg-primary"
+className="text-secondary"
+className="border-tertiary"
+
+// ✅ CORRECT — use direct hex/rgba in style prop
+style={{ color: "#f9f9fb" }}
+style={{ backgroundColor: "#0e101b" }}
+style={{ color: "#b9c0d4" }}
+style={{ borderColor: "rgba(64, 73, 104, 0.3)" }}
+```
+
+Layout-only classNames like `text-center`, `flex-1`, `flex-row` are fine.
+
+## Color Reference
+
+| Role | Value |
+|---|---|
+| Page background | `#0e101b` |
+| Surface / card bg | `#111322` or `rgba(17, 19, 34, 0.6)` |
+| Border | `rgba(64, 73, 104, 0.25–0.5)` |
+| Text primary | `#f9f9fb` |
+| Text secondary | `#b9c0d4` |
+| Text tertiary | `#7d89b0` |
+| Text muted | `#5d6b98` |
+| Text faint | `#404968` |
+| Brand blue | `#2f61f3` |
+| Brand blue light | `#6895f8` |
+| Accent green | `#10b981` |
+| Accent purple | `#8b5cf6` |
+
+## Web Tab Bar
+
+`app-tabs.web.tsx` is a `<Slot />` passthrough on web. The landing page renders its own `<Header />` for navigation. Do not add a tab bar or nav drawer back — it conflicts with the landing header.
+
+## Web-Only Styling
+
+Use `Platform.OS === "web"` guards for CSS-only properties (gradients, backdrop-filter, transitions, animations, box-shadow). Always provide a native fallback.

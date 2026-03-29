@@ -1,0 +1,8 @@
+export { CTASection } from "./CTASection"
+export { FeaturesSection } from "./FeaturesSection"
+export { FooterSection } from "./FooterSection"
+export { Header } from "./Header"
+export { HeroSection } from "./HeroSection"
+export { PhoneDeviceFrame } from "./PhoneDeviceFrame"
+export { ScreensGallery } from "./ScreensGallery"
+export { UIKitsGallery } from "./UIKitsGallery"

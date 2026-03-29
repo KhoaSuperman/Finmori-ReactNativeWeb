@@ -1,57 +1,123 @@
 import { useRouter } from "expo-router"
-import { Pressable, ScrollView, View } from "react-native"
+import { useRef, useState } from "react"
+import { ScrollView, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 
-import { Typography } from "@/components/ui-kit/Typography"
-import { SHOWCASE_ITEMS } from "@/lib/showcase-items"
+import {
+  CTASection,
+  FeaturesSection,
+  FooterSection,
+  Header,
+  HeroSection,
+  ScreensGallery,
+  UIKitsGallery,
+} from "@/components/landing"
+import { ShowcaseDrawer } from "@/components/showcase-drawer"
+import { ShowcaseItem } from "@/lib/showcase-items"
+import { SHOWCASE_REGISTRY } from "@/lib/showcase-registry"
 
-export default function HomeScreen() {
+const DARK_BG = "#0e101b"
+
+export default function LandingPage() {
   const insets = useSafeAreaInsets()
   const router = useRouter()
+  const scrollRef = useRef<ScrollView>(null)
+  const [drawerItem, setDrawerItem] = useState<ShowcaseItem | null>(null)
+  const [mountedItem, setMountedItem] = useState<ShowcaseItem | null>(null)
 
-  const platformPadding = {
-    paddingTop: Math.max(insets.top, 20),
-    paddingBottom: Math.max(insets.bottom, 40),
+  const [sectionPositions, setSectionPositions] = useState({
+    screens: 0,
+    features: 0,
+    uikits: 0,
+  })
+
+  const handleItemPress = (item: ShowcaseItem) => {
+    if (item.category === "screen") {
+      router.push(item.route as any)
+      return
+    }
+    const hasComponent = !!SHOWCASE_REGISTRY[item.route]
+    if (hasComponent) {
+      setMountedItem(item)
+      setDrawerItem(item)
+    } else {
+      router.push(item.route as any)
+    }
   }
 
+  const handleDrawerClose = () => {
+    setDrawerItem(null)
+  }
+
+  const handleExplorePress = () => {
+    scrollRef.current?.scrollTo({ y: sectionPositions.screens || 500, animated: true })
+  }
+
+  const navigateToScreens = () => {
+    scrollRef.current?.scrollTo({ y: sectionPositions.screens || 500, animated: true })
+  }
+
+  const navigateToFeatures = () => {
+    scrollRef.current?.scrollTo({ y: sectionPositions.features || 800, animated: true })
+  }
+
+  const navigateToUIKits = () => {
+    scrollRef.current?.scrollTo({ y: sectionPositions.uikits || 1200, animated: true })
+  }
+
+  const handleScroll = (event: { nativeEvent: { contentOffset: { y: number } } }) => {
+    // Optional: Could use this to highlight current section in nav
+  }
+
+  const updateSectionPosition = (section: keyof typeof sectionPositions, y: number) => {
+    setSectionPositions((prev) => ({ ...prev, [section]: y }))
+  }
+
+  const DrawerContent = mountedItem ? SHOWCASE_REGISTRY[mountedItem.route] : null
+
   return (
-    <ScrollView
-      className="flex-1 bg-primary"
-      contentContainerStyle={[{ alignItems: "center" }, platformPadding]}
-      showsVerticalScrollIndicator={false}
-    >
-      <View style={{ maxWidth: 800, width: "100%" }} className="gap-8 px-4">
-        <View className="gap-2 pt-10">
-          <Typography size="display" weight="bold" className="text-primary">
-            Design System
-          </Typography>
-          <Typography size="body" className="text-secondary">
-            Browse tokens, components, and patterns that make up the Finmori design system.
-          </Typography>
+    <>
+      <Header
+        onNavigateToScreens={navigateToScreens}
+        onNavigateToFeatures={navigateToFeatures}
+        onNavigateToUIKits={navigateToUIKits}
+      />
+
+      <ScrollView
+        ref={scrollRef}
+        style={{ flex: 1, backgroundColor: DARK_BG }}
+        contentContainerStyle={{ alignItems: "center" }}
+        showsVerticalScrollIndicator={false}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+      >
+        <View style={{ maxWidth: 1200, width: "100%" }}>
+          <HeroSection onExplorePress={handleExplorePress} />
+
+          <View onLayout={(e) => updateSectionPosition("features", e.nativeEvent.layout.y - 64)}>
+            <FeaturesSection />
+          </View>
+
+          <View onLayout={(e) => updateSectionPosition("screens", e.nativeEvent.layout.y - 64)}>
+            <ScreensGallery onItemPress={handleItemPress} />
+          </View>
+
+          <View onLayout={(e) => updateSectionPosition("uikits", e.nativeEvent.layout.y - 64)}>
+            <UIKitsGallery onItemPress={handleItemPress} />
+          </View>
+
+          <CTASection />
+
+          <FooterSection />
         </View>
 
-        <View className="gap-3 pb-10">
-          {SHOWCASE_ITEMS.map((item) => (
-            <Pressable
-              key={item.route}
-              onPress={() => router.push(item.route as any)}
-              className="flex-row items-center gap-4 rounded-2xl border border-tertiary bg-primary px-5 py-4 active:opacity-70"
-            >
-              <View className="flex-1 gap-1">
-                <Typography size="body" weight="semibold" className="text-primary">
-                  {item.title}
-                </Typography>
-                <Typography size="caption" className="text-tertiary">
-                  {item.description}
-                </Typography>
-              </View>
-              <Typography size="body" className="text-quaternary">
-                →
-              </Typography>
-            </Pressable>
-          ))}
-        </View>
-      </View>
-    </ScrollView>
+        {/* Bottom padding for safe area */}
+        <View style={{ height: Math.max(insets.bottom, 20) }} />
+      </ScrollView>
+
+      <ShowcaseDrawer visible={!!drawerItem} onClose={handleDrawerClose}>
+        {DrawerContent && <DrawerContent />}
+      </ShowcaseDrawer>
+    </>
   )
 }
