@@ -6,6 +6,12 @@ export type ShowcaseItem = {
 
 export const SHOWCASE_ITEMS: ShowcaseItem[] = [
   {
+    title: "Profile & Settings Screen",
+    route: "/screens/profile_settings",
+    description:
+      "Profile and settings screen with header background image, user avatar, and grouped settings sections",
+  },
+  {
     title: "Setting Single",
     route: "/showcase/setting-single",
     description:
@@ -269,10 +275,4 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
     description: "Balance display with gradient text and visibility toggle",
   },
   { title: "Chip", route: "/showcase/chip", description: "Tendancy indicator chip with positive/negative variants" },
-  {
-    title: "Profile & Settings Screen",
-    route: "/screens/profile_settings",
-    description:
-      "Profile and settings screen with header background image, user avatar, and grouped settings sections",
-  },
 ] as const
