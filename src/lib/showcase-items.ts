@@ -98,17 +98,17 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
     category: "basic",
     previewImage: "Buttons.png",
   },
-  { title: "Cards", route: "/showcase/card", description: "Versatile content containers", category: "basic", previewImage: "Card.png" },
-  { title: "Avatar", route: "/showcase/avatar", description: "Image container with circle and square form variants", category: "basic" },
+  { title: "Avatar", route: "/showcase/avatar", description: "Image container with circle and square form variants", category: "basic", previewImage: "Avatar.png" },
   {
     title: "Avatar with Icon",
     route: "/showcase/avatar-with-icon",
     description:
       "Avatar with a camera action badge anchored to the bottom-right corner, used in profile photo upload flows",
     category: "basic",
+    previewImage: "Avatar with Icon.png",
   },
   { title: "Chip", route: "/showcase/chip", description: "Tendancy indicator chip with positive/negative variants", category: "basic", previewImage: "chip.png" },
-  { title: "Icon Frame", route: "/showcase/icon-frame", description: "Circular icon container with border", category: "basic" },
+  { title: "Icon Frame", route: "/showcase/icon-frame", description: "Circular icon container with border", category: "basic", previewImage: "Icon Frame.png" },
   {
     title: "Media Slot",
     route: "/showcase/media-slot",
@@ -205,6 +205,7 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
     description:
       "Settings row with a branded icon badge, label, and trailing navigation chevron or activation toggle",
     category: "form",
+    previewImage: "Setting Single.png",
   },
   // Navigation
   {
@@ -294,6 +295,7 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
     title: "Card Element",
     route: "/showcase/card-element",
     description: "Payment card with gradient background, balance, chip icons, masked number, and expiry date",
+    previewImage: "Card.png",
     category: "finance",
   },
   {

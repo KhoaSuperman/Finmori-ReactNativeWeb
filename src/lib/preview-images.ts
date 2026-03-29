@@ -44,4 +44,8 @@ export const PREVIEW_IMAGES: Record<string, any> = {
   "IncomeExpenseChart.jpg": require("@/assets/images/component_previews/IncomeExpenseChart.jpg"),
   "Image Form.png": require("@/assets/images/component_previews/Image Form.png"),
   "Profile and Settings.png": require("@/assets/images/component_previews/Profile and Settings.png"),
+  "Avatar.png": require("@/assets/images/component_previews/Avatar.png"),
+  "Avatar with Icon.png": require("@/assets/images/component_previews/Avatar with Icon.png"),
+  "Icon Frame.png": require("@/assets/images/component_previews/Icon Frame.png"),
+  "Setting Single.png": require("@/assets/images/component_previews/Setting Single.png"),
 }
