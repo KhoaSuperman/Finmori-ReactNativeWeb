@@ -4,27 +4,32 @@ import { ScrollView, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 import {
+  CTASection,
+  FeaturesSection,
   FooterSection,
+  Header,
   HeroSection,
   ScreensGallery,
   UIKitsGallery,
 } from "@/components/landing"
 import { ShowcaseDrawer } from "@/components/showcase-drawer"
-import { SHOWCASE_REGISTRY } from "@/lib/showcase-registry"
 import { ShowcaseItem } from "@/lib/showcase-items"
+import { SHOWCASE_REGISTRY } from "@/lib/showcase-registry"
+
+const DARK_BG = "#0e101b"
 
 export default function LandingPage() {
   const insets = useSafeAreaInsets()
   const router = useRouter()
   const scrollRef = useRef<ScrollView>(null)
-
   const [drawerItem, setDrawerItem] = useState<ShowcaseItem | null>(null)
   const [mountedItem, setMountedItem] = useState<ShowcaseItem | null>(null)
 
-  const platformPadding = {
-    paddingTop: Math.max(insets.top, 20),
-    paddingBottom: Math.max(insets.bottom, 40),
-  }
+  const [sectionPositions, setSectionPositions] = useState({
+    screens: 0,
+    features: 0,
+    uikits: 0,
+  })
 
   const handleItemPress = (item: ShowcaseItem) => {
     if (item.category === "screen") {
@@ -45,32 +50,69 @@ export default function LandingPage() {
   }
 
   const handleExplorePress = () => {
-    scrollRef.current?.scrollTo({ y: 600, animated: true })
+    scrollRef.current?.scrollTo({ y: sectionPositions.screens || 500, animated: true })
+  }
+
+  const navigateToScreens = () => {
+    scrollRef.current?.scrollTo({ y: sectionPositions.screens || 500, animated: true })
+  }
+
+  const navigateToFeatures = () => {
+    scrollRef.current?.scrollTo({ y: sectionPositions.features || 800, animated: true })
+  }
+
+  const navigateToUIKits = () => {
+    scrollRef.current?.scrollTo({ y: sectionPositions.uikits || 1200, animated: true })
+  }
+
+  const handleScroll = (event: { nativeEvent: { contentOffset: { y: number } } }) => {
+    // Optional: Could use this to highlight current section in nav
+  }
+
+  const updateSectionPosition = (section: keyof typeof sectionPositions, y: number) => {
+    setSectionPositions((prev) => ({ ...prev, [section]: y }))
   }
 
   const DrawerContent = mountedItem ? SHOWCASE_REGISTRY[mountedItem.route] : null
 
   return (
     <>
+      <Header
+        onNavigateToScreens={navigateToScreens}
+        onNavigateToFeatures={navigateToFeatures}
+        onNavigateToUIKits={navigateToUIKits}
+      />
+
       <ScrollView
         ref={scrollRef}
-        className="flex-1 bg-primary"
-        contentContainerStyle={[{ alignItems: "center" }, platformPadding]}
+        style={{ flex: 1, backgroundColor: DARK_BG }}
+        contentContainerStyle={{ alignItems: "center" }}
         showsVerticalScrollIndicator={false}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
       >
         <View style={{ maxWidth: 1200, width: "100%" }}>
           <HeroSection onExplorePress={handleExplorePress} />
 
-          <View className="mx-4 border-t border-tertiary" />
+          <View onLayout={(e) => updateSectionPosition("features", e.nativeEvent.layout.y - 64)}>
+            <FeaturesSection />
+          </View>
 
-          <ScreensGallery onItemPress={handleItemPress} />
+          <View onLayout={(e) => updateSectionPosition("screens", e.nativeEvent.layout.y - 64)}>
+            <ScreensGallery onItemPress={handleItemPress} />
+          </View>
 
-          <View className="mx-4 border-t border-tertiary" />
+          <View onLayout={(e) => updateSectionPosition("uikits", e.nativeEvent.layout.y - 64)}>
+            <UIKitsGallery onItemPress={handleItemPress} />
+          </View>
 
-          <UIKitsGallery onItemPress={handleItemPress} />
+          <CTASection />
 
           <FooterSection />
         </View>
+
+        {/* Bottom padding for safe area */}
+        <View style={{ height: Math.max(insets.bottom, 20) }} />
       </ScrollView>
 
       <ShowcaseDrawer visible={!!drawerItem} onClose={handleDrawerClose}>

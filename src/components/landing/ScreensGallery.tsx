@@ -3,8 +3,8 @@ import { ActivityIndicator, Image, Platform, Pressable, ScrollView, useWindowDim
 
 import { Typography } from "@/components/ui-kit/Typography"
 import { PREVIEW_IMAGES } from "@/lib/preview-images"
-import { SCREEN_COMPONENTS } from "@/lib/showcase-screen-components"
 import { SHOWCASE_ITEMS, ShowcaseItem } from "@/lib/showcase-items"
+import { SCREEN_COMPONENTS } from "@/lib/showcase-screen-components"
 import { PhoneDeviceFrame } from "./PhoneDeviceFrame"
 
 const SCREEN_ITEMS = SHOWCASE_ITEMS.filter((item) => item.category === "screen")
@@ -13,9 +13,6 @@ interface ScreensGalleryProps {
   onItemPress: (item: ShowcaseItem) => void
 }
 
-/**
- * Dynamic screen renderer that loads the actual screen component
- */
 function ScreenRenderer({ route }: { route: string }) {
   const [ScreenComponent, setScreenComponent] = useState<React.ComponentType | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -40,11 +37,11 @@ function ScreenRenderer({ route }: { route: string }) {
 
   if (isLoading || !ScreenComponent) {
     return (
-      <View className="flex-1 items-center justify-center bg-primary">
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#0e101b" }}>
         {isLoading ? (
-          <ActivityIndicator size="large" color="#10b981" />
+          <ActivityIndicator size="large" color="#2f61f3" />
         ) : (
-          <Typography size="body" className="text-secondary">
+          <Typography size="body" style={{ color: "#7d89b0" }}>
             Failed to load screen
           </Typography>
         )}
@@ -55,9 +52,35 @@ function ScreenRenderer({ route }: { route: string }) {
   return <ScreenComponent />
 }
 
-/**
- * Phone frame card for mobile gallery
- */
+function SectionHeader() {
+  return (
+    <View style={{ gap: 12, marginBottom: 24 }}>
+      <View
+        style={{
+          alignSelf: "flex-start",
+          paddingHorizontal: 12,
+          paddingVertical: 4,
+          borderRadius: 20,
+          borderWidth: 1,
+          borderColor: "rgba(16, 185, 129, 0.3)",
+          backgroundColor: "rgba(16, 185, 129, 0.08)",
+        }}
+      >
+        <Typography size="caption" weight="semibold" style={{ color: "#10b981", fontSize: 12, letterSpacing: 0.5 }}>
+          SCREENS
+        </Typography>
+      </View>
+
+      <Typography size="h2" weight="bold" style={{ color: "#f9f9fb", fontSize: 28 }}>
+        App Screens
+      </Typography>
+      <Typography size="body" style={{ color: "#7d89b0" }}>
+        {SCREEN_ITEMS.length} full-screen app views ready to use
+      </Typography>
+    </View>
+  )
+}
+
 interface PhoneCardProps {
   item: ShowcaseItem
   width: number
@@ -69,23 +92,52 @@ function PhoneCard({ item, width, height, onPress }: PhoneCardProps) {
   const previewSource = item.previewImage ? PREVIEW_IMAGES[item.previewImage] : undefined
 
   return (
-    <Pressable onPress={onPress} className="active:opacity-80">
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => ({
+        opacity: pressed ? 0.85 : 1,
+        ...(Platform.OS === "web" && {
+          transition: "all 0.2s ease",
+          transform: pressed ? "scale(0.97)" : "scale(1)",
+        }),
+      })}
+    >
       <View
         style={{
           width,
           height,
           borderRadius: 24,
-          backgroundColor: "#1f2937",
+          backgroundColor: "#111322",
+          borderWidth: 1,
+          borderColor: "rgba(64, 73, 104, 0.4)",
           padding: 8,
-          shadowColor: "#000",
-          shadowOffset: { width: 0, height: 4 },
-          shadowOpacity: 0.15,
-          shadowRadius: 12,
-          elevation: 8,
+          ...(Platform.OS === "web"
+            ? {
+                boxShadow: "0 8px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255,255,255,0.03)",
+              }
+            : {
+                shadowColor: "#000",
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.3,
+                shadowRadius: 12,
+                elevation: 8,
+              }),
         }}
       >
         {/* Phone notch */}
-        <View className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-1.5 bg-gray-700 rounded-full z-10" />
+        <View
+          style={{
+            position: "absolute",
+            top: 12,
+            left: "50%",
+            marginLeft: -40,
+            width: 80,
+            height: 6,
+            backgroundColor: "rgba(64, 73, 104, 0.6)",
+            borderRadius: 3,
+            zIndex: 10,
+          }}
+        />
 
         {/* Screen content */}
         <View
@@ -93,31 +145,49 @@ function PhoneCard({ item, width, height, onPress }: PhoneCardProps) {
             flex: 1,
             borderRadius: 16,
             overflow: "hidden",
-            backgroundColor: "#111827",
+            backgroundColor: "#0e101b",
           }}
         >
           {previewSource ? (
-            <Image
-              source={previewSource}
-              style={{ width: "100%", height: "100%" }}
-              resizeMode="cover"
-            />
+            <Image source={previewSource} style={{ width: "100%", height: "100%" }} resizeMode="cover" />
           ) : (
-            <View className="flex-1 items-center justify-center">
-              <Typography size="caption" className="text-tertiary">
+            <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+              <Typography size="caption" style={{ color: "#5d6b98" }}>
                 Preview
               </Typography>
             </View>
+          )}
+
+          {/* Bottom gradient overlay for label readability */}
+          {Platform.OS === "web" && (
+            <View
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: 60,
+                ...(Platform.OS === "web" && {
+                  background: "linear-gradient(to top, rgba(14,16,27,0.6), transparent)",
+                }),
+              }}
+            />
           )}
         </View>
       </View>
 
       {/* Label below phone */}
       <View style={{ width, marginTop: 12 }}>
-        <Typography size="body" weight="semibold" className="text-primary text-center" numberOfLines={1}>
+        <Typography
+          size="body"
+          weight="semibold"
+          className="text-center"
+          style={{ color: "#f9f9fb" }}
+          numberOfLines={1}
+        >
           {item.title}
         </Typography>
-        <Typography size="caption" className="text-secondary text-center mt-0.5" numberOfLines={1}>
+        <Typography size="caption" className="text-center" style={{ color: "#7d89b0", marginTop: 2 }} numberOfLines={1}>
           {item.description}
         </Typography>
       </View>
@@ -125,35 +195,21 @@ function PhoneCard({ item, width, height, onPress }: PhoneCardProps) {
   )
 }
 
-/**
- * Mobile horizontal scrolling phone gallery
- */
 function MobileScreensGallery({ onItemPress }: ScreensGalleryProps) {
   const { width } = useWindowDimensions()
 
-  // Phone aspect ratio (~19.5:9 for modern phones)
   const PHONE_ASPECT = 2.16
-  const cardWidth = width * 0.55 // Each card takes 55% of screen width
+  const cardWidth = width * 0.55
   const cardHeight = cardWidth * PHONE_ASPECT
-  const horizontalPadding = 20
 
   return (
-    <View className="py-8">
-      {/* Header with padding */}
-      <View className="px-5 mb-5">
-        <Typography size="h3" weight="bold" className="text-primary">
-          Screens
-        </Typography>
-        <Typography size="body" className="text-secondary mt-1">
-          {SCREEN_ITEMS.length} full-screen app views ready to use
-        </Typography>
-      </View>
+    <View style={{ paddingVertical: 48, paddingHorizontal: 20 }}>
+      <SectionHeader />
 
-      {/* Horizontal scrolling phone cards */}
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingHorizontal: horizontalPadding, gap: 16 }}
+        contentContainerStyle={{ paddingRight: 20, gap: 16 }}
         snapToInterval={cardWidth + 16}
         decelerationRate="fast"
       >
@@ -167,105 +223,137 @@ function MobileScreensGallery({ onItemPress }: ScreensGalleryProps) {
           />
         ))}
       </ScrollView>
-
-      {/* Screen indicator dots */}
-      <View className="flex-row justify-center mt-4 gap-1.5">
-        {SCREEN_ITEMS.map((_, i) => (
-          <View
-            key={i}
-            className="w-1.5 h-1.5 rounded-full bg-border"
-          />
-        ))}
-      </View>
     </View>
   )
 }
 
-// Phone frame natural dimensions
 const PHONE_WIDTH = 393
 const PHONE_HEIGHT = 852
-// Scale down to fit comfortably inside the panel with padding
 const PHONE_SCALE = 0.78
 const SCALED_PHONE_HEIGHT = PHONE_HEIGHT * PHONE_SCALE
-const PANEL_HEIGHT = SCALED_PHONE_HEIGHT + 80 // 80px vertical padding
+const PANEL_HEIGHT = SCALED_PHONE_HEIGHT + 80
 
-/**
- * Desktop split-view layout with screen list and device frame
- */
 function DesktopScreensGallery() {
   const [selectedScreen, setSelectedScreen] = useState<ShowcaseItem>(SCREEN_ITEMS[0])
 
   return (
-    <View style={{ height: PANEL_HEIGHT, flexDirection: "row" }}>
-      {/* Left Panel - Screen List */}
-      <View
-        style={{
-          width: 280,
-          borderRightWidth: 1,
-          borderColor: "#e5e7eb",
-          backgroundColor: "#ffffff",
-        }}
-      >
-        <View style={{ padding: 16, borderBottomWidth: 1, borderColor: "#e5e7eb" }}>
-          <Typography size="h3" weight="bold" className="text-primary">
-            Screens
-          </Typography>
-          <Typography size="caption" className="text-secondary" style={{ marginTop: 4 }}>
-            Select a screen to preview
-          </Typography>
-        </View>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {SCREEN_ITEMS.map((item) => {
-            const isSelected = selectedScreen.route === item.route
-            return (
-              <Pressable key={item.route} onPress={() => setSelectedScreen(item)}>
-                <View
-                  style={{
-                    padding: 16,
-                    backgroundColor: isSelected ? "#f3f4f6" : "transparent",
-                    borderLeftWidth: isSelected ? 3 : 0,
-                    borderLeftColor: "#10b981",
-                  }}
-                >
-                  <Typography size="body" weight={isSelected ? "semibold" : "regular"} className="text-primary">
-                    {item.title}
-                  </Typography>
-                  <Typography
-                    size="caption"
-                    className="text-secondary"
-                    numberOfLines={1}
-                    style={{ marginTop: 2 }}
-                  >
-                    {item.description}
-                  </Typography>
-                </View>
-              </Pressable>
-            )
-          })}
-        </ScrollView>
-      </View>
+    <View style={{ paddingVertical: 64, paddingHorizontal: 24 }}>
+      <SectionHeader />
 
-      {/* Right Panel - Device Frame */}
       <View
         style={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#f9fafb",
-          padding: 24,
+          height: PANEL_HEIGHT,
+          flexDirection: "row",
+          borderRadius: 16,
           overflow: "hidden",
+          borderWidth: 1,
+          borderColor: "rgba(64, 73, 104, 0.3)",
         }}
       >
+        {/* Left Panel — Screen List */}
         <View
           style={{
-            transform: [{ scale: PHONE_SCALE }],
-            width: PHONE_WIDTH,
-            height: PHONE_HEIGHT,
+            width: 280,
+            borderRightWidth: 1,
+            borderColor: "rgba(64, 73, 104, 0.3)",
+            backgroundColor: "rgba(17, 19, 34, 0.6)",
           }}
         >
-          <PhoneDeviceFrame>
-            <ScreenRenderer route={selectedScreen.route} />
-          </PhoneDeviceFrame>
+          <View
+            style={{
+              padding: 16,
+              borderBottomWidth: 1,
+              borderBottomColor: "rgba(64, 73, 104, 0.3)",
+            }}
+          >
+            <Typography size="body" weight="bold" style={{ color: "#f9f9fb" }}>
+              Select a screen
+            </Typography>
+            <Typography size="caption" style={{ color: "#5d6b98", marginTop: 4 }}>
+              {SCREEN_ITEMS.length} screens available
+            </Typography>
+          </View>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {SCREEN_ITEMS.map((item) => {
+              const isSelected = selectedScreen.route === item.route
+              return (
+                <Pressable
+                  key={item.route}
+                  onPress={() => setSelectedScreen(item)}
+                  style={({ hovered }: any) => ({
+                    ...(Platform.OS === "web" && {
+                      transition: "all 0.15s ease",
+                    }),
+                    backgroundColor: isSelected
+                      ? "rgba(47, 97, 243, 0.12)"
+                      : hovered
+                        ? "rgba(64, 73, 104, 0.15)"
+                        : "transparent",
+                  })}
+                >
+                  <View
+                    style={{
+                      padding: 16,
+                      borderLeftWidth: isSelected ? 3 : 0,
+                      borderLeftColor: "#2f61f3",
+                      paddingLeft: isSelected ? 13 : 16,
+                    }}
+                  >
+                    <Typography
+                      size="body"
+                      weight={isSelected ? "semibold" : "regular"}
+                      style={{ color: isSelected ? "#f9f9fb" : "#b9c0d4" }}
+                    >
+                      {item.title}
+                    </Typography>
+                    <Typography
+                      size="caption"
+                      style={{
+                        color: isSelected ? "#7d89b0" : "#5d6b98",
+                        marginTop: 2,
+                      }}
+                      numberOfLines={1}
+                    >
+                      {item.description}
+                    </Typography>
+                  </View>
+                </Pressable>
+              )
+            })}
+          </ScrollView>
+        </View>
+
+        {/* Right Panel — Device Frame */}
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 24,
+            overflow: "hidden",
+            backgroundColor: "rgba(14, 16, 27, 0.4)",
+            ...(Platform.OS === "web" && {
+              background: `
+                radial-gradient(ellipse at 50% 50%, rgba(47, 97, 243, 0.1) 0%, transparent 60%),
+                rgba(14, 16, 27, 0.6)
+              `,
+            }),
+          }}
+        >
+          <View
+            style={{
+              transform: [{ scale: PHONE_SCALE }],
+              width: PHONE_WIDTH,
+              height: PHONE_HEIGHT,
+              ...(Platform.OS === "web" && {
+                filter: "drop-shadow(0 0 60px rgba(47, 97, 243, 0.15))",
+              }),
+            }}
+          >
+            <PhoneDeviceFrame>
+              <ScreenRenderer route={selectedScreen.route} />
+            </PhoneDeviceFrame>
+          </View>
         </View>
       </View>
     </View>
