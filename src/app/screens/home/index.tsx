@@ -58,7 +58,7 @@ export default function MainHomeScreen() {
             <View className="flex-row items-center">
               {/* User Info */}
               <View className="flex-1 flex-row items-center gap-lg">
-                <Avatar form="circle" variant="letter" {...{ text: "JD" }} />
+                <Avatar size={44} form="circle" variant="letter" {...{ text: "JD" }} />
                 <View>
                   <Typography size="body" weight="semibold" className="text-primary">
                     John Doe

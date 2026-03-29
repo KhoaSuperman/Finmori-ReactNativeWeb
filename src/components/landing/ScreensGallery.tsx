@@ -9,20 +9,8 @@ import { PhoneDeviceFrame } from "./PhoneDeviceFrame"
 
 const SCREEN_ITEMS = SHOWCASE_ITEMS.filter((item) => item.category === "screen")
 
-// Alternating tall/short heights per column to create a staggered masonry feel.
-// Left col: tall → short → tall …  Right col: short → tall → short …
-const LEFT_HEIGHTS = [1.55, 1.2, 1.55, 1.2]
-const RIGHT_HEIGHTS = [1.2, 1.55, 1.2, 1.55]
-
 interface ScreensGalleryProps {
   onItemPress: (item: ShowcaseItem) => void
-}
-
-interface ScreenCardProps {
-  item: ShowcaseItem
-  width: number
-  heightRatio: number
-  onPress: () => void
 }
 
 /**
@@ -68,122 +56,138 @@ function ScreenRenderer({ route }: { route: string }) {
 }
 
 /**
- * Mobile screen card component for masonry grid
+ * Phone frame card for mobile gallery
  */
-function ScreenCard({ item, width: cardWidth, heightRatio, onPress }: ScreenCardProps) {
-  const cardHeight = cardWidth * heightRatio
+interface PhoneCardProps {
+  item: ShowcaseItem
+  width: number
+  height: number
+  onPress: () => void
+}
+
+function PhoneCard({ item, width, height, onPress }: PhoneCardProps) {
   const previewSource = item.previewImage ? PREVIEW_IMAGES[item.previewImage] : undefined
 
   return (
-    <Pressable onPress={onPress} className="active:opacity-70">
-      {/* Image frame */}
+    <Pressable onPress={onPress} className="active:opacity-80">
       <View
         style={{
-          width: cardWidth,
-          height: cardHeight,
-          borderRadius: 20,
-          overflow: "hidden",
-          backgroundColor: "#111827",
+          width,
+          height,
+          borderRadius: 24,
+          backgroundColor: "#1f2937",
+          padding: 8,
+          shadowColor: "#000",
+          shadowOffset: { width: 0, height: 4 },
+          shadowOpacity: 0.15,
+          shadowRadius: 12,
+          elevation: 8,
         }}
       >
-        {previewSource ? (
-          <Image
-            source={previewSource}
-            style={[
-              { width: "100%", height: "100%" },
-              Platform.OS === "web" && ({ objectFit: "cover", objectPosition: "top" } as object),
-            ]}
-            resizeMode="cover"
-          />
-        ) : (
-          <View className="flex-1 items-center justify-center">
-            <Typography size="caption" className="text-tertiary">
-              Preview
-            </Typography>
-          </View>
-        )}
+        {/* Phone notch */}
+        <View className="absolute top-3 left-1/2 -translate-x-1/2 w-20 h-1.5 bg-gray-700 rounded-full z-10" />
 
-        {/* Bottom gradient + label overlay */}
+        {/* Screen content */}
         <View
           style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            paddingHorizontal: 12,
-            paddingTop: 40,
-            paddingBottom: 14,
-            ...(Platform.OS === "web"
-              ? ({ background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.72))" } as object)
-              : {}),
+            flex: 1,
+            borderRadius: 16,
+            overflow: "hidden",
+            backgroundColor: "#111827",
           }}
         >
-          <Typography size="caption" weight="semibold" className="text-base-white" numberOfLines={1}>
-            {item.title}
-          </Typography>
+          {previewSource ? (
+            <Image
+              source={previewSource}
+              style={{ width: "100%", height: "100%" }}
+              resizeMode="cover"
+            />
+          ) : (
+            <View className="flex-1 items-center justify-center">
+              <Typography size="caption" className="text-tertiary">
+                Preview
+              </Typography>
+            </View>
+          )}
         </View>
+      </View>
+
+      {/* Label below phone */}
+      <View style={{ width, marginTop: 12 }}>
+        <Typography size="body" weight="semibold" className="text-primary text-center" numberOfLines={1}>
+          {item.title}
+        </Typography>
+        <Typography size="caption" className="text-secondary text-center mt-0.5" numberOfLines={1}>
+          {item.description}
+        </Typography>
       </View>
     </Pressable>
   )
 }
 
 /**
- * Mobile masonry grid layout
+ * Mobile horizontal scrolling phone gallery
  */
 function MobileScreensGallery({ onItemPress }: ScreensGalleryProps) {
   const { width } = useWindowDimensions()
 
-  const gap = 10
-  const containerPadding = 16
-  const availableWidth = Math.min(width, 800) - containerPadding * 2
-  const colWidth = (availableWidth - gap) / 2
-
-  // Split items into two columns
-  const leftItems = SCREEN_ITEMS.filter((_, i) => i % 2 === 0)
-  const rightItems = SCREEN_ITEMS.filter((_, i) => i % 2 === 1)
+  // Phone aspect ratio (~19.5:9 for modern phones)
+  const PHONE_ASPECT = 2.16
+  const cardWidth = width * 0.55 // Each card takes 55% of screen width
+  const cardHeight = cardWidth * PHONE_ASPECT
+  const horizontalPadding = 20
 
   return (
-    <View className="gap-6 px-4 py-8">
-      <View className="gap-1">
+    <View className="py-8">
+      {/* Header with padding */}
+      <View className="px-5 mb-5">
         <Typography size="h3" weight="bold" className="text-primary">
           Screens
         </Typography>
-        <Typography size="caption" className="text-secondary">
-          Full-screen app views ready to use
+        <Typography size="body" className="text-secondary mt-1">
+          {SCREEN_ITEMS.length} full-screen app views ready to use
         </Typography>
       </View>
 
-      {/* Two-column masonry */}
-      <View style={{ flexDirection: "row", gap }}>
-        {/* Left column */}
-        <View style={{ flex: 1, gap }}>
-          {leftItems.map((item, i) => (
-            <ScreenCard
-              key={item.route}
-              item={item}
-              width={colWidth}
-              heightRatio={LEFT_HEIGHTS[i % LEFT_HEIGHTS.length]}
-              onPress={() => onItemPress(item)}
-            />
-          ))}
-        </View>
+      {/* Horizontal scrolling phone cards */}
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{ paddingHorizontal: horizontalPadding, gap: 16 }}
+        snapToInterval={cardWidth + 16}
+        decelerationRate="fast"
+      >
+        {SCREEN_ITEMS.map((item) => (
+          <PhoneCard
+            key={item.route}
+            item={item}
+            width={cardWidth}
+            height={cardHeight}
+            onPress={() => onItemPress(item)}
+          />
+        ))}
+      </ScrollView>
 
-        {/* Right column — offset start height to stagger */}
-        <View style={{ flex: 1, gap, marginTop: colWidth * 0.35 }}>
-          {rightItems.map((item, i) => (
-            <ScreenCard
-              key={item.route}
-              item={item}
-              width={colWidth}
-              heightRatio={RIGHT_HEIGHTS[i % RIGHT_HEIGHTS.length]}
-              onPress={() => onItemPress(item)}
-            />
-          ))}
-        </View>
+      {/* Screen indicator dots */}
+      <View className="flex-row justify-center mt-4 gap-1.5">
+        {SCREEN_ITEMS.map((_, i) => (
+          <View
+            key={i}
+            className="w-1.5 h-1.5 rounded-full bg-border"
+          />
+        ))}
       </View>
     </View>
   )
 }
+
+// Phone frame natural dimensions
+const PHONE_WIDTH = 393
+const PHONE_HEIGHT = 852
+// Scale down to fit comfortably inside the panel with padding
+const PHONE_SCALE = 0.78
+const SCALED_PHONE_HEIGHT = PHONE_HEIGHT * PHONE_SCALE
+const PANEL_HEIGHT = SCALED_PHONE_HEIGHT + 80 // 80px vertical padding
 
 /**
  * Desktop split-view layout with screen list and device frame
@@ -192,7 +196,7 @@ function DesktopScreensGallery() {
   const [selectedScreen, setSelectedScreen] = useState<ShowcaseItem>(SCREEN_ITEMS[0])
 
   return (
-    <View style={{ height: 700, flexDirection: "row" }}>
+    <View style={{ height: PANEL_HEIGHT, flexDirection: "row" }}>
       {/* Left Panel - Screen List */}
       <View
         style={{
@@ -249,11 +253,20 @@ function DesktopScreensGallery() {
           justifyContent: "center",
           backgroundColor: "#f9fafb",
           padding: 24,
+          overflow: "hidden",
         }}
       >
-        <PhoneDeviceFrame>
-          <ScreenRenderer route={selectedScreen.route} />
-        </PhoneDeviceFrame>
+        <View
+          style={{
+            transform: [{ scale: PHONE_SCALE }],
+            width: PHONE_WIDTH,
+            height: PHONE_HEIGHT,
+          }}
+        >
+          <PhoneDeviceFrame>
+            <ScreenRenderer route={selectedScreen.route} />
+          </PhoneDeviceFrame>
+        </View>
       </View>
     </View>
   )

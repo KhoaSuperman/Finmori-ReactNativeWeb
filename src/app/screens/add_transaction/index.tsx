@@ -22,6 +22,7 @@ import { SectionTitle } from "@/components/ui-kit/SectionTitle"
 import { TabBar } from "@/components/ui-kit/TabBar"
 import { TransactionTextInput } from "@/components/ui-kit/TransactionTextInput"
 import { Typography } from "@/components/ui-kit/Typography"
+import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 type CategoryId = "groceries" | "meal" | "transport" | "rent" | "fun" | "health" | "shopping" | "more"
 
@@ -73,6 +74,8 @@ const CATEGORIES: {
 ]
 
 export default function AddTransactionScreen() {
+  const insets = useSafeAreaInsets()
+
   const router = useRouter()
   const [tabIndex, setTabIndex] = useState(0)
   const [amount, setAmount] = useState("1200465")
@@ -84,6 +87,8 @@ export default function AddTransactionScreen() {
 
   return (
     <View className="flex-1 bg-primary">
+      <View style={{ height: Math.max(insets.top, 44) }} />
+
       {/* Header */}
       <NavigationBar
         variant="with-title"
