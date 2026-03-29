@@ -482,7 +482,10 @@ function ComponentCard({
 }
 
 export function UIKitsGallery({ onItemPress }: UIKitsGalleryProps) {
-  const { width } = useWindowDimensions()
+  const { width: windowWidth } = useWindowDimensions()
+  // useWindowDimensions returns 0 during SSR static export; fall back to a
+  // sensible mobile default (390px) so cards render at the correct size.
+  const width = windowWidth > 0 ? windowWidth : 390
   const isDesktop = Platform.OS === "web" && width > 1024
   const isTablet = width >= 640
 

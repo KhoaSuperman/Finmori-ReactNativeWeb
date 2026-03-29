@@ -196,7 +196,10 @@ function PhoneCard({ item, width, height, onPress }: PhoneCardProps) {
 }
 
 function MobileScreensGallery({ onItemPress }: ScreensGalleryProps) {
-  const { width } = useWindowDimensions()
+  const { width: windowWidth } = useWindowDimensions()
+  // useWindowDimensions returns 0 during SSR static export; fall back to a
+  // sensible mobile default (390px) so cards render at the correct size.
+  const width = windowWidth > 0 ? windowWidth : 390
 
   const PHONE_ASPECT = 2.16
   const cardWidth = width * 0.55
