@@ -1,4 +1,5 @@
 export { CTASection } from "./CTASection"
+export { DesignCreditSection } from "./DesignCreditSection"
 export { FeaturesSection } from "./FeaturesSection"
 export { FooterSection } from "./FooterSection"
 export { Header } from "./Header"

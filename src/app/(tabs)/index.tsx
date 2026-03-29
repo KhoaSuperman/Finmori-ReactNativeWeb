@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 import {
   CTASection,
+  DesignCreditSection,
   FeaturesSection,
   FooterSection,
   Header,
@@ -107,6 +108,8 @@ export default function LandingPage() {
           </View>
 
           <CTASection />
+
+          <DesignCreditSection />
 
           <FooterSection />
         </View>
