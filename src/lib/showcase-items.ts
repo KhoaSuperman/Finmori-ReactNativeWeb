@@ -25,28 +25,20 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
     previewImage: "Homescreen.png",
   },
   {
-    title: "Profile & Settings Screen",
-    route: "/screens/profile_settings",
+    title: "Transaction History",
+    route: "/screens/transaction_history",
     description:
-      "Profile and settings screen with header background image, user avatar, and grouped settings sections",
+      "Full-screen transaction history with search, filter chips, grouped day sections, and bottom navigation",
     category: "screen",
-    previewImage: "Profile and Settings.png",
+    previewImage: "Transaction History.png",
   },
   {
-    title: "Goals Screen",
-    route: "/screens/goals",
+    title: "Add Transaction",
+    route: "/screens/add_transaction",
     description:
-      "Full-screen goals dashboard with mini goal cards, all-goals list with progress, and bottom navigation",
+      "Full-screen form to add an expense or income transaction with amount, note, date, and category selection",
     category: "screen",
-    previewImage: "Goals screen.png",
-  },
-  {
-    title: "Goals Details Screen",
-    route: "/screens/goals_details",
-    description:
-      "Goal detail screen with header background image, avatar, goal stats, progress card, recap cards, and recent transactions list",
-    category: "screen",
-    previewImage: "Goals Details.png",
+    previewImage: "Add transaction.png",
   },
   {
     title: "Analytics Overview",
@@ -65,20 +57,28 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
     previewImage: "Analytic Breakdown screen.png",
   },
   {
-    title: "Transaction History",
-    route: "/screens/transaction_history",
+    title: "Goals Screen",
+    route: "/screens/goals",
     description:
-      "Full-screen transaction history with search, filter chips, grouped day sections, and bottom navigation",
+      "Full-screen goals dashboard with mini goal cards, all-goals list with progress, and bottom navigation",
     category: "screen",
-    previewImage: "Transaction History.png",
+    previewImage: "Goals screen.png",
   },
   {
-    title: "Add Transaction",
-    route: "/screens/add_transaction",
+    title: "Goals Details Screen",
+    route: "/screens/goals_details",
     description:
-      "Full-screen form to add an expense or income transaction with amount, note, date, and category selection",
+      "Goal detail screen with header background image, avatar, goal stats, progress card, recap cards, and recent transactions list",
     category: "screen",
-    previewImage: "Add transaction.png",
+    previewImage: "Goals Details.png",
+  },
+  {
+    title: "Profile & Settings Screen",
+    route: "/screens/profile_settings",
+    description:
+      "Profile and settings screen with header background image, user avatar, and grouped settings sections",
+    category: "screen",
+    previewImage: "Profile and Settings.png",
   },
   // Foundation
   { title: "Typography", route: "/showcase/typography", description: "Headings, body text, and UI type scale", category: "foundation" },
@@ -384,3 +384,4 @@ export const SHOWCASE_ITEMS: ShowcaseItem[] = [
     previewImage: "IncomeExpenseChart.jpg",
   },
 ] as const
+

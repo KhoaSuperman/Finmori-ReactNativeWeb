@@ -35,7 +35,34 @@ export function DesignCreditSection() {
           size="caption"
           style={{ color: "#7d89b0", textAlign: "center", maxWidth: 320, lineHeight: 20 }}
         >
-          This UI kit is based on the Finmori Figma design by Zoey DO, available free on Figma Community.
+          This UI kit is based on the Finmori Figma design by Zoey Do, available free on Figma Community.
+        </Typography>
+      </View>
+
+      {/* Thank you message */}
+      <View
+        style={{
+          maxWidth: 480,
+          width: "100%",
+          paddingHorizontal: 20,
+          paddingVertical: 16,
+          borderRadius: 12,
+          backgroundColor: "rgba(16, 185, 129, 0.08)",
+          borderWidth: 1,
+          borderColor: "rgba(16, 185, 129, 0.25)",
+          marginBottom: 24,
+        }}
+      >
+        <Typography
+          size="caption"
+          style={{
+            color: "#10b981",
+            textAlign: "center",
+            lineHeight: 22,
+            fontStyle: "italic",
+          }}
+        >
+          "A huge thank you to Zoey Do for her incredible design work and dedication. Her attention to detail and creative vision made this UI kit possible. We're deeply grateful for her hard work and generosity in sharing this with the community."
         </Typography>
       </View>
 

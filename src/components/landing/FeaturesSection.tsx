@@ -174,12 +174,12 @@ function FeatureCard({ icon, title, description, accentColor, accentBg }: Featur
   )
 }
 
-const FEATURES: Omit<FeatureCardProps, "icon"> & { iconKey: string }[] = [
+const FEATURES: (Omit<FeatureCardProps, "icon"> & { iconKey: string })[] = [
   {
     iconKey: "cross-platform",
     title: "Cross-Platform",
     description:
-      "One codebase for iOS, Android, and Web. Native performance with React Native Web.",
+      "Available for React Native, Android & iOS. Flutter support coming soon. Native performance on every platform.",
     accentColor: "#2f61f3",
     accentBg: "rgba(47, 97, 243, 0.12)",
   },

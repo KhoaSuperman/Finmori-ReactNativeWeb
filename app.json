@@ -1,27 +1,26 @@
 {
   "expo": {
-    "name": "reactnative_web",
-    "slug": "reactnative_web",
+    "name": "Finmori",
+    "slug": "finmori",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "reactnativeweb",
+    "icon": "./assets/images/logo-glow.png",
+    "scheme": "finmori",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "icon": "./assets/expo.icon"
+      "icon": "./assets/images/logo-glow.png"
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "backgroundColor": "#0e101b",
+        "foregroundImage": "./assets/images/logo-glow.png",
+        "backgroundImage": "./assets/images/logo-glow.png"
       }
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/logo-glow.png"
     },
     "plugins": [
       [
@@ -33,11 +32,9 @@
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#208AEF",
-          "android": {
-            "image": "./assets/images/splash-icon.png",
-            "imageWidth": 76
-          }
+          "backgroundColor": "#0e101b",
+          "image": "./assets/images/logo-glow.png",
+          "imageWidth": 200
         }
       ]
     ],

@@ -230,7 +230,31 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
                   maxWidth: 560,
                 }}
               >
-                Production-ready UI kit for React Native Web. Built with Expo, NativeWind, and TypeScript.
+                Production-ready UI kit for{" "}
+                <Typography
+                  size="body"
+                  weight="bold"
+                  style={{
+                    color: "#f9f9fb",
+                    fontSize: isDesktop ? 20 : 17,
+                    lineHeight: isDesktop ? 32 : 28,
+                  }}
+                >
+                  React Native
+                </Typography>
+                {" & "}
+                <Typography
+                  size="body"
+                  weight="bold"
+                  style={{
+                    color: "#f9f9fb",
+                    fontSize: isDesktop ? 20 : 17,
+                    lineHeight: isDesktop ? 32 : 28,
+                  }}
+                >
+                  Android
+                </Typography>
+                . For iOS and Flutter, it will be supported soon. Built with Expo, NativeWind, and TypeScript.
               </Typography>
             </View>
 
@@ -244,7 +268,7 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
               }}
             >
               {[
-                { value: "12+", label: "Screens", color: "#10b981" },
+                { value: "8", label: "Screens", color: "#10b981" },
                 { value: "40+", label: "Components", color: "#2f61f3" },
                 { value: "100+", label: "Tokens", color: "#8b5cf6" },
                 { value: "MIT", label: "License", color: "#f59e0b" },
@@ -295,11 +319,12 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
             {/* CTAs */}
             <View
               style={{
-                flexDirection: isTablet ? "column" : "row",
+                flexDirection: isDesktop ? "row" : "column",
                 gap: 14,
                 marginTop: 8,
-                width: isTablet ? "100%" : "auto",
-                maxWidth: isTablet ? 360 : "auto",
+                width: isDesktop ? "auto" : "100%",
+                maxWidth: isDesktop ? "auto" : 360,
+                alignSelf: "center",
               }}
             >
               <Pressable
@@ -311,6 +336,7 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
                   backgroundColor: "#2f61f3",
                   opacity: pressed ? 0.9 : 1,
                   alignItems: "center",
+                  width: isDesktop ? "auto" : "100%",
                   ...(Platform.OS === "web" && {
                     transition: "all 0.2s ease",
                     transform: pressed ? "scale(0.97)" : "scale(1)",
@@ -336,6 +362,7 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
                   backgroundColor: "rgba(17, 19, 34, 0.5)",
                   opacity: pressed ? 0.8 : 1,
                   alignItems: "center",
+                  width: isDesktop ? "auto" : "100%",
                   ...(Platform.OS === "web" && {
                     transition: "all 0.2s ease",
                     transform: pressed ? "scale(0.97)" : "scale(1)",
