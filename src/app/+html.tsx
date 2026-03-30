@@ -39,7 +39,7 @@ export default function Root({ children }: PropsWithChildren) {
           property="og:description"
           content="A premium mobile-first fintech design system built with React Native Web, NativeWind, and Expo. 10+ screens, 50+ icons, 50+ UI components."
         />
-        <meta property="og:image" content="/og-image.jpg" />
+        <meta property="og:image" content="https://finmori-uikits.vercel.app/og-image.jpg" />
         <meta property="og:image:width" content="1280" />
         <meta property="og:image:height" content="720" />
         <meta property="og:site_name" content="Finmori" />
