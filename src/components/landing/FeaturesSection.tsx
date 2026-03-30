@@ -176,44 +176,126 @@ function FeatureCard({ icon, title, description, accentColor, accentBg }: Featur
 
 const FEATURES: (Omit<FeatureCardProps, "icon"> & { iconKey: string })[] = [
   {
-    iconKey: "cross-platform",
-    title: "Cross-Platform",
+    iconKey: "figma-to-code",
+    title: "Figma to Code",
     description:
-      "Available for React Native, Android & iOS. Flutter support coming soon. Native performance on every platform.",
-    accentColor: "#2f61f3",
-    accentBg: "rgba(47, 97, 243, 0.12)",
+      "Every component is generated from production Figma designs using AI. Pixel-perfect translation from design to real code.",
+    accentColor: "#ec4899",
+    accentBg: "rgba(236, 72, 153, 0.12)",
   },
   {
-    iconKey: "typescript",
-    title: "TypeScript First",
+    iconKey: "vibecoding",
+    title: "90% Vibe Coded",
     description:
-      "Full type safety out of the box. Autocomplete and type checking for all components.",
-    accentColor: "#6895f8",
-    accentBg: "rgba(104, 149, 248, 0.12)",
+      "Cursor AI generates components from Figma designs. 99% pixel-perfect match with minimal human tweaks for edge cases.",
+    accentColor: "#8b5cf6",
+    accentBg: "rgba(139, 92, 246, 0.12)",
   },
   {
     iconKey: "production",
-    title: "Production Ready",
+    title: "Production Quality",
     description:
-      "Built for real apps with accessibility, dark mode, and responsive design included.",
+      "Not toy examples. Real, production-grade components with TypeScript, accessibility, and React Native Web support.",
     accentColor: "#10b981",
     accentBg: "rgba(16, 185, 129, 0.12)",
   },
   {
-    iconKey: "nativewind",
-    title: "NativeWind v4",
+    iconKey: "ai-pipeline",
+    title: "AI-Generated Pipeline",
     description:
-      "Style with Tailwind CSS utilities. Familiar syntax, powerful theming system.",
-    accentColor: "#8b5cf6",
-    accentBg: "rgba(139, 92, 246, 0.12)",
+      "Demonstrates the future of UI development: Design in Figma → Generate with AI → Ship to production.",
+    accentColor: "#2f61f3",
+    accentBg: "rgba(47, 97, 243, 0.12)",
   },
 ]
 
+function FigmaToCodeIcon() {
+  return (
+    <View style={{ width: 24, height: 24, alignItems: "center", justifyContent: "center" }}>
+      <View
+        style={{
+          width: 14,
+          height: 14,
+          borderRadius: 7,
+          borderWidth: 2,
+          borderColor: "#ec4899",
+          marginBottom: -6,
+        }}
+      />
+      <View
+        style={{
+          width: 16,
+          height: 2,
+          backgroundColor: "#ec4899",
+          transform: [{ rotate: "-45deg" }],
+        }}
+      />
+      <View
+        style={{
+          width: 12,
+          height: 12,
+          borderRadius: 2,
+          borderWidth: 2,
+          borderColor: "#10b981",
+          marginTop: -4,
+        }}
+      />
+    </View>
+  )
+}
+
+function VibeCodingIcon() {
+  return (
+    <View style={{ width: 24, height: 24, alignItems: "center", justifyContent: "center" }}>
+      <View style={{ flexDirection: "row", gap: 2 }}>
+        <View style={{ width: 3, height: 12, backgroundColor: "#8b5cf6", borderRadius: 1 }} />
+        <View style={{ width: 3, height: 18, backgroundColor: "#8b5cf6", borderRadius: 1 }} />
+        <View style={{ width: 3, height: 14, backgroundColor: "#8b5cf6", borderRadius: 1 }} />
+        <View style={{ width: 3, height: 10, backgroundColor: "#8b5cf6", borderRadius: 1 }} />
+      </View>
+    </View>
+  )
+}
+
+function AIPipelineIcon() {
+  return (
+    <View style={{ width: 24, height: 24, alignItems: "center", justifyContent: "center" }}>
+      <View
+        style={{
+          width: 20,
+          height: 12,
+          borderWidth: 2,
+          borderColor: "#2f61f3",
+          borderRadius: 4,
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+        <Typography size="caption" weight="bold" style={{ color: "#2f61f3", fontSize: 8 }}>
+          AI
+        </Typography>
+      </View>
+      <View
+        style={{
+          position: "absolute",
+          bottom: 2,
+          right: 2,
+          width: 8,
+          height: 8,
+          borderWidth: 2,
+          borderColor: "#10b981",
+          borderLeftWidth: 0,
+          borderTopWidth: 0,
+        }}
+      />
+    </View>
+  )
+}
+
 const ICON_MAP: Record<string, React.ReactNode> = {
-  "cross-platform": <CrossPlatformIcon />,
-  typescript: <TypeScriptIcon />,
+  "figma-to-code": <FigmaToCodeIcon />,
+  vibecoding: <VibeCodingIcon />,
   production: <ProductionIcon />,
-  nativewind: <NativeWindIcon />,
+  "ai-pipeline": <AIPipelineIcon />,
 }
 
 export function FeaturesSection() {
@@ -249,7 +331,7 @@ export function FeaturesSection() {
           className="text-center"
           style={{ color: "#f9f9fb", fontSize: isDesktop ? 36 : 28 }}
         >
-          Why Finmori?
+          Vibe Coding in Action
         </Typography>
 
         <Typography
@@ -257,7 +339,7 @@ export function FeaturesSection() {
           className="text-center"
           style={{ color: "#7d89b0", maxWidth: 480 }}
         >
-          Everything you need to build a modern finance app interface
+          See what's possible when AI translates Figma designs into production-ready React Native code
         </Typography>
       </View>
 

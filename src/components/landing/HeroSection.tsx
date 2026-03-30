@@ -210,13 +210,13 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
                   weight="bold"
                   style={{
                     color: "#f9f9fb",
-                    fontSize: isDesktop ? 64 : isTablet ? 52 : 40,
-                    lineHeight: isDesktop ? 72 : isTablet ? 60 : 48,
+                    fontSize: isDesktop ? 60 : isTablet ? 48 : 36,
+                    lineHeight: isDesktop ? 68 : isTablet ? 56 : 44,
                     letterSpacing: -2,
                     textAlign: "center",
                   }}
                 >
-                  {isDesktop ? "React Native\nDesign System" : "React Native\nDesign System"}
+                  {isDesktop ? "Figma to Code,\nPowered by AI" : "Figma to Code,\nPowered by AI"}
                 </Typography>
               </View>
 
@@ -227,10 +227,9 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
                   color: "#8a94b8",
                   fontSize: isDesktop ? 20 : 17,
                   lineHeight: isDesktop ? 32 : 28,
-                  maxWidth: 560,
+                  maxWidth: 600,
                 }}
               >
-                Production-ready UI kit for{" "}
                 <Typography
                   size="body"
                   weight="bold"
@@ -240,9 +239,9 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
                     lineHeight: isDesktop ? 32 : 28,
                   }}
                 >
-                  React Native
+                  90% vibe-coded
                 </Typography>
-                {" & "}
+                {" — Cursor AI generated these components from production Figma designs. 99% pixel-perfect. "}
                 <Typography
                   size="body"
                   weight="bold"
@@ -252,9 +251,8 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
                     lineHeight: isDesktop ? 32 : 28,
                   }}
                 >
-                  Android
+                  Minimal tweaks, maximum output.
                 </Typography>
-                . For iOS and Flutter, it will be supported soon. Built with Expo, NativeWind, and TypeScript.
               </Typography>
             </View>
 
@@ -268,10 +266,10 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
               }}
             >
               {[
-                { value: "8", label: "Screens", color: "#10b981" },
+                { value: "90%", label: "AI Generated", color: "#10b981" },
                 { value: "40+", label: "Components", color: "#2f61f3" },
-                { value: "100+", label: "Tokens", color: "#8b5cf6" },
-                { value: "MIT", label: "License", color: "#f59e0b" },
+                { value: "8", label: "Screens", color: "#8b5cf6" },
+                { value: "99%", label: "Design Match", color: "#f59e0b" },
               ].map((stat, i) => (
                 <View
                   key={i}
@@ -402,7 +400,7 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
                 ))}
               </View>
               <Typography size="caption" style={{ color: "#5d6b98", fontSize: 13 }}>
-                Built for modern React Native apps
+                90% AI-generated, 99% design fidelity — with minimal human polish
               </Typography>
             </View>
           </View>
