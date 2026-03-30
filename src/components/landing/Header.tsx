@@ -51,7 +51,7 @@ export function Header({
   }
 
   const handleGitHubPress = () => {
-    Linking.openURL("https://github.com/KhoaSuperman/Finmori-ReactNativeWeb")
+    Linking.openURL("https://github.com/KhoaSuperman/Finmori")
   }
 
   return (

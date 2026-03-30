@@ -12,7 +12,7 @@ const TECH_BADGES = [
 
 export function FooterSection() {
   const handleGitHub = () => {
-    Linking.openURL("https://github.com/KhoaSuperman/Finmori-ReactNativeWeb")
+    Linking.openURL("https://github.com/KhoaSuperman/Finmori")
   }
 
   const currentYear = new Date().getFullYear()

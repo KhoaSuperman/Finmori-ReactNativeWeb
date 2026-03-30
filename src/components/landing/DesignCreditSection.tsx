@@ -4,7 +4,7 @@ import { Typography } from "@/components/ui-kit/Typography"
 
 export function DesignCreditSection() {
   const handleFigmaPress = () => {
-    Linking.openURL("https://www.figma.com/community/file/1234567890")
+    Linking.openURL("https://www.figma.com/@zoedo")
   }
 
   return (

@@ -7,7 +7,7 @@ export function CTASection() {
   const isDesktop = Platform.OS === "web" && width > 768
 
   const handleGitHub = () => {
-    Linking.openURL("https://github.com/KhoaSuperman/Finmori-ReactNativeWeb")
+    Linking.openURL("https://github.com/KhoaSuperman/Finmori")
   }
 
   return (

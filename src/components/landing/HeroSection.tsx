@@ -12,7 +12,7 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
   const isTablet = Platform.OS === "web" && width > 768 && width <= 1024
 
   const handleGitHub = () => {
-    Linking.openURL("https://github.com/KhoaSuperman/Finmori-ReactNativeWeb")
+    Linking.openURL("https://github.com/KhoaSuperman/Finmori")
   }
 
   return (
