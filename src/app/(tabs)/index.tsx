@@ -1,4 +1,5 @@
 import { useRouter } from "expo-router"
+import Head from "expo-router/head"
 import { useRef, useState } from "react"
 import { ScrollView, View } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
@@ -83,6 +84,14 @@ export default function LandingPage() {
 
   return (
     <>
+      <Head>
+        <title>Finmori — Smart Budget & Expense Tracker UI Kit</title>
+        <meta
+          name="description"
+          content="A premium mobile-first fintech design system built with React Native Web, NativeWind, and Expo. 10+ screens, 50+ icons, 50+ UI components. MIT Licensed."
+        />
+      </Head>
+
       <Header
         onNavigateToScreens={navigateToScreens}
         onNavigateToFeatures={navigateToFeatures}
