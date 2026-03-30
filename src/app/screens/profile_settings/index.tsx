@@ -29,7 +29,7 @@ import {
 } from "@/components/ui-kit"
 import { Typography } from "@/components/ui-kit/Typography"
 
-const AVATAR_URI = "https://i.pravatar.cc/300?img=11"
+const AVATAR_URI = "https://i.pravatar.cc/150?img=45"
 const headerBgImage = require("../../../../assets/images/profile-settings/bg_profile_settings_header-3x.png")
 
 const ICON_COLOR = "var(--color-fg-brand-primary)"

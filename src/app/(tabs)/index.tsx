@@ -5,6 +5,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context"
 
 import {
   CTASection,
+  DesignCreditSection,
   FeaturesSection,
   FooterSection,
   Header,
@@ -29,6 +30,7 @@ export default function LandingPage() {
     screens: 0,
     features: 0,
     uikits: 0,
+    designCredit: 0,
   })
 
   const handleItemPress = (item: ShowcaseItem) => {
@@ -65,6 +67,10 @@ export default function LandingPage() {
     scrollRef.current?.scrollTo({ y: sectionPositions.uikits || 1200, animated: true })
   }
 
+  const navigateToDesignCredit = () => {
+    scrollRef.current?.scrollTo({ y: sectionPositions.designCredit || 2000, animated: true })
+  }
+
   const handleScroll = (event: { nativeEvent: { contentOffset: { y: number } } }) => {
     // Optional: Could use this to highlight current section in nav
   }
@@ -81,6 +87,7 @@ export default function LandingPage() {
         onNavigateToScreens={navigateToScreens}
         onNavigateToFeatures={navigateToFeatures}
         onNavigateToUIKits={navigateToUIKits}
+        onNavigateToDesignCredit={navigateToDesignCredit}
       />
 
       <ScrollView
@@ -107,6 +114,10 @@ export default function LandingPage() {
           </View>
 
           <CTASection />
+
+          <View onLayout={(e) => updateSectionPosition("designCredit", e.nativeEvent.layout.y - 64)}>
+            <DesignCreditSection />
+          </View>
 
           <FooterSection />
         </View>

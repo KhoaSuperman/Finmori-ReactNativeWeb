@@ -75,5 +75,6 @@ export { LockShieldOutlinedIcon } from "./LockShieldOutlinedIcon"
 export { BookOutlinedIcon } from "./BookOutlinedIcon"
 export { CheckOutOutlinedIcon } from "./CheckOutOutlinedIcon"
 export { XCircleOutlinedIcon } from "./XCircleOutlinedIcon"
+export { MenuIcon } from "./MenuIcon"
 export type { IconProps } from "./types"
 

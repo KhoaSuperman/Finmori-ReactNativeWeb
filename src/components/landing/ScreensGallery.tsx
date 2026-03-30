@@ -67,7 +67,7 @@ function SectionHeader() {
         }}
       >
         <Typography size="caption" weight="semibold" style={{ color: "#10b981", fontSize: 12, letterSpacing: 0.5 }}>
-          SCREENS
+          VIBE CODED
         </Typography>
       </View>
 
@@ -75,7 +75,7 @@ function SectionHeader() {
         App Screens
       </Typography>
       <Typography size="body" style={{ color: "#7d89b0" }}>
-        {SCREEN_ITEMS.length} full-screen app views ready to use
+        {SCREEN_ITEMS.length} complete screens — AI-generated from Figma designs with 99% fidelity, minimal polish
       </Typography>
     </View>
   )

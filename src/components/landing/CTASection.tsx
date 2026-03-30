@@ -7,7 +7,7 @@ export function CTASection() {
   const isDesktop = Platform.OS === "web" && width > 768
 
   const handleGitHub = () => {
-    Linking.openURL("https://github.com/KhoaSuperman/Finmori-ReactNativeWeb")
+    Linking.openURL("https://github.com/KhoaSuperman/Finmori")
   }
 
   return (
@@ -105,12 +105,12 @@ export function CTASection() {
               letterSpacing: -0.5,
             }}
           >
-            Ready to build your next app?
+            The future of UI development?
           </Typography>
         </View>
 
-        <Typography size="body" className="text-center" style={{ color: "#7d89b0", maxWidth: 420, lineHeight: 24 }}>
-          Open source and free to use. Clone the repo and start building with Finmori today.
+        <Typography size="body" className="text-center" style={{ color: "#7d89b0", maxWidth: 480, lineHeight: 24 }}>
+          See what vibecoding can do. This UI kit is 90% AI-generated from Figma with 99% design fidelity. Minimal tweaks, maximum output.
         </Typography>
 
         {/* Dual CTAs */}
