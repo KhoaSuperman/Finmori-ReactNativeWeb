@@ -1,6 +1,7 @@
 import { Image, Platform, Pressable, useWindowDimensions, View } from "react-native"
 
 import { Typography } from "@/components/ui-kit/Typography"
+import { trackComponentView } from "@/lib/analytics"
 import { PREVIEW_IMAGES } from "@/lib/preview-images"
 import { ShowcaseCategory, ShowcaseItem, SHOWCASE_ITEMS } from "@/lib/showcase-items"
 
@@ -541,7 +542,10 @@ export function UIKitsGallery({ onItemPress }: UIKitsGalleryProps) {
                     item={item}
                     cardWidth={cardWidth}
                     accentColor={config.accentColor}
-                    onPress={() => onItemPress(item)}
+                    onPress={() => {
+                      trackComponentView({ title: item.title, category: config.category, route: item.route })
+                      onItemPress(item)
+                    }}
                   />
                 ) : (
                   <ComponentCard
@@ -549,7 +553,10 @@ export function UIKitsGallery({ onItemPress }: UIKitsGalleryProps) {
                     item={item}
                     cardWidth={cardWidth}
                     accentColor={config.accentColor}
-                    onPress={() => onItemPress(item)}
+                    onPress={() => {
+                      trackComponentView({ title: item.title, category: config.category, route: item.route })
+                      onItemPress(item)
+                    }}
                   />
                 ),
               )}

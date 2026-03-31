@@ -1,12 +1,14 @@
 import { Linking, Platform, Pressable, useWindowDimensions, View } from "react-native"
 
 import { Typography } from "@/components/ui-kit/Typography"
+import { trackCtaClick } from "@/lib/analytics"
 
 export function CTASection() {
   const { width } = useWindowDimensions()
   const isDesktop = Platform.OS === "web" && width > 768
 
-  const handleGitHub = () => {
+  const handleGitHub = (label: string) => {
+    trackCtaClick({ label, location: "cta_section" })
     Linking.openURL("https://github.com/KhoaSuperman/Finmori")
   }
 
@@ -124,7 +126,7 @@ export function CTASection() {
           }}
         >
           <Pressable
-            onPress={handleGitHub}
+            onPress={() => handleGitHub("View on GitHub")}
             style={({ pressed }) => ({
               paddingHorizontal: 32,
               paddingVertical: 16,
@@ -144,7 +146,7 @@ export function CTASection() {
           </Pressable>
 
           <Pressable
-            onPress={handleGitHub}
+            onPress={() => handleGitHub("Read Docs")}
             style={({ pressed }) => ({
               paddingHorizontal: 32,
               paddingVertical: 16,

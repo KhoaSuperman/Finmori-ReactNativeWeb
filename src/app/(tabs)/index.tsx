@@ -15,6 +15,7 @@ import {
   UIKitsGallery,
 } from "@/components/landing"
 import { ShowcaseDrawer } from "@/components/showcase-drawer"
+import { trackDrawerClose, trackDrawerOpen } from "@/lib/analytics"
 import { ShowcaseItem } from "@/lib/showcase-items"
 import { SHOWCASE_REGISTRY } from "@/lib/showcase-registry"
 
@@ -41,6 +42,7 @@ export default function LandingPage() {
     }
     const hasComponent = !!SHOWCASE_REGISTRY[item.route]
     if (hasComponent) {
+      trackDrawerOpen({ title: item.title, category: item.category, route: item.route })
       setMountedItem(item)
       setDrawerItem(item)
     } else {
@@ -49,6 +51,7 @@ export default function LandingPage() {
   }
 
   const handleDrawerClose = () => {
+    trackDrawerClose()
     setDrawerItem(null)
   }
 

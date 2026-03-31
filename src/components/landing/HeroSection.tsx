@@ -1,6 +1,7 @@
 import { Image, Linking, Platform, Pressable, ScrollView, useWindowDimensions, View } from "react-native"
 
 import { Typography } from "@/components/ui-kit/Typography"
+import { trackCtaClick } from "@/lib/analytics"
 
 interface HeroSectionProps {
   onExplorePress: () => void
@@ -12,6 +13,7 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
   const isTablet = Platform.OS === "web" && width > 768 && width <= 1024
 
   const handleGitHub = () => {
+    trackCtaClick({ label: "View on GitHub", location: "hero" })
     Linking.openURL("https://github.com/KhoaSuperman/Finmori")
   }
 
@@ -350,7 +352,10 @@ export function HeroSection({ onExplorePress }: HeroSectionProps) {
               </Pressable>
 
               <Pressable
-                onPress={onExplorePress}
+                onPress={() => {
+                  trackCtaClick({ label: "Explore Components", location: "hero" })
+                  onExplorePress()
+                }}
                 style={({ pressed }) => ({
                   paddingHorizontal: 32,
                   paddingVertical: 16,

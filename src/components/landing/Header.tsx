@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Image, Linking, Platform, Pressable, useWindowDimensions, View } from "react-native"
 
 import { MenuIcon, XOutlinedIcon } from "@/components/icons"
+import { trackCtaClick, trackNavClick } from "@/lib/analytics"
 import { Typography } from "@/components/ui-kit/Typography"
 
 interface HeaderProps {
@@ -36,21 +37,26 @@ export function Header({
   const handleNavPress = (key: (typeof NAV_ITEMS)[number]["key"]) => {
     switch (key) {
       case "screens":
+        trackNavClick("screens")
         onNavigateToScreens()
         break
       case "uikits":
+        trackNavClick("uikits")
         onNavigateToUIKits()
         break
       case "features":
+        trackNavClick("features")
         onNavigateToFeatures()
         break
       case "design-credit":
+        trackNavClick("design_credit")
         onNavigateToDesignCredit?.()
         break
     }
   }
 
   const handleGitHubPress = () => {
+    trackCtaClick({ label: "View on GitHub", location: "hero" })
     Linking.openURL("https://github.com/KhoaSuperman/Finmori")
   }
 

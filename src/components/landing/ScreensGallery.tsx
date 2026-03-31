@@ -1,7 +1,19 @@
-import { useEffect, useState } from "react"
-import { ActivityIndicator, Image, Platform, Pressable, ScrollView, useWindowDimensions, View } from "react-native"
-
+import { useEffect, useRef, useState } from "react"
+import {
+  Animated,
+  Easing,
+  Image,
+  Modal,
+  Platform,
+  Pressable,
+  ScrollView,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
+} from "react-native"
 import { Typography } from "@/components/ui-kit/Typography"
+import { XOutlinedIcon } from "@/components/icons"
+import { trackScreenView } from "@/lib/analytics"
 import { PREVIEW_IMAGES } from "@/lib/preview-images"
 import { SHOWCASE_ITEMS, ShowcaseItem } from "@/lib/showcase-items"
 import { SCREEN_COMPONENTS } from "@/lib/showcase-screen-components"
@@ -11,6 +23,124 @@ const SCREEN_ITEMS = SHOWCASE_ITEMS.filter((item) => item.category === "screen")
 
 interface ScreensGalleryProps {
   onItemPress: (item: ShowcaseItem) => void
+}
+
+function SideloadingLoader() {
+  const progress = useRef(new Animated.Value(0)).current
+  const opacity = useRef(new Animated.Value(0)).current
+
+  useEffect(() => {
+    Animated.timing(opacity, { toValue: 1, duration: 200, useNativeDriver: true }).start()
+
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(progress, {
+          toValue: 1,
+          duration: 1400,
+          easing: Easing.inOut(Easing.ease),
+          useNativeDriver: false,
+        }),
+        Animated.timing(progress, {
+          toValue: 0,
+          duration: 0,
+          useNativeDriver: false,
+        }),
+      ]),
+    )
+    loop.start()
+    return () => loop.stop()
+  }, [])
+
+  const BAR_WIDTH = 160
+  const DOT_SIZE = 8
+  const DOT_GAP = 10
+  const NUM_DOTS = 5
+  const TOTAL_DOTS_WIDTH = NUM_DOTS * DOT_SIZE + (NUM_DOTS - 1) * DOT_GAP
+
+  return (
+    <Animated.View
+      style={{
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#0e101b",
+        opacity,
+      }}
+    >
+      {/* App icon placeholder */}
+      <View
+        style={{
+          width: 56,
+          height: 56,
+          borderRadius: 14,
+          backgroundColor: "rgba(47, 97, 243, 0.15)",
+          borderWidth: 1,
+          borderColor: "rgba(47, 97, 243, 0.3)",
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: 20,
+        }}
+      >
+        <View
+          style={{
+            width: 24,
+            height: 24,
+            borderRadius: 6,
+            backgroundColor: "#2f61f3",
+            opacity: 0.8,
+          }}
+        />
+      </View>
+
+      {/* Sliding dots bar */}
+      <View
+        style={{
+          width: BAR_WIDTH,
+          height: DOT_SIZE,
+          overflow: "hidden",
+          flexDirection: "row",
+          alignItems: "center",
+        }}
+      >
+        {Array.from({ length: NUM_DOTS }).map((_, i) => {
+          const delay = i / NUM_DOTS
+          const dotOpacity = progress.interpolate({
+            inputRange: [
+              Math.max(0, delay - 0.2),
+              delay,
+              Math.min(1, delay + 0.3),
+              Math.min(1, delay + 0.5),
+            ],
+            outputRange: [0.1, 1, 1, 0.1],
+            extrapolate: "clamp",
+          })
+          const translateX = progress.interpolate({
+            inputRange: [0, 1],
+            outputRange: [-TOTAL_DOTS_WIDTH, BAR_WIDTH],
+            extrapolate: "clamp",
+          })
+          return (
+            <Animated.View
+              key={i}
+              style={{
+                width: DOT_SIZE,
+                height: DOT_SIZE,
+                borderRadius: DOT_SIZE / 2,
+                backgroundColor: "#2f61f3",
+                marginRight: i < NUM_DOTS - 1 ? DOT_GAP : 0,
+                opacity: dotOpacity,
+                transform: [{ translateX }],
+              }}
+            />
+          )
+        })}
+      </View>
+
+      <Typography size="caption" style={{ color: "#404968", marginTop: 16, letterSpacing: 0.5 }}>
+        Loading screen...
+      </Typography>
+    </Animated.View>
+  )
 }
 
 function ScreenRenderer({ route }: { route: string }) {
@@ -24,6 +154,8 @@ function ScreenRenderer({ route }: { route: string }) {
       if (loader) {
         try {
           const Component = await loader()
+          //add some delay to the component
+          await new Promise((resolve) => setTimeout(resolve, 1000))
           setScreenComponent(() => Component)
         } catch (error) {
           console.error(`Failed to load screen: ${route}`, error)
@@ -37,13 +169,15 @@ function ScreenRenderer({ route }: { route: string }) {
 
   if (isLoading || !ScreenComponent) {
     return (
-      <View style={{ flex: 1, alignItems: "center", justifyContent: "center", backgroundColor: "#0e101b" }}>
+      <View style={{ flex: 1, backgroundColor: "#0e101b" }}>
         {isLoading ? (
-          <ActivityIndicator size="large" color="#2f61f3" />
+          <SideloadingLoader />
         ) : (
-          <Typography size="body" style={{ color: "#7d89b0" }}>
-            Failed to load screen
-          </Typography>
+          <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+            <Typography size="body" style={{ color: "#7d89b0" }}>
+              Failed to load screen
+            </Typography>
+          </View>
         )}
       </View>
     )
@@ -195,38 +329,118 @@ function PhoneCard({ item, width, height, onPress }: PhoneCardProps) {
   )
 }
 
-function MobileScreensGallery({ onItemPress }: ScreensGalleryProps) {
-  const { width: windowWidth } = useWindowDimensions()
+function MobileScreensGallery() {
+  const { width: windowWidth, height: windowHeight } = useWindowDimensions()
+  const [selectedScreen, setSelectedScreen] = useState<ShowcaseItem | null>(null)
+
   // useWindowDimensions returns 0 during SSR static export; fall back to a
   // sensible mobile default (390px) so cards render at the correct size.
   const width = windowWidth > 0 ? windowWidth : 390
+  const height = windowHeight > 0 ? windowHeight : 844
 
   const PHONE_ASPECT = 2.16
   const cardWidth = width * 0.55
   const cardHeight = cardWidth * PHONE_ASPECT
 
-  return (
-    <View style={{ paddingVertical: 48, paddingHorizontal: 20 }}>
-      <SectionHeader />
+  // Phone frame dimensions for modal
+  // Reserve space: close button area (top ~80px) + bottom safe area (100px for address bar + gap)
+  const PHONE_FRAME_WIDTH = 393
+  const PHONE_FRAME_HEIGHT = 852
+  const availableHeight = height - 80 - 100
+  const availableWidth = width - 16
+  const scaleByHeight = availableHeight / PHONE_FRAME_HEIGHT
+  const scaleByWidth = availableWidth / PHONE_FRAME_WIDTH
+  const phoneScale = Math.min(scaleByHeight, scaleByWidth)
 
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ paddingRight: 20, gap: 16 }}
-        snapToInterval={cardWidth + 16}
-        decelerationRate="fast"
+  return (
+    <>
+      <View style={{ paddingVertical: 48, paddingHorizontal: 20 }}>
+        <SectionHeader />
+
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingRight: 20, gap: 16 }}
+          snapToInterval={cardWidth + 16}
+          decelerationRate="fast"
+        >
+          {SCREEN_ITEMS.map((item) => (
+            <PhoneCard
+              key={item.route}
+              item={item}
+              width={cardWidth}
+              height={cardHeight}
+              onPress={() => {
+                trackScreenView({ title: item.title, route: item.route })
+                setSelectedScreen(item)
+              }}
+            />
+          ))}
+        </ScrollView>
+      </View>
+
+      {/* Modal Overlay for Screen Preview */}
+      <Modal
+        visible={selectedScreen !== null}
+        transparent
+        animationType="fade"
+        onRequestClose={() => setSelectedScreen(null)}
       >
-        {SCREEN_ITEMS.map((item) => (
-          <PhoneCard
-            key={item.route}
-            item={item}
-            width={cardWidth}
-            height={cardHeight}
-            onPress={() => onItemPress(item)}
-          />
-        ))}
-      </ScrollView>
-    </View>
+        <Pressable
+          onPress={() => setSelectedScreen(null)}
+          style={{
+            flex: 1,
+            backgroundColor: "rgba(14, 16, 27, 0.95)",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            paddingTop: 80,
+            paddingBottom: 100,
+          }}
+        >
+          {/* Close Button */}
+          <TouchableOpacity
+            onPress={() => setSelectedScreen(null)}
+            style={{
+              position: "absolute",
+              top: 48,
+              right: 24,
+              width: 44,
+              height: 44,
+              borderRadius: 22,
+              backgroundColor: "rgba(64, 73, 104, 0.5)",
+              justifyContent: "center",
+              alignItems: "center",
+              zIndex: 100,
+            }}
+          >
+            <XOutlinedIcon size={24} color="#f9f9fb" />
+          </TouchableOpacity>
+
+          {/* Phone Device Frame — scaled to fit available space, no scroll */}
+          {selectedScreen && (
+            <Pressable onPress={(e) => e.stopPropagation()}>
+              <View
+                style={{
+                  transform: [{ scale: phoneScale }],
+                  width: PHONE_FRAME_WIDTH,
+                  height: PHONE_FRAME_HEIGHT,
+                  // Offset the visual position since transform-origin is center
+                  marginTop: -(PHONE_FRAME_HEIGHT * (1 - phoneScale)) / 2,
+                  marginBottom: -(PHONE_FRAME_HEIGHT * (1 - phoneScale)) / 2,
+                  ...(Platform.OS === "web" && {
+                    filter: "drop-shadow(0 0 40px rgba(47, 97, 243, 0.2))",
+                  }),
+                }}
+              >
+                <PhoneDeviceFrame>
+                  <ScreenRenderer route={selectedScreen.route} />
+                </PhoneDeviceFrame>
+              </View>
+            </Pressable>
+          )}
+        </Pressable>
+      </Modal>
+    </>
   )
 }
 
@@ -282,7 +496,10 @@ function DesktopScreensGallery() {
               return (
                 <Pressable
                   key={item.route}
-                  onPress={() => setSelectedScreen(item)}
+                  onPress={() => {
+                    trackScreenView({ title: item.title, route: item.route })
+                    setSelectedScreen(item)
+                  }}
                   style={({ hovered }: any) => ({
                     ...(Platform.OS === "web" && {
                       transition: "all 0.15s ease",
@@ -371,5 +588,5 @@ export function ScreensGallery(props: ScreensGalleryProps) {
     return <DesktopScreensGallery />
   }
 
-  return <MobileScreensGallery {...props} />
+  return <MobileScreensGallery />
 }
