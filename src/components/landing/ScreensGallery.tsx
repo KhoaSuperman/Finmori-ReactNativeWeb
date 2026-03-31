@@ -75,7 +75,7 @@ function SectionHeader() {
         App Screens
       </Typography>
       <Typography size="body" style={{ color: "#7d89b0" }}>
-        {SCREEN_ITEMS.length} complete screens — AI-generated from Figma designs with 99% fidelity, minimal polish
+        {SCREEN_ITEMS.length} complete screens — 100% vibe-coded from Figma, 99% design fidelity
       </Typography>
     </View>
   )
