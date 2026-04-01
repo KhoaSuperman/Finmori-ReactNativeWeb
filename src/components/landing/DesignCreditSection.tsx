@@ -4,7 +4,7 @@ import { Typography } from "@/components/ui-kit/Typography"
 
 export function DesignCreditSection() {
   const handleFigmaPress = () => {
-    Linking.openURL("https://www.figma.com/@zoedo")
+    Linking.openURL("https://www.figma.com/community/file/1621166836274739738/free-finmori-smart-budget-expense-tracker-ui-kit")
   }
 
   return (
